@@ -6,16 +6,17 @@ Created on Tue Nov 10 14:21:51 2020
 @author: rocfarriolduran
 """
 ### EPITOPE EXTRACTOR
-## GOAL: extract linear epitopes in tabulated data.
-## create epitopes for continous residues that overcome a threshold.
+## GOAL: extract linear epitopes in tabulated data either from linear or structural prediction origin.
+## create epitopes from continous residues that surpass a given quality threshold.
 
 
-# imports
+# IMPORTS
 import sys
 import csv
 import os.path
 from pathlib import Path
 
+# HELP
 h = '''
     To right usage of this script:
         $ python3 epitetons.py 
@@ -37,7 +38,7 @@ h = '''
     '''
 
 
-
+# FILE EXISTANCE
 def fileExist(file):
     if file!="":
         if Path(file).is_file():
@@ -51,7 +52,7 @@ def fileExist(file):
         return False
 
 
-
+# FILE UPLOAD
 data_file=""
 num_args=len(sys.argv)
 
@@ -76,6 +77,7 @@ out_file.writelines("Epitope_id,Epitope_seq\n")
 f=open(data_file, "r", encoding = 'utf-8-sig')
 inputFile = csv.reader(f, delimiter=',')
 
+# EPITOPE EXTRACTOR
 y = 0
 positionAnt = 0
 AminoAcidAnt = ""
@@ -114,5 +116,6 @@ if consecutius>=2:
     Epitope_id=Epitope_id + 1
     out_file.writelines(str(Epitope_id)+","+Epitope_seq+"\n")
 
+# OUTPUT FILE
 out_file.close()
 print("Output file: "+nameOutFile)
