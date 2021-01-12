@@ -8,12 +8,14 @@ Input: epitope sequence, parental protein sequence & glycosilated positions.
 Output: epitope glycosilation: YES or NO.
 @author: rocfarriolduran
 """
-# imports
+
+# IMPORTS
 import sys
 import csv
 import os.path
 from pathlib import Path
 
+# HELP
 h = '''
     To right usage of this script:
         $ python3 busca3030.py
@@ -31,7 +33,7 @@ h = '''
     '''
 
 
-
+# FILE CHECK
 def fileExist(file):
     if file!="":
         if Path(file).is_file():
@@ -45,7 +47,7 @@ def fileExist(file):
         return False
 
 
-
+# VARIABLES
 data_file=""
 inputGlycans=""
 glycans=""
@@ -58,7 +60,7 @@ if num_args>=2:
 if num_args==3:
     inputGlycans = sys.argv[2]
 
-
+# FILE NOT EXIST
 while not fileExist(data_file):
     data_file = input(''' Provide location and name of the file dataset.
         For example: data/file_test.csv
@@ -68,16 +70,19 @@ print("Input file: " + data_file)
 
 #data_file= 'test_protein_parser.csv'
 
+# OPEN READ FILE
 extension = os.path.splitext(data_file)[1]
 lenextension=len(extension)
 nameOutFile=data_file[:-lenextension]+"_Out"+extension
 
+# GLYCAN INPUT
 if num_args<3:
     inputGlycans = input(''' OPTIONAL Provide coma separated glycans.
         (zero is first position)
         For example: 0,16,32,64
         Here: ''')
 
+# GLYCAN CHECK   
 #glycans=[0,16,32,64]
 if len(inputGlycans)>0:
     glycans=inputGlycans.split(",")
@@ -87,7 +92,7 @@ if len(glycans)!=0:
 else:
     print("No glycans provided")
 
-
+# GLYCAN DETECTION SCRIPT
 def isOnGoal(start,llpep):
     isOnGoal=-1
     if len(glycans) > 0:
@@ -99,6 +104,7 @@ def isOnGoal(start,llpep):
                     isOnGoal = isOnGoal + "," + goal
     return isOnGoal
 
+# OUTPUT FILE
 out_file=open(nameOutFile, "w")
 if len(glycans) > 0:
     out_file.writelines("Id;Sequence;Peptide;Position;Pre;lenPre;Post;lenPost;onGoal\n")
