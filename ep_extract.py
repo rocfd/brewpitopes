@@ -2,7 +2,6 @@
 # -*- coding: utf-8 -*-
 """
 Created on Tue Nov 10 14:21:51 2020
-
 @author: rocfarriolduran
 """
 ### EPITOPE EXTRACTOR
@@ -22,19 +21,13 @@ h = '''
         $ python3 epitetons.py 
     The files in use have to be provided by stating "location/file_name.csv"
     to the input questions that appear in the console.
-
     <file_name> should be a .csv separated by ","
-
     OPTIONAL 
-
     The script returns a <file_name>_out.xlsx as output.
-
     You can also do the following (if using Mac/Linux OS):
         $ chmod +x epitetons.py 
         $ ./epitetons.py  <location/file_name.csv>
-
     You need python 3 installed in your computer!!!
-
     '''
 
 
@@ -75,7 +68,7 @@ out_file=open(nameOutFile, "w")
 out_file.writelines("Epitope_id,Epitope_seq\n")
 
 f=open(data_file, "r", encoding = 'utf-8-sig')
-inputFile = csv.reader(f, delimiter=',')
+inputFile = csv.reader(f, delimiter=';')
 
 # EPITOPE EXTRACTOR
 y = 0
@@ -90,9 +83,9 @@ for reg in inputFile :
         AminoAcidAnt = AminoAcid
 
         ID=reg[0]
-        Entry=reg[1]
-        Position=reg[2]
-        AminoAcid=reg[3]
+        #Entry=reg[1]
+        Position=reg[1]
+        AminoAcid=reg[2]
 
         if int(Position)-int(positionAnt)==1:
             Epitope_seq=Epitope_seq+AminoAcid
@@ -105,9 +98,9 @@ for reg in inputFile :
             consecutius=1
     else:
         ID=reg[0]
-        Entry=reg[1]
-        Position=reg[2]
-        AminoAcid=reg[3]
+        #Entry=reg[1]
+        Position=reg[1]
+        AminoAcid=reg[2]
 
         Epitope_seq = AminoAcid
 
