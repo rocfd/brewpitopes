@@ -2,8 +2,7 @@
 # -*- coding: utf-8 -*-
 """
 Created on Wed Apr  1 18:16:13 2020
-Description: detection of glycosilated residues (positions) in a protein sequences
-or given an epitope within a protein.
+Description: Classification of glycosylated epitopes given epitope position and glycosylated residues' position in the parental protein sequence.
 Input: epitope sequence, parental protein sequence & glycosilated positions.
 Output: epitope glycosilation: YES or NO.
 @author: rocfarriolduran
