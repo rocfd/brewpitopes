@@ -6,6 +6,8 @@ Created on Tue Nov 10 14:21:51 2020
 """
 ### EPITOPE EXTRACTOR
 ## GOAL: extract linear epitopes in tabulated data either from linear or structural prediction origin.
+## Variant for structural Discotope predictions at: 
+## https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0
 ## create epitopes from continous residues that surpass a given quality threshold.
 
 
@@ -14,6 +16,7 @@ import sys
 import csv
 import os.path
 from pathlib import Path
+import pandas as pd
 
 # HELP
 h = '''
@@ -61,31 +64,84 @@ while not fileExist(data_file):
 
 print("Input file: " + data_file)
 
+# NAME THE OUTPUT FILE
 extension = os.path.splitext(data_file)[1]
 lenextension=len(extension)
 nameOutFile=data_file[:-lenextension]+"_Out"+extension
 out_file=open(nameOutFile, "w")
 out_file.writelines("Epitope_id,Epitope_seq\n")
 
-f=open(data_file, "r", encoding = 'utf-8-sig')
-inputFile = csv.reader(f, delimiter=';')
+# READ THE CSV INPUT & ADD HEADERS TO DISCOTOPE DATAFRAME
+'''# chain_id	residue_id	residue_name	contact_number	propensity_score	discotope_score	status'''
 
-# EPITOPE EXTRACTOR
-y = 0
-positionAnt = 0
-AminoAcidAnt = ""
-Epitope_seq = ""
-Epitope_id=0
-consecutius=1
-for reg in inputFile :
+prediction = pd.read_csv(data_file, 
+			 sep='\t', 
+			 names = ["chain_id", "residue_id", "residue_name", "contact_number", "propensity_score", "discotope_score", "status"])
+
+#f=open(data_file, "r", encoding = 'utf-8-sig')
+#inputFile = csv.reader(f, delimiter='\t')
+
+
+# PIPELINE
+
+## 3-LETTER TO 1-LETTER AA SCRIPT
+
+# Create dictionary
+aa_dict = {"ALA" : "A",
+           "ARG" : "R",
+           "ASN" : "N",
+           "ASP" : "D",
+           "CYS" : "C",
+           "GLN" : "Q", 
+           "GLU" : "E",
+           "GLY" : "G",
+           "HIS" : "H",
+           "ILE" : "I",
+           "LEU" : "L",
+           "LYS" : "K",
+           "MET" : "M",
+           "PHE" : "F",
+           "PRO" : "P",
+           "SER" : "S",
+           "THR" : "T",
+           "TRP" : "W",
+           "TYR" : "Y",
+           "VAL" : "V"}
+
+# Extract residues to convert
+residues = prediction["residue_name"] #column from df as series
+           
+# Use dictionary to convert 3LAA to 1LAA    
+prediction["aa"]=residues.map(aa_dict)
+    
+# Filter by discotope_score threshold at -3.7
+scored = prediction[prediction.discotope_score >= -3.7]
+
+# CONSECUTIVE RESIDUES EXTRACTOR
+# PREDEFINE SCRIPT VARIABLES
+y = 0 			# counter of registers read from in input data (iterator).
+positionAnt = 0 	# position of the previous amino acid. 
+AminoAcidAnt = ""	# 
+Epitope_seq = ""	# epitope sequence to accumulate and extract
+Epitope_id=0		# epitope identifier	
+consecutius=1		# consecutive accumulator.
+
+
+#for index,row in df.iterrows():
+#    print("{0} has name: {1}".format(index,row["name"]))
+
+'''# chain_id	residue_id	residue_name	contact_number	propensity_score	discotope_score	status'''
+for index,reg in scored.iterrows():
     if y>=2:
+        chain=reg["chain_id"]
+        Position=reg["residue_id"]
+        AminoAcid=reg["aa"]
+        contact_num = reg["contact_number"]
+        propensity_score = reg["propensity_score"]
+        discotope_score = reg["discotope_score"]
+        status = reg["status"]
         positionAnt = Position
         AminoAcidAnt = AminoAcid
-
-        ID=reg[0]
-        #Entry=reg[1]
-        Position=reg[1]
-        AminoAcid=reg[2]
 
         if int(Position)-int(positionAnt)==1:
             Epitope_seq=Epitope_seq+AminoAcid
@@ -97,10 +153,13 @@ for reg in inputFile :
             Epitope_seq = AminoAcid
             consecutius=1
     else:
-        ID=reg[0]
-        #Entry=reg[1]
-        Position=reg[1]
-        AminoAcid=reg[2]
+        chain=reg["chain_id"]
+        Position=reg["residue_id"]
+        AminoAcid=reg["aa"]
+        contact_num = reg["contact_number"]
+        propensity_score = reg["propensity_score"]
+        discotope_score = reg["discotope_score"]
+        status = reg["status"]
 
         Epitope_seq = AminoAcid
 
@@ -108,6 +167,8 @@ for reg in inputFile :
 if consecutius>=2:
     Epitope_id=Epitope_id + 1
     out_file.writelines(str(Epitope_id)+","+Epitope_seq+"\n")
+
+
 
 # OUTPUT FILE
 out_file.close()
