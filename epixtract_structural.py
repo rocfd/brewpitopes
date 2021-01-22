@@ -8,7 +8,7 @@ Created on Tue Nov 10 14:21:51 2020
 ## GOAL: extract linear epitopes in tabulated data either from linear or structural prediction origin.
 ## Variant for structural Discotope predictions at: 
 ## https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0
-## create epitopes from continous residues that surpass a given quality threshold.
+## SUBGOAL: Create epitopes from continous residues that surpass a given quality threshold in Structural predictions.
 
 
 # IMPORTS
@@ -17,24 +17,25 @@ import csv
 import os.path
 from pathlib import Path
 import pandas as pd
+import more_itertools as mit
 
-# HELP
+## HELP
 h = '''
     To right usage of this script:
-        $ python3 epitetons.py 
+        $ python3 epixtractor_structural.py 
     The files in use have to be provided by stating "location/file_name.csv"
     to the input questions that appear in the console.
     <file_name> should be a .csv separated by ","
     OPTIONAL 
     The script returns a <file_name>_out.xlsx as output.
     You can also do the following (if using Mac/Linux OS):
-        $ chmod +x epitetons.py 
-        $ ./epitetons.py  <location/file_name.csv>
+        $ chmod +x epixtractor_structural.py 
+        $ ./epixtractor_structural.py  <location/file_name.csv>
     You need python 3 installed in your computer!!!
     '''
 
 
-# FILE EXISTANCE
+## FILE EXISTANCE
 def fileExist(file):
     if file!="":
         if Path(file).is_file():
@@ -48,10 +49,9 @@ def fileExist(file):
         return False
 
 
-# FILE UPLOAD
+## FILE UPLOAD
 data_file=""
 num_args=len(sys.argv)
-
 
 if num_args>=2:
     data_file = sys.argv[1]
@@ -68,12 +68,12 @@ print("Input file: " + data_file)
 extension = os.path.splitext(data_file)[1]
 lenextension=len(extension)
 nameOutFile=data_file[:-lenextension]+"_Out"+extension
-out_file=open(nameOutFile, "w")
-out_file.writelines("Epitope_id,Epitope_seq\n")
+#out_file=open(nameOutFile, "w")
+#out_file.writelines("Epitope_id,Epitope_seq\n")
+
+## PIPELINE for EXTRACTION OF EPITOPES FROM STRUCTURAL PREDICTIONS
 
 # READ THE CSV INPUT & ADD HEADERS TO DISCOTOPE DATAFRAME
-'''# chain_id	residue_id	residue_name	contact_number	propensity_score	discotope_score	status'''
-
 prediction = pd.read_csv(data_file, 
 			 sep='\t', 
 			 names = ["chain_id", "residue_id", "residue_name", "contact_number", "propensity_score", "discotope_score", "status"])
@@ -81,12 +81,9 @@ prediction = pd.read_csv(data_file,
 #f=open(data_file, "r", encoding = 'utf-8-sig')
 #inputFile = csv.reader(f, delimiter='\t')
 
-
-# PIPELINE
-
 ## 3-LETTER TO 1-LETTER AA SCRIPT
 
-# Create dictionary
+# Create dictionary for aminoacids
 aa_dict = {"ALA" : "A",
            "ARG" : "R",
            "ASN" : "N",
@@ -111,67 +108,58 @@ aa_dict = {"ALA" : "A",
 # Extract residues to convert
 residues = prediction["residue_name"] #column from df as series
            
-# Use dictionary to convert 3LAA to 1LAA    
+# Use dictionary to convert 3LAA to 1LAA into new df column
 prediction["aa"]=residues.map(aa_dict)
     
 # Filter by discotope_score threshold at -3.7
 scored = prediction[prediction.discotope_score >= -3.7]
 
-# CONSECUTIVE RESIDUES EXTRACTOR
-# PREDEFINE SCRIPT VARIABLES
-y = 0 			# counter of registers read from in input data (iterator).
-positionAnt = 0 	# position of the previous amino acid. 
-AminoAcidAnt = ""	# 
-Epitope_seq = ""	# epitope sequence to accumulate and extract
-Epitope_id=0		# epitope identifier	
-consecutius=1		# consecutive accumulator.
+# Reset index of filtered DF to use indexes later on
+scored = scored.reset_index(drop=True)
 
+# Loop to append a position if the previous is contiguous
+resid = []
+for i in range(len(scored)):
+    try:
+        if scored.loc[i,'residue_id']-scored.loc[i-1,'residue_id'] == 1:
+            resid.append(scored.loc[i,'residue_id'])
+    except:
+        resid.append(scored.loc[i,'residue_id'])
+        continue
+        
+# Group the epitopes and extract positions
+resid_grouped = [list(group) for group in mit.consecutive_groups(resid)]
 
-#for index,row in df.iterrows():
-#    print("{0} has name: {1}".format(index,row["name"]))
+# filter for groups larger than 4 elements
+resid_grouped_filtered = [group for group in resid_grouped if len(group)>4]
+resid_grouped_filtered
 
-'''# chain_id	residue_id	residue_name	contact_number	propensity_score	discotope_score	status'''
-for index,reg in scored.iterrows():
-    if y>=2:
-        chain=reg["chain_id"]
-        Position=reg["residue_id"]
-        AminoAcid=reg["aa"]
-        contact_num = reg["contact_number"]
-        propensity_score = reg["propensity_score"]
-        discotope_score = reg["discotope_score"]
-        status = reg["status"]
-        positionAnt = Position
-        AminoAcidAnt = AminoAcid
+# EXTRACT THE CONTINOUS SEQUENCES
+sequences = []
+for group in resid_grouped_filtered:
+    sequence = []
+    for n in group:
+        sequence.append(scored.aa[scored.residue_id==n].values[0])
+    sequences.append(''.join(sequence))
+sequences
 
-        if int(Position)-int(positionAnt)==1:
-            Epitope_seq=Epitope_seq+AminoAcid
-            consecutius=consecutius+1
-        else:
-            if consecutius>=2:
-                Epitope_id=Epitope_id + 1
-                out_file.writelines(str(Epitope_id)+","+Epitope_seq+"\n")
-            Epitope_seq = AminoAcid
-            consecutius=1
-    else:
-        chain=reg["chain_id"]
-        Position=reg["residue_id"]
-        AminoAcid=reg["aa"]
-        contact_num = reg["contact_number"]
-        propensity_score = reg["propensity_score"]
-        discotope_score = reg["discotope_score"]
-        status = reg["status"]
+# LOOP TO EXTRACT START AND END POSITION
+start = []
+end = []
+for group in resid_grouped_filtered:
+    start.append(group[0])
+    end.append(group[-1])
+    print(start)
+    print(end)
+    
+# CREATE LIST TO PREPARE OUTPUT DATAFRAME
+out = list(zip(sequences,start,end,resid_grouped_filtered))
+print (out)
 
-        Epitope_seq = AminoAcid
+# CREATE OUTPUT DATAFRAME
+out_file = pd.DataFrame(out, columns = ("epitope_seq", "start", "end", "positions"))
+print(out_file)
 
-    y=y+1
-if consecutius>=2:
-    Epitope_id=Epitope_id + 1
-    #out_file.writelines(str(Epitope_id)+","+Epitope_seq+"\n")
-    out_file = pd.DataFrame({"id" = Epitope_id, "sequence" = Epitope_seq"})
-  
-
-
-# OUTPUT FILE
-#out_file.close()
-  out_file.to_csv(nameOutFile, sep = ";", 
+# EXPORT OUTPUT FILE
+out_file.to_csv(nameOutFile, sep = ";", index = False)
 print("Output file: "+nameOutFile)
