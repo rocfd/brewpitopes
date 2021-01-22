@@ -23,7 +23,8 @@ import more_itertools as mit
 h = '''
     To right usage of this script:
         $ python3 epixtractor_structural.py 
-    The files in use have to be provided by stating "location/file_name.csv"
+        The files in use have to be provided by stating
+        "location/file_name.csv"
     to the input questions that appear in the console.
     <file_name> should be a .csv separated by ","
     OPTIONAL 
@@ -63,6 +64,14 @@ while not fileExist(data_file):
         Here: ''')
 
 print("Input file: " + data_file)
+
+
+## MULTICHAIN MODULE
+
+# https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.append.html
+
+# APPEND THE DIFFERENT CHAINS INTO A SINGLE FILE
+# THINK ON WETHER TO CREATE AN EXTRA SCRIPT
 
 # NAME THE OUTPUT FILE
 extension = os.path.splitext(data_file)[1]
