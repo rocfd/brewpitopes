@@ -166,10 +166,12 @@ for index,reg in scored.iterrows():
     y=y+1
 if consecutius>=2:
     Epitope_id=Epitope_id + 1
-    out_file.writelines(str(Epitope_id)+","+Epitope_seq+"\n")
-
+    #out_file.writelines(str(Epitope_id)+","+Epitope_seq+"\n")
+    out_file = pd.DataFrame({"id" = Epitope_id, "sequence" = Epitope_seq"})
+  
 
 
 # OUTPUT FILE
-out_file.close()
+#out_file.close()
+  out_file.to_csv(nameOutFile, sep = ";", 
 print("Output file: "+nameOutFile)
