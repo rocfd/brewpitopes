@@ -6,7 +6,9 @@ Created on Tue Nov 10 14:21:51 2020
 """
 ### EPITOPE EXTRACTOR
 ## GOAL: extract linear epitopes in tabulated data either from linear or structural prediction origin.
-## create epitopes from continous residues that surpass a given quality threshold.
+## Variant for linear epitope predictions at: 
+## https://services.healthtech.dtu.dk/service.php?BepiPred-2.0
+## SUBGOAL: Create epitopes from continous residues that surpass a given quality threshold in Structural predictions.
 
 
 # IMPORTS
@@ -14,24 +16,27 @@ import sys
 import csv
 import os.path
 from pathlib import Path
+import pandas as pd
+import more_itertools as mit
 
-# HELP
+## HELP
 h = '''
     To right usage of this script:
-        $ python3 epitetons.py 
-    The files in use have to be provided by stating "location/file_name.csv"
+        $ python3 epixtractor_linear.py 
+        The files in use have to be provided by stating
+        "location/file_name.csv"
     to the input questions that appear in the console.
     <file_name> should be a .csv separated by ","
     OPTIONAL 
     The script returns a <file_name>_out.xlsx as output.
     You can also do the following (if using Mac/Linux OS):
-        $ chmod +x epitetons.py 
-        $ ./epitetons.py  <location/file_name.csv>
+        $ chmod +x epixtractor_linear.py 
+        $ ./epixtractor_linear.py  <location/file_name.csv>
     You need python 3 installed in your computer!!!
     '''
 
 
-# FILE EXISTANCE
+## FILE EXISTANCE
 def fileExist(file):
     if file!="":
         if Path(file).is_file():
@@ -45,10 +50,9 @@ def fileExist(file):
         return False
 
 
-# FILE UPLOAD
+## FILE UPLOAD
 data_file=""
 num_args=len(sys.argv)
-
 
 if num_args>=2:
     data_file = sys.argv[1]
@@ -61,54 +65,73 @@ while not fileExist(data_file):
 
 print("Input file: " + data_file)
 
+
+
+# NAME THE OUTPUT FILE
 extension = os.path.splitext(data_file)[1]
 lenextension=len(extension)
 nameOutFile=data_file[:-lenextension]+"_Out"+extension
-out_file=open(nameOutFile, "w")
-out_file.writelines("Epitope_id,Epitope_seq\n")
+#out_file=open(nameOutFile, "w")
+#out_file.writelines("Epitope_id,Epitope_seq\n")
 
-f=open(data_file, "r", encoding = 'utf-8-sig')
-inputFile = csv.reader(f, delimiter=',')
+## PIPELINE for EXTRACTION OF EPITOPES FROM LINEAR PREDICTIONS
 
-# EPITOPE EXTRACTOR
-y = 0
-positionAnt = 0
-AminoAcidAnt = ""
-Epitope_seq = ""
-Epitope_id=0
-consecutius=1
-for reg in inputFile :
-    if y>=2:
-        positionAnt = Position
-        AminoAcidAnt = AminoAcid
+# READ THE CSV INPUT & ADD HEADERS TO BEBIPRED DATAFRAME
+prediction = pd.read_csv(data_file, 
+			 sep=',', 
+			 header = "infer")
+    
+# Filter by bebipred_score threshold at 0.55
+scored = prediction[prediction.EpitopeProbability >= 0.55]
 
-        #ID=reg[0]
-        #Entry=reg[1]
-        Position=reg[0]
-        AminoAcid=reg[1]
+# Reset index of filtered DF to use indexes later on
+scored = scored.reset_index(drop=True)
 
-        if int(Position)-int(positionAnt)==1:
-            Epitope_seq=Epitope_seq+AminoAcid
-            consecutius=consecutius+1
-        else:
-            if consecutius>=2:
-                Epitope_id=Epitope_id + 1
-                out_file.writelines(str(Epitope_id)+","+Epitope_seq+"\n")
-            Epitope_seq = AminoAcid
-            consecutius=1
-    else:
-        #ID=reg[0]
-        #Entry=reg[1]
-        Position=reg[0]
-        AminoAcid=reg[1]
+# Loop to append a position if the previous is contiguous
+resid = []
+for i in range(len(scored)):
+    try:
+        if scored.loc[i,'Position']-scored.loc[i-1,'Position'] == 1:
+            resid.append(scored.loc[i,'Position'])
+    ## important to fix
+	## misses first aminoacid of a stretch.
+	except:
+        resid.append(scored.loc[i,'Position'])
+        continue
+        
+# Group the epitopes and extract positions
+resid_grouped = [list(group) for group in mit.consecutive_groups(resid)]
 
-        Epitope_seq = AminoAcid
+# filter for groups larger than 2 elements
+resid_grouped_filtered = [group for group in resid_grouped if len(group)>2]
+resid_grouped_filtered
 
-    y=y+1
-if consecutius>=2:
-    Epitope_id=Epitope_id + 1
-    out_file.writelines(str(Epitope_id)+","+Epitope_seq+"\n")
+# EXTRACT THE CONTINOUS SEQUENCES
+sequences = []
+for group in resid_grouped_filtered:
+    sequence = []
+    for n in group:
+        sequence.append(scored.AminoAcid[scored.Position==n].values[0])
+    sequences.append(''.join(sequence))
+sequences
 
-# OUTPUT FILE
-out_file.close()
+# LOOP TO EXTRACT START AND END POSITION
+start = []
+end = []
+for group in resid_grouped_filtered:
+    start.append(group[0])
+    end.append(group[-1])
+    print(start)
+    print(end)
+    
+# CREATE LIST TO PREPARE OUTPUT DATAFRAME
+out = list(zip(sequences,start,end,resid_grouped_filtered))
+print (out)
+
+# CREATE OUTPUT DATAFRAME
+out_file = pd.DataFrame(out, columns = ("epitope_seq", "start", "end", "positions"))
+print(out_file)
+
+# EXPORT OUTPUT FILE
+out_file.to_csv(nameOutFile, sep = ";", index = False)
 print("Output file: "+nameOutFile)
