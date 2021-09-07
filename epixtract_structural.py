@@ -67,11 +67,7 @@ print("Input file: " + data_file)
 
 
 ## MULTICHAIN MODULE
-
-# https://pandas.pydata.org/pandas-docs/stable/reference/api/pandas.DataFrame.append.html
-
-# APPEND THE DIFFERENT CHAINS INTO A SINGLE FILE
-# THINK ON WETHER TO CREATE AN EXTRA SCRIPT
+# Executed externally.
 
 # NAME THE OUTPUT FILE
 extension = os.path.splitext(data_file)[1]
@@ -84,11 +80,11 @@ nameOutFile=data_file[:-lenextension]+"_Out"+extension
 
 # READ THE CSV INPUT & ADD HEADERS TO DISCOTOPE DATAFRAME
 prediction = pd.read_csv(data_file, 
-			 sep='\t', 
-			 names = ["chain_id", "residue_id", "residue_name", "contact_number", "propensity_score", "discotope_score", "status"])
+			 sep=';', 
+			 header = 'infer')
+       #names = ["chain_id", "residue_id", "residue_name", "contact_number", "propensity_score", "discotope_score", "status"])
 
-#f=open(data_file, "r", encoding = 'utf-8-sig')
-#inputFile = csv.reader(f, delimiter='\t')
+print(prediction)
 
 ## 3-LETTER TO 1-LETTER AA SCRIPT
 
@@ -120,8 +116,10 @@ residues = prediction["residue_name"] #column from df as series
 # Use dictionary to convert 3LAA to 1LAA into new df column
 prediction["aa"]=residues.map(aa_dict)
     
+## Error when treating multi chain data. >= cannot read strings or floats.
 # Filter by discotope_score threshold at -3.7
-scored = prediction[prediction.discotope_score >= -3.7]
+scored = prediction.loc[prediction['discotope_score'] >= -3.7]
+#scored = prediction[prediction.EpitopeProbability >= 0.55]
 
 # Reset index of filtered DF to use indexes later on
 scored = scored.reset_index(drop=True)
@@ -140,7 +138,7 @@ for i in range(len(scored)):
 resid_grouped = [list(group) for group in mit.consecutive_groups(resid)]
 
 # filter for groups larger than 4 elements
-resid_grouped_filtered = [group for group in resid_grouped if len(group)>4]
+resid_grouped_filtered = [group for group in resid_grouped if len(group)>2]
 resid_grouped_filtered
 
 # EXTRACT THE CONTINOUS SEQUENCES
@@ -161,14 +159,17 @@ for group in resid_grouped_filtered:
     print(start)
     print(end)
     
+# EXTRACT SCORE
+Score = prediction.discotope_score
+
 # CREATE LIST TO PREPARE OUTPUT DATAFRAME
-out = list(zip(sequences,start,end,resid_grouped_filtered))
+out = list(zip(sequences,start,end,resid_grouped_filtered, Score))
 print (out)
 
 # CREATE OUTPUT DATAFRAME
-out_file = pd.DataFrame(out, columns = ("epitope_seq", "start", "end", "positions"))
+out_file = pd.DataFrame(out, columns = ("Sequence", "Start", "End", "Positions", "Score"))
 print(out_file)
 
 # EXPORT OUTPUT FILE
-out_file.to_csv(nameOutFile, sep = ";", index = False)
+out_file.to_csv(nameOutFile, sep = ";", index = True, index_label = "Rank")
 print("Output file: "+nameOutFile)
