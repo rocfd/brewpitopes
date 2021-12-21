@@ -65,24 +65,17 @@ while not fileExist(data_file):
 
 print("Input file: " + data_file)
 
-
-## MULTICHAIN MODULE
-# Executed externally.
-
 # NAME THE OUTPUT FILE
 extension = os.path.splitext(data_file)[1]
 lenextension=len(extension)
 nameOutFile=data_file[:-lenextension]+"_Out"+extension
-#out_file=open(nameOutFile, "w")
-#out_file.writelines("Epitope_id,Epitope_seq\n")
 
 ## PIPELINE for EXTRACTION OF EPITOPES FROM STRUCTURAL PREDICTIONS
 
 # READ THE CSV INPUT & ADD HEADERS TO DISCOTOPE DATAFRAME
 prediction = pd.read_csv(data_file, 
-			 sep=';', 
-			 header = 'infer')
-       #names = ["chain_id", "residue_id", "residue_name", "contact_number", "propensity_score", "discotope_score", "status"])
+			 sep=',',
+			 names = ["chain_id", "residue_id", "residue_name", "contact_number", "propensity_score", "discotope_score", "status"])
 
 print(prediction)
 
@@ -138,7 +131,7 @@ for i in range(len(scored)):
 resid_grouped = [list(group) for group in mit.consecutive_groups(resid)]
 
 # filter for groups larger than 4 elements
-resid_grouped_filtered = [group for group in resid_grouped if len(group)>2]
+resid_grouped_filtered = [group for group in resid_grouped if len(group)>=2]
 resid_grouped_filtered
 
 # EXTRACT THE CONTINOUS SEQUENCES
@@ -160,7 +153,7 @@ for group in resid_grouped_filtered:
     print(end)
     
 # EXTRACT SCORE
-Score = prediction.discotope_score
+Score = scored.discotope_score
 
 # CREATE LIST TO PREPARE OUTPUT DATAFRAME
 out = list(zip(sequences,start,end,resid_grouped_filtered, Score))
