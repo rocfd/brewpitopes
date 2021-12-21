@@ -7,12 +7,12 @@ Set of tools to manage epitope prediction results from linear and structural ori
 3. Download the FASTA file of the target protein at Uniprot.
       Save at /Z_fasta
 4. Use the FASTA to predict linear epitopes using Bepipred and export results as csv (default parameters).
-      https://services.healthtech.dtu.dk/service.php?BepiPred-2.0
-            Save at path/to/A_linear_predictions/bebipred
+      https://services.healthtech.dtu.dk/service.php?BepiPred-2.0  
+      Save at path/to/A_linear_predictions/bebipred  
 5. Extract epitopes from Bepipred results using epixtractor_linear_bebipred.py.
-      python3 epixtractor_linear_bebipred.py
-            path/to/bepipred_results.csv
-                  Copy output to /C_epixtractor.
+      python3 epixtractor_linear_bebipred.py  
+      path/to/bepipred_results.csv  
+      Copy output to /C_epixtractor.  
 6. Use the FASTA to predict linear epitopes using ABCpred.
       https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html
       Predict using all the epitope windows and overlapping filter ON.
