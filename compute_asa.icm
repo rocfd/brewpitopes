@@ -1,0 +1,20 @@
+### RSA CALCULATOR USING ICM BROWSER
+
+show area surface mute a_1.*
+residue_area = Area(a_1.*/*)
+absolute_area = Area(a_1.*/* type)
+residue_relative_area = residue_area/absolute_area
+
+resLabelStyle = 2
+chain_name = Toupper(Name(a_1.*/* molecule))
+partial_residue_name = Replace(Label(a_1.*/*) " " "." simple)
+residue_name = chain_name + "." + partial_residue_name
+
+# Create table
+add column area_info residue_name, residue_area, absolute_area, residue_relative_area name={"residue", "asa", "absolute_asa", "rasa"}
+
+
+### EXPORT FILE
+write area_info header separator="," "/path/to/G_episurf/XXX_icm_rsa.csv"
+
+#q
