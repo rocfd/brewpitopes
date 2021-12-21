@@ -8,7 +8,7 @@ Created on Tue Nov 10 14:21:51 2020
 ## GOAL: extract linear epitopes in tabulated data either from linear or structural prediction origin.
 ## Variant for linear epitope predictions at: 
 ## https://services.healthtech.dtu.dk/service.php?BepiPred-2.0
-## SUBGOAL: Create epitopes from continous residues that surpass a given quality threshold in Structural predictions.
+## SUBGOAL: Create epitopes from continous residues that surpass a given quality threshold in Linear Predictions predictions.
 
 
 # IMPORTS
@@ -125,7 +125,7 @@ for group in resid_grouped_filtered:
     print(end)
 
 # EXTRACT BEBIPRED SCORE
-BebiScore = prediction.EpitopeProbability
+BebiScore = scored.EpitopeProbability
 
 # ADD METHOD
 #Tool = "Bebipred 2.0"
@@ -134,7 +134,7 @@ BebiScore = prediction.EpitopeProbability
 #ABCscore = "NA"
     
 # CREATE LIST TO PREPARE OUTPUT DATAFRAME
-out = list(zip(sequences,start,end,resid_grouped_filtered, BebiScore))
+out = list(zip(sequences,start,end,resid_grouped_filtered,BebiScore))
 print (out)
 
 # CREATE OUTPUT DATAFRAME
