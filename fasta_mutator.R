@@ -10,7 +10,6 @@ library(seqinr)
 fasta <- read.csv(header = F, col.names = "sequence", comment.char = ">", "path/to/spike_fasta.txt")
 glimpse(fasta)
 
-
 ## MERGE FASTA SEQUENCE
 y <- ""
 for (x in fasta$sequence){
@@ -20,7 +19,7 @@ for (x in fasta$sequence){
 nchar(y)
 
 ## IMPORT MUTATIONS FROM THE CORRESPONDING VOC (IN THIS CASE GAMMA)
-gamma <- read.csv("path/to/gamma_mutations.csv")
+gamma <- read.csv("path/to/gamma_mutations.csv") ## MUTATIONS FILE FOR GAMMA : 20211203_spike_gamma_vocs.csv
 glimpse(gamma)
 
 ## EXTRACT MUT POSITION
