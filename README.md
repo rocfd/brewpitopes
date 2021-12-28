@@ -25,67 +25,68 @@ Set of tools to manage epitope prediction results from linear and structural ori
       Copy output to /C_epixtractor  
 8. Download the PDB file of the target protein at PDB DB. 
        Save at /B_structural_predictions/pdb  
-10. Use PDBrenum to renumerate the PDB residues according to its corresponding FASTA file in Uniprot.  
+9. Use PDBrenum to renumerate the PDB residues according to its corresponding FASTA file in Uniprot.  
       http://dunbrack3.fccc.edu/PDBrenum/  
-      Save results as .pdb  
+      Download results as .pdb  
       Save at /B_structural_predictions/pdbrenum  
-11. Use the renumbered PDB to predict structural epitopes using Discotope and export the results as csv.  
+10. Use the renumbered PDB to predict structural epitopes using Discotope and export the results as csv.  
       https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0  
       Default threshold.  
-      Select chain A.  
+      Select chain A by default.
       Save at /B_structural_predictions/discotope  
-12. Extract epitopes from Discotope results using epixtract_structural.py  
+11. Extract epitopes from Discotope results using epixtract_structural.py  
       python3 epixtract_structural.py  
-      path/to/B_structural_predictions/discotopediscotope_results.csv  
-13. Use epimerger.py to merge the epitopes extracted from Bepipred, ABCpred and Discotope results.  
+      Save at path/to/B_structural_predictions/discotopediscotope_results.csv  
+12. Use epimerger.py to merge the epitopes extracted from Bepipred, ABCpred and Discotope results.  
       Add the paths to the corresponding files at C_epixtractor folder.  
       Follow the instructions in the R file.  
       Save at /D_epimerger  
-14. Predict the protein topology using CCTOP.  
+13. Predict the protein topology using CCTOP.  
       http://cctop.enzim.ttk.mta.hu/?_=/jobs/submit  
-      Donwload results as .xml  
+      Donwload results as .xml.
       Save at /E_topology/CCTOP  
-15. Extract the extraviral domains using xml_cctop_parser.R  
+14. Extract the extraviral domains using xml_cctop_parser.R  
       Follow the instructions at the R file.  
-16. Use epitopology.R to label the epitopes based on the extraviral domains.  
+15. Use epitopology.R to label the epitopes based on the extraviral domains.  
       Follow the instructions at the R file.   
       Save results at /E_topology  
-17. Predict the glycosilation profile of the protein using the FASTA file.  
+16. Predict the glycosilation profile of the protein using the FASTA file.  
       N-GLYCOSILATIONS AT:  
       https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0  
-      SAVE THE DATAFRAME HEADED SeqName	Position	Potential	Jury_agreement	NGlyc_result	Prediction  
+      SAVE THE DATAFRAME HEADED: SeqName	Position	Potential	Jury_agreement	NGlyc_result	Prediction  
       AS CSV  
       O-GLYCOSILATIONS AT:  
       https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0  
-      SAVE THE DATAFRAME HEADED seqname	source	feature	start	end	score	strand	frame	comment  
+      SAVE THE DATAFRAME HEADED: seqname	source	feature	start	end	score	strand	frame	comment  
       AS CSV  
-18. Use epiglycan_extractor.R to extract the glycosilated positions.  
+17. Use epiglycan_extractor.R to extract the glycosilated positions from both N-glyc and O-glyc outputs.  
       Follow the instructions at the R file.  
       Save at /F_epiglycan  
-19. Use epiglycan.py to label the glycosilated epitopes.  
+18. Use epiglycan.py to label the glycosilated epitopes.  
       python3 epiglycan.py  
-      /E_epitopology/XXX_epitopology.csv  
-      /F_epiglycan/glycosilated_positions.csv  
+      Upload the file obtained at step 15: /E_epitopology/XXX_epitopology.csv  
+      Upload the glycosilated positions: /F_epiglycan/glycosilated_positions.csv  
       Save as /F_epiglycan/XXX_epitopology_glycans.csv  
-20. Use ICM_browser (MOLSOFT) to extract the RSA values for accessibility calculation.  
+19. Use ICM_browser (MOLSOFT) to extract the RSA values for accessibility calculation.  
       Download ICM_browser from http://www.molsoft.com/icm_browser.html  
-      Open the PDB renumbered file of the corresponding protein.  
-      Execute in the command line the code in Compute_ASA.icm  
+      Open the PDB renumbered file of the corresponding protein (step 9)   
+      Execute in the command line of the programme the code in Compute_ASA.icm  
       Save results at /G_episurf  
-21. Use icm_extractor.R to extract the buried positions.  
+20. Use icm_extractor.R to extract the buried positions.  
       Follow the instructions at the R file.   
       Save at /G_episurf  
-22. Use episurf.py to label the epitopes with buried residues.  
+21. Use episurf.py to label the epitopes with buried residues.  
       python3 episurf.py  
-      path/to/F_epiglycan/XXX_epitoplogy_glycans.csv  
-      path/to/G_episurft/buried_positions.csv  
+      Upload the file generated at step 18: path/to/F_epiglycan/XXX_epitoplogy_glycans.csv  
+      Upload the buried positions at step 20: path/to/G_episurft/buried_positions.csv  
       Save as /G_episurf/XXX_epitoplogy_glycans_surf.csv  
-23. Use epifilter.R to filter out the epitopes that are extraviral, non-glycosilated, exposed and length >= 5.  
+22. Use epifilter.R to filter out the epitopes that are extraviral, non-glycosilated, exposed and length >= 5.  
       Follow the R file instructions.  
       Save at /I_final_candidates.  
-24. Use epicontig.ipynb (Jupiter Notebook) to extract the epitopic regions / contigs.  
+23. Use epicontig.ipynb (Jupiter Notebook) to extract the epitopic regions / contigs.  
+      Upload the candidates_df.csv generated at step 22.
       Follow the instructions in the Notebook.  
-25. Use yield_plot.R to plot the results of the pipeline.  
+24. Use yield_plot.R to plot the results of the pipeline.  
       Follow the instructions in the R file.  
       
 ## APENDIX FOR VARIANTS OF CONCERN
