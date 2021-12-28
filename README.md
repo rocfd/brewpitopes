@@ -1,5 +1,5 @@
 # BREWPITOPES
-Set of tools to manage epitope prediction results from linear and structural origin and to integrate a pipeline of prioritization filters.
+Set of tools to manage epitope prediction results from linear and structural origin and to integrate a pipeline of prioritization filters to curate B-cell epitopes specific for neutralizing antibody recognition.
 
 ## PIPELINE
 1. Create an R project for the corresponding protein.  
