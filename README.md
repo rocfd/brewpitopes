@@ -87,3 +87,12 @@ Set of tools to manage epitope prediction results from linear and structural ori
       Follow the instructions in the Notebook.  
 25. Use yield_plot.R to plot the results of the pipeline.  
       Follow the instructions in the R file.  
+      
+## APENDIX FOR VARIANTS OF CONCERN
+1. Generate FASTA using fasta_mutator.R
+      Download reference FASTA from Spike protein from UniprotKB.
+      Upload where indicated at script instructions.
+      Upload the mutations of the corresponding VOC found as attached files in this Github.
+      Execute the script and save the VOC Fasta file.
+      Once saved, remove "" from the file to obtain a properly formated FASTA.
+      Start the pipeline above with the mutated FASTA file.
