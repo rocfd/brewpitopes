@@ -80,7 +80,7 @@ Set of tools to manage epitope prediction results from linear and structural ori
       Upload the file generated at step 18: path/to/F_epiglycan/XXX_epitoplogy_glycans.csv  
       Upload the buried positions at step 20: path/to/G_episurft/buried_positions.csv  
       Save as /G_episurf/XXX_epitoplogy_glycans_surf.csv  
-22. Use epifilter.R to filter out the epitopes that are extraviral, non-glycosilated, exposed and length >= 5.  
+22. Use epifilter.R to retain the epitopes that are extraviral, non-glycosilated, exposed and length >= 5.  
       Follow the R file instructions.  
       Save at /I_final_candidates.  
 23. Use epicontig.ipynb (Jupiter Notebook) to extract the epitopic regions / contigs.  
