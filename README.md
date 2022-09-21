@@ -66,7 +66,7 @@ Run the docker image:
       SAVE THE DATAFRAME HEADED: SeqName	Position	Potential	Jury_agreement	NGlyc_result	Prediction  
       AS CSV  
       O-GLYCOSILATIONS AT:  
-      https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0  
+      https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0
       SAVE THE DATAFRAME HEADED: seqname	source	feature	start	end	score	strand	frame	comment  
       AS CSV  
 17. Use epiglycan_extractor.R to extract the glycosilated positions from both N-glyc and O-glyc outputs.  
