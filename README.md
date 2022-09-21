@@ -105,5 +105,5 @@ Run the docker image:
       Upload where indicated at script instructions.  
       Upload the mutations of the corresponding VOC found as attached files in this Github. (ie Gamma = 20211203_spike_gamma_vocs.csv)
       Execute the script and save the VOC Fasta file.  
-      Once saved, remove "" from the file to obtain a properly formated FASTA.  
+      Once saved, remove "" from the file to obtain a properly formatted FASTA.  
       Start the pipeline above with the mutated FASTA file.  
