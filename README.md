@@ -1,6 +1,14 @@
 # BREWPITOPES
 Set of tools to manage epitope prediction results from linear and structural origin and to integrate a pipeline of prioritization filters to curate B-cell epitopes specific for neutralizing antibody recognition.
 
+## DOCKER IMAGE
+To compile the Dockerfile you will need to have docker installed. And use the following commands:
+
+Create docker image from Dockerfile, may take a while
+      sudo docker build -t brewpitopes PATH/TO/Dockerfile
+Run the docker image
+      sudo docker run -it brewpitopes
+
 ## PIPELINE
 1. Create an R project for the corresponding protein.  
       Save the Rdata for the corresponding protein.  
