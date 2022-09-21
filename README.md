@@ -99,7 +99,7 @@ Run the docker image:
 24. Use yield_plot.R to plot the results of the pipeline.  
       Follow the instructions in the R file.  
       
-## APENDIX FOR VARIANTS OF CONCERN
+## APPENDIX FOR VARIANTS OF CONCERN
 1. Generate FASTA using fasta_mutator.R  
       Download reference FASTA from Spike protein from UniprotKB.  
       Upload where indicated at script instructions.  
