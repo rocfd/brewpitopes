@@ -10,12 +10,19 @@ Create docker image from Dockerfile, may take a while:
 Run the docker image:
 
       sudo docker run -it brewpitopes
+      
+Create a shared folder between Brewpitopes docker image and your local machine.
+
+      sudo docker run -it brewpitopes --volume /your/machine/directory:/home/Projects
 
 ## PIPELINE
 1. Create an R project for the corresponding protein.  
       Save the Rdata for the corresponding protein.  
-2. Use directories.R to create the folder environment.  
-3. Download the FASTA file of the target protein at Uniprot.    
+2. Use directories.R to create the folder environment.
+
+      sudo docker
+
+4. Download the FASTA file of the target protein at Uniprot.    
       Save at /Z_fasta  
 4. Use the FASTA to predict linear epitopes using Bepipred and export results as csv (default parameters).  
       https://services.healthtech.dtu.dk/service.php?BepiPred-2.0  
