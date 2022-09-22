@@ -20,7 +20,9 @@ Create a shared folder between Brewpitopes docker image and your local machine.
       Save the Rdata for the corresponding protein.  
 2. Use directories.R to create the folder environment.
 
-      ```Rscript directories.R```
+      ```
+      Rscript directories.R
+      ```
 
 4. Download the FASTA file of the target protein at Uniprot.    
       Save at /Z_fasta  
