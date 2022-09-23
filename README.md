@@ -34,10 +34,12 @@ To compile the Dockerfile you will need to have docker installed. And use the fo
       
 7. Extract epitopes from Bepipred results using epixtractor_linear_bebipred.py.  
 ```
-      python3 epixtractor_linear_bebipred.py
+python3 epixtractor_linear_bebipred.py
 ```
-      Add path to bepipred results: /A_linear_predictions/bepipred/bepipred_results.csv
-      Add path to output folder: /C_epixtractor    
+```
+Add path to bepipred results: your/path/to/A_linear_predictions/bepipred/bepipred_results.csv
+Add path to output folder: your/path/to/C_epixtractor    
+```
       
 6. Use the FASTA to predict linear epitopes using ABCpred.  
       https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html  
