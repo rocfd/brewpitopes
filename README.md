@@ -23,7 +23,7 @@ To compile the Dockerfile you will need to have docker installed. And use the fo
       Rscript directories.R --path /your/desired/folder
       ```
 
-5. Download the FASTA file of the target protein at [Uniprot]([https://www.uniprot.org/]).    
+5. Download the FASTA file of the target protein at [Uniprot](https://www.uniprot.org/).    
       
       Save at /Z_fasta  
       
