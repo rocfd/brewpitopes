@@ -43,7 +43,7 @@ Add path to output folder: your/path/to/C_epixtractor
 6. Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
 
       Predict using all the epitope windows (10,12,14,16,18,20) and overlapping filter ON.  
-      Copy results from the webpage and save as .csv  
+      Copy results from the webpage to a .csv  
       Save at: path/to/brewpitopes/A_linear_predictions/abcpred/abcpred_10mers.csv 
       
 7. Extract epitopes from ABCpred results using epixtractor_linear_abcpred.R  
@@ -53,16 +53,17 @@ Rscript epixtractor_linear_abcpred.R --outpath your/path/to/brewpitopes/C_epixtr
 ````
       
 8. Download the PDB file of the target protein at PDB DB. 
-       Save at /B_structural_predictions/pdb  
-9. Use PDBrenum to renumerate the PDB residues according to its corresponding FASTA file in Uniprot.  
-      http://dunbrack3.fccc.edu/PDBrenum/  
+       Save at /brewpitopes/B_structural_predictions/pdb  
+       
+9. Use [PDBrenum](http://dunbrack3.fccc.edu/PDBrenum/) server to renumerate the PDB residues according to its corresponding FASTA file in Uniprot.  
       Download results as .pdb  
-      Save at /B_structural_predictions/pdbrenum  
-10. Use the renumbered PDB to predict structural epitopes using Discotope and export the results as csv.  
-      https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0  
+      Save at /brewpitopes/B_structural_predictions/pdbrenum 
+      
+10. Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server and export the results as csv.    
       Default threshold.  
       Select chain A by default.
-      Save at /B_structural_predictions/discotope  
+      Save at /brewpitopes/B_structural_predictions/discotope  
+      
 11. Extract epitopes from Discotope results using epixtract_structural.py  
       python3 epixtract_structural.py  
       Save at path/to/B_structural_predictions/discotopediscotope_results.csv  
