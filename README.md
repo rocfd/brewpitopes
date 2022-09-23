@@ -73,19 +73,24 @@ Add path to discotope results: brewpitopes/B_structural_predictions/discotope/di
 Add path to output folder: brewpitopes/C_epixtractor
 ```
 
-12. Use epimerger.py to merge the epitopes extracted from Bepipred, ABCpred and Discotope results.  
-      Add the paths to the corresponding files at C_epixtractor folder.  
-      Follow the instructions in the R file.  
-      Save at /D_epimerger  
-13. Predict the protein topology using CCTOP.  
-      http://cctop.enzim.ttk.mta.hu/?_=/jobs/submit  
+12. Merge the epitopes extracted from Bepipred, ABCpred and Discotope results using epimerger.R
+```
+Rscript epimerger.R --abcpred your/path/to/brewpitopes/C_epixtractor/abcpred_results_extracted.csv --bepipred your/path/to/brewpitopes/C_epixtractor/abcpred_results_extracted.csv --discotope your/path/to/brewpitoeps/C_epixtractor/discotope_results_extracted.csv --outdir your/path/to/brewpitoeps/D_epimerger
+```
+
+13. Predict the protein topology using [CCTOP](http://cctop.enzim.ttk.mta.hu/?_=/jobs/submit) server.  
       Donwload results as .xml.
-      Save at /E_topology/CCTOP  
-14. Extract the extraviral domains using xml_cctop_parser.R  
-      Follow the instructions at the R file.  
+      Save at your/path/to/brewpitopes/E_topology/CCTOP/cctop.xml
+      
+14. Extract the topological domains using xml_cctop_parser.R  
+```
+Rscript xml_cctop_parser.R --xml path/to/brewpitopes/E_epitopology/CCTOP/cctop.xml --outdir path/to/brewpitopes/E_epitopology/CCTOP
+```
+
 15. Use epitopology.R to label the epitopes based on the extraviral domains.  
       Follow the instructions at the R file.   
       Save results at /E_topology  
+      
 16. Predict the glycosilation profile of the protein using the FASTA file.  
       N-GLYCOSILATIONS AT:  
       https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0  
