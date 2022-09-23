@@ -64,9 +64,15 @@ Rscript epixtractor_linear_abcpred.R --outpath your/path/to/brewpitopes/C_epixtr
       Select chain A by default.
       Save at /brewpitopes/B_structural_predictions/discotope  
       
-11. Extract epitopes from Discotope results using epixtract_structural.py  
-      python3 epixtract_structural.py  
-      Save at path/to/B_structural_predictions/discotopediscotope_results.csv  
+11. Extract epitopes from Discotope results using epixtract_structural.py
+```
+python3 epixtract_structural.py  
+```
+```
+Add path to discotope results: brewpitopes/B_structural_predictions/discotope/discotope_results.csv  
+Add path to output folder: brewpitopes/C_epixtractor
+```
+
 12. Use epimerger.py to merge the epitopes extracted from Bepipred, ABCpred and Discotope results.  
       Add the paths to the corresponding files at C_epixtractor folder.  
       Follow the instructions in the R file.  
