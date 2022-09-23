@@ -1,38 +1,44 @@
 # BREWPITOPES
 Set of tools to manage epitope prediction results from linear and structural origin and to integrate a pipeline of prioritization filters to curate B-cell epitopes specific for neutralizing antibody recognition.
 
-## DOCKER IMAGE
+## INSTALLATION (DOCKER IMAGE)
 To compile the Dockerfile you will need to have docker installed. And use the following commands:
-Create docker image from Dockerfile, may take a while:
-
+1. Create docker image from Dockerfile (may take a while):
+```
       sudo docker build -t brewpitopes PATH/TO/Dockerfile
-      
-Run the docker image:
-
+```
+2. Run the docker image:
+```
       sudo docker run -it brewpitopes
-      
-Create a shared folder between Brewpitopes docker image and your local machine.
-
+```      
+3. Create a shared folder between Brewpitopes docker image and your local machine.
+```
       sudo docker run -it brewpitopes --volume /your/machine/directory:/home/Projects
+```
 
 ## PIPELINE
-1. Create an R project for the corresponding protein.  
-      Save the Rdata for the corresponding protein.  
-2. Use directories.R to create the folder environment.
+4. Use directories.R to create the folder environment.
 
       ```
-      Rscript directories.R
+      Rscript directories.R --path /your/desired/folder
       ```
 
-4. Download the FASTA file of the target protein at Uniprot.    
+5. Download the FASTA file of the target protein at Uniprot.    
+      
       Save at /Z_fasta  
-4. Use the FASTA to predict linear epitopes using Bepipred and export results as csv (default parameters).  
+      
+6. Use the FASTA to predict linear epitopes using Bepipred 2.0 server and export results as csv (default parameters).  
+      
       https://services.healthtech.dtu.dk/service.php?BepiPred-2.0  
-      Save at path/to/A_linear_predictions/bebipred  
-5. Extract epitopes from Bepipred results using epixtractor_linear_bebipred.py.  
-      python3 epixtractor_linear_bebipred.py  
-      path/to/bepipred_results.csv  
-      Copy output to /C_epixtractor.  
+      Save at /A_linear_predictions/bepipred/bepipred_results.csv  
+      
+7. Extract epitopes from Bepipred results using epixtractor_linear_bebipred.py.  
+```
+      python3 epixtractor_linear_bebipred.py
+```
+      Add path to bepipred results: /A_linear_predictions/bepipred/bepipred_results.csv
+      Add path to output folder: /C_epixtractor    
+      
 6. Use the FASTA to predict linear epitopes using ABCpred.  
       https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html  
       Predict using all the epitope windows and overlapping filter ON.  
