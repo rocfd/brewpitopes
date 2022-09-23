@@ -87,19 +87,26 @@ Rscript epimerger.R --abcpred your/path/to/brewpitopes/C_epixtractor/abcpred_res
 Rscript xml_cctop_parser.R --xml path/to/brewpitopes/E_epitopology/CCTOP/cctop.xml --outdir path/to/brewpitopes/E_epitopology/CCTOP
 ```
 
-15. Use epitopology.R to label the epitopes based on the extraviral domains.  
-      Follow the instructions at the R file.   
-      Save results at /E_topology  
+15. Label the epitopes based on their topology (intracellular, membrane or extracellular) using epitopology.
+Using CCTOP predictions --> use epitopology_cctop.R
+```
+Rscript epitopology_cctop.R --input_CCTOP path/to/brewpitopes/E_epitopology/CCTOP/cctop_domains.csv --input_epitopes path/to/brewpitopes/D_epimerger/merged.csv --outdir path/to/brewpitopes/E_epitopology
+```
+
+Using manual annotation --> use epitopology_manual.R
+```
+Rscript epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --input_epitopes path/to/brewpitopes/D_epimerger/merged.csv --outdir path/to/brewpitopes/E_epitopology
+```
       
 16. Predict the glycosilation profile of the protein using the FASTA file.  
-      N-GLYCOSILATIONS AT:  
-      https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0  
+      N-GLYCOSILATIONS at [NetNGlyc 1.0](https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0) server.    
       SAVE THE DATAFRAME HEADED: SeqName	Position	Potential	Jury_agreement	NGlyc_result	Prediction  
-      AS CSV  
-      O-GLYCOSILATIONS AT:  
-      https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0  
+      AS CSV at brewpitopes/F_epiglycan/netnglyc  
+      
+      O-GLYCOSILATIONS AT [NetOGlyc 4.0](https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0) server.
       SAVE THE DATAFRAME HEADED: seqName  	source	feature	start 	end	score strand      frame       comment  
-      AS CSV   
+      AS CSV at brewpitopes/F_epiglycan/netoglyc
+      
 17. Use epiglycan_extractor.R to extract the glycosilated positions from both N-glyc and O-glyc outputs.  
       Follow the instructions at the R file.  
       Save at /F_epiglycan  
