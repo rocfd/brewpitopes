@@ -27,9 +27,8 @@ To compile the Dockerfile you will need to have docker installed. And use the fo
       
       Save at /Z_fasta  
       
-6. Use the FASTA to predict linear epitopes using Bepipred 2.0 server and export results as csv (default parameters).  
-      
-      https://services.healthtech.dtu.dk/service.php?BepiPred-2.0  
+6. Use the FASTA to predict linear epitopes using [Bepipred 2.0] (https://services.healthtech.dtu.dk/service.php?BepiPred-2.0) server and export results as csv (default parameters).  
+       
       Save at /A_linear_predictions/bepipred/bepipred_results.csv  
       
 7. Extract epitopes from Bepipred results using epixtractor_linear_bebipred.py.  
@@ -41,15 +40,18 @@ Add path to bepipred results: your/path/to/A_linear_predictions/bepipred/bepipre
 Add path to output folder: your/path/to/C_epixtractor    
 ```
       
-6. Use the FASTA to predict linear epitopes using ABCpred.  
-      https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html  
-      Predict using all the epitope windows and overlapping filter ON.  
-      Copy results and save as .csv  
-      Save at path/to/A_linear_predictions/abcpred  
+6. Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
+
+      Predict using all the epitope windows (10,12,14,16,18,20) and overlapping filter ON.  
+      Copy results from the webpage and save as .csv  
+      Save at: path/to/brewpitopes/A_linear_predictions/abcpred/abcpred_10mers.csv 
+      
 7. Extract epitopes from ABCpred results using epixtractor_linear_abcpred.R  
-      Add paths to ABCpred result files.  
-      Follow the instructions in the R file.  
-      Copy output to /C_epixtractor  
+
+````
+Rscript epixtractor_linear_abcpred.R --outpath your/path/to/brewpitopes/C_epixtractor --input_10mers your/path/to/brewpitopes/A_linear_predictions/abcpred/abcpred_10mers.csv --input_12mers your/path/to/brewpitopes/A_linear_predictions/abcpred/abcpred_12mers.csv --input_14mers your/path/to/brewpitopes/A_linear_predictions/abcpred/abcpred_14mers.csv --input_16mers your/path/to/brewpitopes/A_linear_predictions/abcpred/abcpred_16mers.csv --input_18mers your/path/to/brewpitopes/A_linear_predictions/abcpred/abcpred_18mers.csv --input_20mers your/path/to/brewpitopes/A_linear_predictions/abcpred/abcpred_20mers.csv
+````
+      
 8. Download the PDB file of the target protein at PDB DB. 
        Save at /B_structural_predictions/pdb  
 9. Use PDBrenum to renumerate the PDB residues according to its corresponding FASTA file in Uniprot.  
