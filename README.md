@@ -107,27 +107,42 @@ Rscript epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --input_epito
       COPY MANUALLY THE DATAFRAME HEADED: seqName  	source	feature	start 	end	score strand      frame       comment  
       SAVE AS CSV at brewpitopes/F_epiglycan/netoglyc
       
-17. Use epiglycan_extractor.R to extract the glycosilated positions from both N-glyc and O-glyc outputs.  
-      Follow the instructions at the R file.  
-      Save at /F_epiglycan  
+17. Extract the glycosilated positions from both N-glyc and O-glyc outputs using epiglycan_extractor.R
+```
+Rscript epiglycan_extractor.R --oglyc /your/path/to/brewpitopes/F_epiglycan/netoglyc/oglyc.csv --nglyc /your/path/to/brewpitopes/F_epiglycan/netnglyc/nglyc.csv --outdir brewpitopes2/F_epiglycan/
+```
+
 18. Use epiglycan.py to label the glycosilated epitopes.  
-      python3 epiglycan.py  
-      Upload the file obtained at step 15: /E_epitopology/XXX_epitopology.csv  
-      Upload the glycosilated positions: /F_epiglycan/glycosilated_positions.csv  
-      Save as /F_epiglycan/XXX_epitopology_glycans.csv  
+```
+python3 epiglycan.py
+```
+```
+Add path to input epitopes: brewpitopes/E_epitopology/topology_extracted.csv
+Add path to output folder: brewpitopes/F_epiglycan
+Add path to extracted glycosilated positions: brewpitopes/F_epiglycan/glycosilated_positions.csv  
+```
+
 19. Use ICM_browser (MOLSOFT) to extract the RSA values for accessibility calculation.  
-      Download ICM_browser from http://www.molsoft.com/icm_browser.html  
-      Open the PDB renumbered file of the corresponding protein (step 9)   
+      Download ICM_browser from [http://www.molsoft.com/icm_browser.html](http://www.molsoft.com/icm_browser.html)
+      Open the PDB renumbered file of the corresponding protein (step 9).  
       Execute in the command line of the programme the code in Compute_ASA.icm  
-      Save results at /G_episurf  
-20. Use icm_extractor.R to extract the buried positions.  
-      Follow the instructions at the R file.   
-      Save at /G_episurf  
-21. Use episurf.py to label the epitopes with buried residues.  
-      python3 episurf.py  
-      Upload the file generated at step 18: path/to/F_epiglycan/XXX_epitoplogy_glycans.csv  
-      Upload the buried positions at step 20: path/to/G_episurft/buried_positions.csv  
-      Save as /G_episurf/XXX_epitoplogy_glycans_surf.csv  
+      Save results at /G_episurf
+      
+20. Extract the buried positions using icm_extractor.R  
+```
+Rscript icm_extractor.R --icm /your/path/to/brewpitopes/G_episurf/icm/rsa.csv --outdir your/path/to/brewpitopes/G_episurf/
+```
+
+21. Label the epitopes based on their buried positions using episurf.py
+```
+python3 episurf.py  
+```
+```
+Add path to input epitopes: brewpitopes/F_epiglycan/glycan_extracted.csv
+Add path to output folder: brewpitopes/G_episurf
+Add path to extracted buried positions: brewpitopes/G_episurft/buried_positions_list.csv
+```
+
 22. Use epifilter.R to retain the epitopes that are extraviral, non-glycosilated, exposed and length >= 5.  
       Follow the R file instructions.  
       Save at /I_final_candidates.  
