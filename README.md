@@ -143,9 +143,11 @@ Add path to output folder: brewpitopes/G_episurf
 Add path to extracted buried positions: brewpitopes/G_episurft/buried_positions_list.csv
 ```
 
-22. Use epifilter.R to retain the epitopes that are extraviral, non-glycosilated, exposed and length >= 5.  
-      Follow the R file instructions.  
-      Save at /I_final_candidates.  
+22. Select the epitopes that are extraviral, non-glycosilated, exposed and length >= 5 using epifilter.R  
+```
+Rscript epifilter.R --data /your/path/to/brewpitopes/G_episurf/access_extracted.csv --outdir /your/path/to/brewpitopes/I_final_candidates
+```
+
 23. Use epicontig.ipynb (Jupiter Notebook) to extract the epitopic regions / contigs.  
       Upload the candidates_df.csv generated at step 22.
       Follow the instructions in the Notebook.  
