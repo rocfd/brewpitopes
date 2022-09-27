@@ -100,12 +100,12 @@ Rscript epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --input_epito
       
 16. Predict the glycosilation profile of the protein using the FASTA file.  
       N-GLYCOSILATIONS at [NetNGlyc 1.0](https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0) server.    
-      SAVE THE DATAFRAME HEADED: SeqName	Position	Potential	Jury_agreement	NGlyc_result	Prediction  
-      AS CSV at brewpitopes/F_epiglycan/netnglyc  
+      COPY MANUALLY THE DATAFRAME HEADED: SeqName	Position	Potential	Jury_agreement	NGlyc_result	Prediction  
+      SAVE AS CSV at brewpitopes/F_epiglycan/netnglyc  
       
       O-GLYCOSILATIONS AT [NetOGlyc 4.0](https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0) server.
-      SAVE THE DATAFRAME HEADED: seqName  	source	feature	start 	end	score strand      frame       comment  
-      AS CSV at brewpitopes/F_epiglycan/netoglyc
+      COPY MANUALLY THE DATAFRAME HEADED: seqName  	source	feature	start 	end	score strand      frame       comment  
+      SAVE AS CSV at brewpitopes/F_epiglycan/netoglyc
       
 17. Use epiglycan_extractor.R to extract the glycosilated positions from both N-glyc and O-glyc outputs.  
       Follow the instructions at the R file.  
