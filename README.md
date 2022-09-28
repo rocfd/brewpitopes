@@ -11,12 +11,12 @@ sudo docker build -t brewpitopes PATH/TO/Dockerfile
 
 2. Create a shared folder between Brewpitopes docker image and your local machine.
 
-      Change /your/machine/brewpitopes_projects for your desired local directory.
-      
-      Once you add files/folders in this directory, they will appear automatically within the brewpitopes docker image at /home/Projects.
 ```
 sudo docker run -it --volume /your/machine/brewpitopes_projects:/home/Projects brewpitopes 
 ```
+
+Change /your/machine/brewpitopes_projects for your desired local directory.
+Once you add files/folders in this directory, they will appear automatically within the brewpitopes docker image at /home/Projects.
 
 3. Explore the folder structure of the Docker image named "brewpitopes".
 ```
