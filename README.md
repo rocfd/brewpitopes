@@ -1,18 +1,23 @@
 # BREWPITOPES
-Set of tools to manage epitope prediction results from linear and structural origin and to integrate a pipeline of prioritization filters to curate B-cell epitopes specific for neutralizing antibody recognition.
+Suite of tools to manage epitope prediction results from linear and structural origin and to integrate a pipeline of prioritization filters to curate B-cell epitopes specific for neutralizing antibody recognition.
 
 ## INSTALLATION (DOCKER IMAGE)
 0. Download the Dockerfile in this repository. To compile the Dockerfile you will need to have docker installed. 
-1. Create docker image from Dockerfile (may take a while):
+
+2. Create docker image from Dockerfile (may take a while):
 ```
 sudo docker build -t brewpitopes PATH/TO/Dockerfile
 ``` 
+
 2. Create a shared folder between Brewpitopes docker image and your local machine.
+
       Change /your/machine/brewpitopes_projects for your desired local directory.
+      
       Once you add files/folders in this directory, they will appear automatically within the brewpitopes docker image at /home/Projects.
 ```
 sudo docker run -it --volume /your/machine/brewpitopes_projects:/home/Projects brewpitopes 
 ```
+
 3. Explore the folder structure of the Docker image named "brewpitopes".
 ```
 ls
@@ -23,15 +28,18 @@ You should see the folders: brewpitopes, example, Projects
 ```      
 cd brewpitopes
 ```
+
 3.2 To find an example of a brewpitopes project and the required files go to
 ```
 cd ../example
 ```
+
 3.3 To create new project, do so within the Projects folder:
 ```
 cd ../Projects
 mkdir your_project
 ```
+
 3.4 Once you have created "your_project" folder, to start running the pipeline move back to the folder "brewpitopes" and you are ready to go !!
 
 ## PIPELINE
