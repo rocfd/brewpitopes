@@ -5,58 +5,50 @@
 ## http://cctop.enzim.ttk.mta.hu/?_=/jobs/submit
 ## DOWNLOAD RESULTS AS .XML
 
+## LIBRARIES
+library(argparser, quietly = T, warn.conflicts = F)
+library(dplyr, quietly = T, warn.conflicts = F)
+
 ## XML PARSER
-require(XML)
+library(XML, quietly = T, warn.conflicts = F)
+
+### SCRIPT ARGUMENTS
+# Create a parser
+p <- arg_parser("XML CCTOP PARSER")
+
+# Add command line arguments
+p <- add_argument(p, "--xml", help= "Path to XML output of CCTOP (.xml format)", type="character", default = ".")
+p <- add_argument(p, "--sample", help = "Sample name to label output files", type = "character", default = "cctop_domains.csv")
+p <- add_argument(p, "--outdir", help = "Path to output files", type = "character", default = "E_epitopology/CCTOP")
+#p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = "E_epitopology/CCTOP")
+
+# Parse the command line arguments
+argv <- parse_args(p)
 
 ## LOAD XML
-data <- xmlParse("path/to/E_epitoplogy/results_cctop.xml")
+data <- xmlParse(argv$xml)
 
 ## TRANSFORM TO LIST
 xml_data <- xmlToList(data)
-View(xml_data)
 
 ## LIST TO DATAFRAME
 xml_df <- xml_data$Topology
-xml_df
 
 ### EXTRACT ALL THE TOPOLOGY DOMAINS
 ### ADD ONE DATAFRAME PER DOMAIN
-## EXTRACT REGION TO DATAFRAME
-xml_df1 <- as.data.frame(xml_df[1])
-xml_df1 <- t(xml_df1)
-rownames(xml_df1) <- NULL
-dim(xml_df1)
+## EXTRACT ALL REGIONS INTO SEPPARATE DATAFRAMES
+## SKIP LAST DATAFRAME SINCE IT DOES NOT CONTAIN TOPOLOGY INFORMATION
+for(i in 1:(length(xml_df)-1)) {
+  assign(paste0("topdf.", i), as.data.frame(t(xml_df[[i]])))
+}
 
-## EXTRACT REGION TO DATAFRAME
-xml_df2 <- as.data.frame(xml_df[2])
-xml_df2 <- t(xml_df2)
-rownames(xml_df2) <- NULL
-dim(xml_df2)
-
-## EXTRACT REGION TO DATAFRAME
-xml_df3 <- as.data.frame(xml_df[3])
-xml_df3 <- t(xml_df3)
-rownames(xml_df3) <- NULL
-dim(xml_df3)
-
-## EXTRACT REGION TO DATAFRAME
-xml_df4 <- as.data.frame(xml_df[4])
-xml_df4 <- t(xml_df4)
-rownames(xml_df4) <- NULL
-View(xml_df4)
-dim(xml_df4)
-
-## EXTRACT REGION TO DATAFRAME
-'''xml_df5 <- as.data.frame(xml_df[5])
-xml_df5 <- t(xml_df5)
-rownames(xml_df5) <- NULL
-View(xml_df5)
-dim(xml_df5)'''
-
-## MERGE INTO DATAFRAME
-xml_df_all <- rbind(xml_df1, xml_df2, xml_df3, xml_df4)
-View(xml_df_all)
-class(xml_df_all)
+### MERGE DOMAINS INTO A SINGLE DATAFRAME
+top_df <- mget(ls(pattern="^topdf\\.\\d+")) %>% bind_rows()
 
 ## EXPORT DATAFRAME
-write.csv(xml_df_all, "path/to/E_epitopology/CCTOP/cctop_results_extracted.csv")
+write.csv(top_df, file = paste0(argv$outdir, "/", argv$sample, sep = ""), row.names = F, quote = F)
+
+### EXPORT RDATA
+#p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = ".")
+#dir.create(paste0(argv$save_rdata_dir, "/rdata", sep = ""))
+#save.image(paste0(argv$save_rdata_dir, "/rdata/", argv$sample, ".rdata", sep = ""))
