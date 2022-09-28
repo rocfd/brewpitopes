@@ -16,21 +16,23 @@ Set of tools to manage epitope prediction results from linear and structural ori
 ls
 ```
 You should see the folders: brewpitopes, example, Projects
-To execute the scripts go to
+
+3.1 To execute the scripts go to:
 ```      
 cd brewpitopes
 ```
-To find an example of a brewpitopes project and the required files go to
+3.2 To find an example of a brewpitopes project and the required files go to
 ```
 cd ..
 cd example
 ```
-To create new project, do so within the Projects folder:
+3.3 To create new project, do so within the Projects folder:
 ```
 cd ..
 cd Projects
 mkdir your_project
 ```
+3.4 Once you have created "your_project" folder, to start running the pipeline move to the folder "brewpitopes" and you are ready to go !!
 
 ## PIPELINE
 4. Use directories.R to create the folder environment.
