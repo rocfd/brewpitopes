@@ -22,16 +22,16 @@ import more_itertools as mit
 ## HELP
 h = '''
     To right usage of this script:
-        $ python3 epixtractor_linear.py 
+        $ python3 epixtractor_linear_bepipred.py
         The files in use have to be provided by stating
         "location/file_name.csv"
     to the input questions that appear in the console.
     <file_name> should be a .csv separated by ","
     OPTIONAL 
-    The script returns a <file_name>_out.xlsx as output.
+    The script returns a <file_name>_out.csv as output.
     You can also do the following (if using Mac/Linux OS):
         $ chmod +x epixtractor_linear.py 
-        $ ./epixtractor_linear.py  <location/file_name.csv>
+        $ ./epixtractor_linear_bepipred.py  <location/file_name.csv>
     You need python 3 installed in your computer!!!
     '''
 
@@ -51,11 +51,16 @@ def fileExist(file):
 
 
 ## FILE UPLOAD
-data_file=""
 num_args=len(sys.argv)
 
 if num_args>=2:
     data_file = sys.argv[1]
+if num_args==3:
+    outpath = sys.argv[2]
+
+## VARIABLES
+data_file=""
+outpath=""
 
 while not fileExist(data_file):
     data_file = input(''' Provide location and name of the file dataset.
@@ -65,14 +70,20 @@ while not fileExist(data_file):
 
 print("Input file: " + data_file)
 
+# OUTPUT PATH
+while not os.path.exists(outpath):
+    outpath = input(''' Provide the desired output path.
+        For example: /brewpitopes/C_epixtractor
+            (-h for help)
+        Here: ''')
+print("Input file:" + outpath)
 
 
 # NAME THE OUTPUT FILE
 extension = os.path.splitext(data_file)[1]
 lenextension=len(extension)
-nameOutFile=data_file[:-lenextension]+"_Out"+extension
-#out_file=open(nameOutFile, "w")
-#out_file.writelines("Epitope_id,Epitope_seq\n")
+nameOutFile=outpath+"/bepipred_results_extracted"+extension
+
 
 ## PIPELINE for EXTRACTION OF EPITOPES FROM LINEAR PREDICTIONS
 
@@ -126,12 +137,6 @@ for group in resid_grouped_filtered:
 
 # EXTRACT BEBIPRED SCORE
 BebiScore = scored.EpitopeProbability
-
-# ADD METHOD
-#Tool = "Bebipred 2.0"
-
-## ADD BLANK ABCSCORE
-#ABCscore = "NA"
     
 # CREATE LIST TO PREPARE OUTPUT DATAFRAME
 out = list(zip(sequences,start,end,resid_grouped_filtered,BebiScore))
