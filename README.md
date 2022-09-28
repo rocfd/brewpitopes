@@ -5,11 +5,11 @@ Set of tools to manage epitope prediction results from linear and structural ori
 0. Download the Dockerfile in this repository. To compile the Dockerfile you will need to have docker installed. 
 1. Create docker image from Dockerfile (may take a while):
 ```
-      sudo docker build -t brewpitopes PATH/TO/Dockerfile
+sudo docker build -t brewpitopes PATH/TO/Dockerfile
 ``` 
 2. Create a shared folder between Brewpitopes docker image and your local machine.
 ```
-      sudo docker run -it --volume /your/machine/brewpitopes_projects:/home/Projects brewpitopes 
+sudo docker run -it --volume /your/machine/brewpitopes_projects:/home/Projects brewpitopes 
 ```
 3. Explore the folder structure of the Docker image named "brewpitopes".
 ```
@@ -23,16 +23,14 @@ cd brewpitopes
 ```
 3.2 To find an example of a brewpitopes project and the required files go to
 ```
-cd ..
-cd example
+cd ../example
 ```
 3.3 To create new project, do so within the Projects folder:
 ```
-cd ..
-cd Projects
+cd ../Projects
 mkdir your_project
 ```
-3.4 Once you have created "your_project" folder, to start running the pipeline move to the folder "brewpitopes" and you are ready to go !!
+3.4 Once you have created "your_project" folder, to start running the pipeline move back to the folder "brewpitopes" and you are ready to go !!
 
 ## PIPELINE
 4. Use directories.R to create the folder environment.
