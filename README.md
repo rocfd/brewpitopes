@@ -49,7 +49,7 @@ mkdir your_project
       
 7. Extract epitopes from Bepipred results using epixtractor_linear_bebipred.py.  
 ```
-python3 epixtractor_linear_bebipred.py
+python3 epixtractor_linear_bepipred.py
 ```
 ```
 Add path to bepipred results: your/path/to/A_linear_predictions/bepipred/bepipred_results.csv
