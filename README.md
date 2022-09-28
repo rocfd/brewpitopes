@@ -156,9 +156,11 @@ python3 epiregions.py
 Add path to input epitope dataframe: brewpitopes/I_final_candidates/brewpitopes_results_df.csv
 Add path to output folder: brewpitopes/K_epitope_regions
 ```
-24. Use yield_plot.R to plot the results of the pipeline.  
-      Follow the instructions in the R file.  
-      
+24. Plot the yield results of the pipeline using yield_plot.R
+```
+Rscript yield_plot.R --data /your/path/to/brewpitopes/H_epifilter/brewpitopes_unfiltered_df.csv --merged /your/path/to/brewpitopes/D_epimerger/merged.csv --eregs /your/path/to/brewpitopes/K_epitope_regions/epitope_regions_extracted.csv --outdir /your/path/to/brewpitopes/J_plots
+```
+
 ## APPENDIX FOR VARIANTS OF CONCERN
 1. Generate FASTA using fasta_mutator.R  
       Download reference FASTA from Spike protein from UniprotKB.  
