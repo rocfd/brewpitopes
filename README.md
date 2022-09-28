@@ -5,23 +5,23 @@ Set of tools to manage epitope prediction results from linear and structural ori
 To compile the Dockerfile you will need to have docker installed. And use the following commands:
 1. Create docker image from Dockerfile (may take a while):
 ```
-      sudo docker build -t brewpitopes PATH/TO/Dockerfile
+sudo docker build -t brewpitopes PATH/TO/Dockerfile
 ```
 2. Run the docker image:
 ```
-      sudo docker run -it brewpitopes
+sudo docker run -it brewpitopes
 ```      
 3. Create a shared folder between Brewpitopes docker image and your local machine.
 ```
-      sudo docker run -it brewpitopes --volume /your/machine/directory:/home/Projects
+sudo docker run -it brewpitopes --volume /your/machine/directory:/home/Projects
 ```
 
 ## PIPELINE
 4. Use directories.R to create the folder environment.
 
-      ```
-      Rscript directories.R --path /your/desired/folder
-      ```
+```
+Rscript directories.R --path /your/desired/folder
+```
 
 5. Download the FASTA file of the target protein at [Uniprot](https://www.uniprot.org/).    
       
