@@ -51,11 +51,17 @@ def fileExist(file):
 
 
 ## FILE UPLOAD
-data_file=""
+
 num_args=len(sys.argv)
 
 if num_args>=2:
     data_file = sys.argv[1]
+if num_args==3:
+    outpath = sys.argv[2]
+
+## VARIABLES
+data_file=""
+outpath = ""
 
 while not fileExist(data_file):
     data_file = input(''' Provide location and name of the file dataset.
@@ -65,10 +71,18 @@ while not fileExist(data_file):
 
 print("Input file: " + data_file)
 
+# OUTPUT PATH
+while not os.path.exists(outpath):
+    outpath = input(''' Provide the desired output path.
+        For example: /brewpitopes/C_epixtractor
+            (-h for help)
+        Here: ''')
+print("Input file:" + outpath)
+
 # NAME THE OUTPUT FILE
 extension = os.path.splitext(data_file)[1]
 lenextension=len(extension)
-nameOutFile=data_file[:-lenextension]+"_Out"+extension
+nameOutFile=outpath+"/discotope_results_extracted"+extension
 
 ## PIPELINE for EXTRACTION OF EPITOPES FROM STRUCTURAL PREDICTIONS
 
