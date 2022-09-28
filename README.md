@@ -67,31 +67,31 @@ Add path to bepipred results: your/path/to/A_linear_predictions/bepipred/bepipre
 Add path to output folder: your/path/to/C_epixtractor    
 ```
       
-6. Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
+8. Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
 
       Predict using all the epitope windows (10,12,14,16,18,20) and overlapping filter ON.  
       Copy results from the webpage to a .csv  
       Save at: ../Projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_10mers.csv 
       
-7. Extract epitopes from ABCpred results using epixtractor_linear_abcpred.R  
+9. Extract epitopes from ABCpred results using epixtractor_linear_abcpred.R  
 
 ````
 Rscript epixtractor_linear_abcpred.R --outpath your/path/to/brewpitopes/C_epixtractor --input_10mers ../Projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_10mers.csv --input_12mers ../Projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_12mers.csv --input_14mers ../Projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_14mers.csv --input_16mers ../Projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_16mers.csv --input_18mers ../Projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_18mers.csv --input_20mers ../Projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_20mers.csv
 ````
       
-8. Download the PDB file of the target protein at PDB DB. 
+10. Download the PDB file of the target protein at PDB DB. 
        Save at ../Projects/your_project/brewpitopes/B_structural_predictions/pdb  
        
-9. Use [PDBrenum](http://dunbrack3.fccc.edu/PDBrenum/) server to renumerate the PDB residues according to its corresponding FASTA file in Uniprot.  
+11. Use [PDBrenum](http://dunbrack3.fccc.edu/PDBrenum/) server to renumerate the PDB residues according to its corresponding FASTA file in Uniprot.  
       Download results as .pdb  
       Save at ../Projects/your_project/brewpitopes/B_structural_predictions/pdbrenum 
       
-10. Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server and export the results as csv.    
+12. Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server and export the results as csv.    
       Default threshold.  
       Select chain A by default.
       Save at ../Projects/your_project/brewpitopes/B_structural_predictions/discotope  
       
-11. Extract epitopes from Discotope results using epixtract_structural.py
+13. Extract epitopes from Discotope results using epixtract_structural.py
 ```
 python3 epixtract_structural.py  
 ```
@@ -100,34 +100,34 @@ Add path to discotope results: ../Projects/your_project/brewpitopes/B_structural
 Add path to output folder: ../Projects/your_project/brewpitopes/C_epixtractor
 ```
 
-12. Merge the epitopes extracted from Bepipred, ABCpred and Discotope results using epimerger.R
+14. Merge the epitopes extracted from Bepipred, ABCpred and Discotope results using epimerger.R
 ```
 Rscript epimerger.R --abcpred ../Projects/your_project/brewpitopes/C_epixtractor/abcpred_results_extracted.csv --bepipred ../Projects/your_project/brewpitopes/C_epixtractor/abcpred_results_extracted.csv --discotope ../Projects/your_project/brewpitopes/C_epixtractor/discotope_results_extracted.csv --outdir ../Projects/your_project/brewpitoeps/D_epimerger
 ```
 
-Take steps 13, 14 and 15.1 if you want to predict protein topology using CCTOP. Otherwise, if the topology of your protein is already described and you want to add it manually go directly to step 15.2.
+Take steps 15, 16 and 17.1 if you want to predict protein topology using CCTOP. Otherwise, if the topology of your protein is already described and you want to add it manually go directly to step 17.2.
 
-13. Predict the protein topology using [CCTOP](http://cctop.enzim.ttk.mta.hu/?_=/jobs/submit) server.  
+15. Predict the protein topology using [CCTOP](http://cctop.enzim.ttk.mta.hu/?_=/jobs/submit) server.  
       Donwload results as .xml.
       Save at ../Projects/your_project/brewpitopes/E_topology/CCTOP/cctop.xml
       
-14. Extract the topological domains using xml_cctop_parser.R  (ONLY IF 
+16. Extract the topological domains using xml_cctop_parser.R  (ONLY IF 
 ```
 Rscript xml_cctop_parser.R --xml ../Projects/your_project/brewpitopes/E_epitopology/CCTOP/cctop.xml --outdir ../Projects/your_project/brewpitopes/E_epitopology/CCTOP
 ```
 
-15. Label the epitopes based on their topology (intracellular, membrane or extracellular) using epitopology.R
-15.1 Using CCTOP predictions --> use epitopology_cctop.R
+17. Label the epitopes based on their topology (intracellular, membrane or extracellular) using epitopology.R
+17.1 Using CCTOP predictions --> use epitopology_cctop.R
 ```
 Rscript epitopology_cctop.R --input_CCTOP ../Projects/your_project/brewpitopes/E_epitopology/CCTOP/cctop_domains.csv --input_epitopes ../Projects/your_project/brewpitopes/D_epimerger/merged.csv --outdir ../Projects/your_project/brewpitopes/E_epitopology
 ```
 
-15.2 Manual topology annotation --> use epitopology_manual.R. Add manually the starting and ending positions of your extracellular domains at --start_pos and end_pos.
+17.2 Manual topology annotation --> use epitopology_manual.R. Add manually the starting and ending positions of your extracellular domains at --start_pos and end_pos.
 ```
 Rscript epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --input_epitopes ../Projects/your_project/brewpitopes/D_epimerger/merged.csv --outdir ../Projects/your_project/brewpitopes/E_epitopology
 ```
       
-16. Predict the glycosilation profile of the protein using the FASTA file.  
+18. Predict the glycosilation profile of the protein using the FASTA file.  
       N-GLYCOSILATIONS at [NetNGlyc 1.0](https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0) server.    
       COPY MANUALLY THE DATAFRAME HEADED: SeqName	Position	Potential	Jury_agreement	NGlyc_result	Prediction  
       SAVE AS CSV at ../Projects/your_project/brewpitopes/F_epiglycan/netnglyc  
@@ -136,12 +136,12 @@ Rscript epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --input_epito
       COPY MANUALLY THE DATAFRAME HEADED: seqName  	source	feature	start 	end	score strand      frame       comment  
       SAVE AS CSV at ../Projects/your_project/brewpitopes/F_epiglycan/netoglyc
       
-17. Extract the glycosilated positions from both N-glyc and O-glyc outputs using epiglycan_extractor.R
+19. Extract the glycosilated positions from both N-glyc and O-glyc outputs using epiglycan_extractor.R
 ```
 Rscript epiglycan_extractor.R --oglyc ../Projects/your_project/brewpitopes/F_epiglycan/netoglyc/oglyc.csv --nglyc ../Projects/your_project/brewpitopes/F_epiglycan/netnglyc/nglyc.csv --outdir ../Projects/your_project/brewpitopes/F_epiglycan/
 ```
 
-18. Use epiglycan.py to label the glycosilated epitopes.  
+20. Use epiglycan.py to label the glycosilated epitopes.  
 ```
 python3 epiglycan.py
 ```
@@ -151,13 +151,14 @@ Add path to output folder: ../Projects/your_project/brewpitopes/F_epiglycan
 Add path to extracted glycosilated positions: ../Projects/your_project/brewpitopes/F_epiglycan/glycosilated_positions.csv  
 ```
 
-19. Use ICM_browser (MOLSOFT) to extract the RSA values for accessibility calculation.  
-      Download ICM_browser from [http://www.molsoft.com/icm_browser.html](http://www.molsoft.com/icm_browser.html)
-      Open the PDB renumbered file of the corresponding protein (step 9).  
-      Execute in the command line of the programme the code in Compute_ASA.icm  
-      Save results at ../Projects/your_project/brewpitopes/G_episurf
+21. Use ICM_browser (MOLSOFT) to extract the RSA values for accessibility calculation.  
+      (Locally) Download ICM_browser from [http://www.molsoft.com/icm_browser.html](http://www.molsoft.com/icm_browser.html)
+      Move the PDB renumbered file of the corresponding protein (step 11) to a local folder.
+      Move the script Compute_ASA.icm to the same local folder.
+      Execute in the command line of the programme ICM Browser the code in Compute_ASA.icm  
+      Save results at /your/machine/brewpitopes_projects/Projects/your_project/brewpitopes/G_episurf
       
-20. Extract the buried positions using icm_extractor.R  
+22. Extract the buried positions using icm_extractor.R  
 ```
 Rscript icm_extractor.R --icm ../Projects/your_project/brewpitopes/G_episurf/icm/rsa.csv --outdir ../Projects/your_project/brewpitopes/G_episurf/
 ```
