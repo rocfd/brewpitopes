@@ -16,7 +16,7 @@ p <- add_argument(p, "--fasta", help= "Path to FASTA of the WT targeted protein 
 p <- add_argument(p, "--mut", help= "Path to CSV containing the mutations (.csv format)", type="character", default = ".")
 p <- add_argument(p, "--sample", help = "Sample name to label output files", type = "character", default = "fasta_mut.fasta")
 p <- add_argument(p, "--outdir", help = "Path to output files", type = "character", default = "Z_fasta")
-p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = "Z_fasta")
+#p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = "Z_fasta")
 
 # Parse the command line arguments
 argv <- parse_args(p)
@@ -98,5 +98,5 @@ sink()
 
 ### EXPORT RDATA
 #p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = ".")
-dir.create(paste0(argv$save_rdata_dir, "/rdata", sep = ""))
-save.image(paste0(argv$save_rdata_dir, "/rdata/", argv$sample, ".rdata", sep = ""))
+#dir.create(paste0(argv$save_rdata_dir, "/rdata", sep = ""))
+#save.image(paste0(argv$save_rdata_dir, "/rdata/", argv$sample, ".rdata", sep = ""))
