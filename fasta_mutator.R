@@ -3,9 +3,9 @@
 ## IMPLEMENT FOR mut VARIANT
 
 ## LIBRARIES
-library(dplyr)
-library(seqinr)
-library(argparser)
+library(dplyr, quietly = T, warn.conflicts = F)
+library(seqinr, quietly = T, warn.conflicts = F)
+library(argparser, quietly = T, warn.conflicts = F)
 
 ### SCRIPT ARGUMENTS
 # Create a parser
@@ -14,6 +14,7 @@ p <- arg_parser("FASTA MUTATOR")
 # Add command line arguments
 p <- add_argument(p, "--fasta", help= "Path to FASTA of the WT targeted protein (.fasta format)", type="character", default = ".")
 p <- add_argument(p, "--mut", help= "Path to CSV containing the mutations (.csv format)", type="character", default = ".")
+p <- add_argument(p, "--mut_header", help= "Header of the new (mutated) fasta. Do NOT include > !!", type="character", default = ".")
 p <- add_argument(p, "--sample", help = "Sample name to label output files", type = "character", default = "fasta_mut.fasta")
 p <- add_argument(p, "--outdir", help = "Path to output files", type = "character", default = "Z_fasta")
 #p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = "Z_fasta")
@@ -22,8 +23,7 @@ p <- add_argument(p, "--outdir", help = "Path to output files", type = "characte
 argv <- parse_args(p)
 
 ## IMPORT FASTA FROM REFERENCE SPIKE (UNIPROT)
-fasta <- read.csv(header = F, col.names = "sequence", comment.char = ">", "path/to/spike_fasta.txt")
-glimpse(fasta)
+fasta <- read.csv(header = F, col.names = "sequence", comment.char = ">", file = argv$fasta)
 
 ## MERGE FASTA SEQUENCE
 y <- ""
@@ -34,11 +34,10 @@ for (x in fasta$sequence){
 nchar(y)
 
 ## IMPORT MUTATIONS FROM THE CORRESPONDING VOC (IN THIS CASE mut)
-mut <- read.csv(path = argv$mut) ## MUTATIONS FILE FOR mut : 20211203_spike_mut_vocs.csv
+mut <- read.csv(file = argv$mut) ## MUTATIONS FILE FOR mut : 20211203_spike_mut_vocs.csv
 
 ## EXTRACT MUT POSITION
 mut$position <- regmatches(mut$mut_code, gregexpr("[[:digit:]]+", mut$mut_code))
-mut
 
 
 ### DEFINE LEFT AND RIGHT FUNCTIONS FOR EXTRACTION
@@ -54,7 +53,6 @@ right <- function(text, n) {
 mut$mut_code <- as.character(mut$mut_code)
 mut$mut <- right(mut$mut_code, 1)
 mut$wt <- left(mut$mut_code, 1)
-mut
 
 ## MUTATE FASTA
 ### MUTATE FASTA LOOP
@@ -67,7 +65,7 @@ for (x in 1:length(mut$position)){
   }
 }
 
-fasta <- z
+fasta_mut <- z
 
 ### CHECK MUTATED POSITIONS IN MUTATIONS DF
 muts <- c()
@@ -75,7 +73,6 @@ for (x in 1:length(mut$mut)){
   m <- mut$mut[x]
   muts <- c(muts, m)
 }
-muts
 
 ### CHECK MUTATED POSITIONS IN MUTATED FASTA
 muts_f <- c()
@@ -84,19 +81,29 @@ for (x in 1:length(mut$position)){
   muts_f <- c(muts_f, n)
 }
 
+
 ### CHECK IF EQUAL MUTATIONS AT MUTATED DF AND MUTATED FASTA
+print("Mutation check:")
 muts == muts_f
-muts_f # YES
 
+### DF TO FASTA FUNCTION
 
-## SAVE AS TEXT
-sink(file = paste0(argv$outdir, "/", argv$sample, sep = ""))
-fasta
-sink()
+writeFasta<-function(data, filename){
+  fastaLines = c()
+  for (rowNum in 1:nrow(data)){
+    fastaLines = c(fastaLines, as.character(paste(">", data[rowNum,"name"], sep = "")))
+    fastaLines = c(fastaLines,as.character(data[rowNum,"seq"]))
+  }
+  fileConn<-file(filename)
+  writeLines(fastaLines, fileConn)
+  close(fileConn)
+}
 
-## ONCE SAVED REMOVE ""
+### FASTA HEADER
+header <- argv$header
 
-### EXPORT RDATA
-#p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = ".")
-#dir.create(paste0(argv$save_rdata_dir, "/rdata", sep = ""))
-#save.image(paste0(argv$save_rdata_dir, "/rdata/", argv$sample, ".rdata", sep = ""))
+### FASTA DATAFRAME
+fasta_df <- data.frame(name = argv$mut_header, seq = fasta_mut)
+
+### DF to FASTA
+writeFasta(fasta_df, paste0(argv$outdir, "/", argv$sample, sep = ""))
