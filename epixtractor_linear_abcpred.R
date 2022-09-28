@@ -8,17 +8,35 @@
 # Save the output results as csv (for instance: copying the output into excel and save as csv)
 # Proceed with the following script.
 
-
 library(dplyr)
 library(purrr)
+library(argparser)
+
+### SCRIPT ARGUMENTS
+# Create a parser
+p <- arg_parser("EPIXTRACTOR LINEAR ABCPRED")
+
+# Add command line arguments
+p <- add_argument(p, "--input_10mers", help= "Path to ABCPRED 10-mers output dataset (.csv format)", type="character", default = ".")
+p <- add_argument(p, "--input_12mers", help= "Path to ABCPRED 12-mers output dataset (.csv format)", type="character", default = ".")
+p <- add_argument(p, "--input_14mers", help= "Path to ABCPRED 14-mers output dataset (.csv format)", type="character", default = ".")
+p <- add_argument(p, "--input_16mers", help= "Path to ABCPRED 16-mers output dataset (.csv format)", type="character", default = ".")
+p <- add_argument(p, "--input_18mers", help= "Path to ABCPRED 18-mers output dataset (.csv format)", type="character", default = ".")
+p <- add_argument(p, "--input_20mers", help= "Path to ABCPRED 20-mers output dataset (.csv format)", type="character", default = ".")
+p <- add_argument(p, "--sample", help = "Sample name to label output files", type = "character", default = "abcpred_results_extracted")
+p <- add_argument(p, "--outdir", help = "Path to output files", type = "character", default = "brewpitopes/C_epixtractor")
+#p <- add_argument(p, "--rdata", help = "Path to save rData image", type = "character", default = "brewpitopes/A_linear_predictions/abcpred")
+
+# Parse the command line arguments
+argv <- parse_args(p)
 
 ## IMPORT CSV - ABCPred RESULTS
-abc_10 <- read.csv("path/to/10mers.csv")
-abc_12 <- read.csv("path/to/12mers.csv")
-abc_14 <- read.csv("path/to/14mers.csv")
-abc_16 <- read.csv("path/to/16mers.csv")
-abc_18 <- read.csv("path/to/18mers.csv")
-abc_20 <- read.csv("path/to/20mers.csv")
+abc_10 <- read.csv(argv$input_10mers)
+abc_12 <- read.csv(argv$input_12mers)
+abc_14 <- read.csv(argv$input_14mers)
+abc_16 <- read.csv(argv$input_16mers)
+abc_18 <- read.csv(argv$input_18mers)
+abc_20 <- read.csv(argv$input_20mers)
 
 ## REMOVE COLUMN X
 abc_10 <- select(abc_10, -X)
@@ -71,4 +89,9 @@ abc_all$Positions = apply(abc_all,1, function(x) paste(x['Start']:x['End'],colla
 abc_all$Tool <- "ABCpred"
 
 ## EXPORT RESULTS AS CSV
-write.table(abc_all, "path/to/abcpred/XXX_abcpred_allmers.csv", quote = F, row.names = F, sep = ";")
+write.table(abc_all, file = paste0(argv$outdir, "/", argv$sample, ".csv"), quote = F, row.names = F, sep = ";")
+
+### EXPORT RDATA
+# #p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = ".")
+# dir.create(paste0(argv$save_rdata_dir, "/rdata", sep = ""))
+# save.image(paste0(argv$save_rdata_dir, "/rdata/", argv$sample, ".rdata", sep = ""))
