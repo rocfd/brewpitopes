@@ -39,26 +39,36 @@ if num_args>=2:
     data_file = sys.argv[1]
 if num_args==3:
     inputGlycans = sys.argv[2]
+if num_args==4:
+    outpath = sys.argv[3]
 
 # VARIABLES
 data_file=""
 inputGlycans=""
 glycans=""
+outpath=""
 
 # FILE NOT EXIST
 while not fileExist(data_file):
-    data_file = input(''' Provide location and name of the file dataset.
+    data_file = input(''' Provide location and name of the EPITOPE dataset.
         For example: data/file_test.csv
             (-h for help)
         Here: ''')
 print("Input file:" + data_file)
 
-#data_file= 'test_protein_parser.csv'
+# FILE NOT EXIST
+while not os.path.exists(outpath):
+    outpath = input(''' Provide the desired output path.
+        For example: brewpitopes/F_epiglycan
+            (-h for help)
+        Here: ''')
+print("Input file:" + outpath)
+
 
 # OPEN READ FILE
 extension = os.path.splitext(data_file)[1]
 lenextension=len(extension)
-nameOutFile=data_file[:-lenextension]+"_Out"+extension
+nameOutFile=outpath+"/glycan_extracted"+extension
 
 # GLYCAN INPUT
 while not fileExist(inputGlycans):
