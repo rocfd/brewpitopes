@@ -16,6 +16,7 @@ sudo docker run -it --volume /your/machine/brewpitopes_projects:/home/Projects b
 ```
 
 Change /your/machine/brewpitopes_projects for your desired local directory.
+
 Once you add files/folders in this directory, they will appear automatically within the brewpitopes docker image at /home/Projects.
 
 3. Explore the folder structure of the Docker image named "brewpitopes".
