@@ -6,14 +6,10 @@ To compile the Dockerfile you will need to have docker installed. And use the fo
 1. Create docker image from Dockerfile (may take a while):
 ```
       sudo docker build -t brewpitopes PATH/TO/Dockerfile
+``` 
+2. Create a shared folder between Brewpitopes docker image and your local machine.
 ```
-2. Run the docker image:
-```
-      sudo docker run -it brewpitopes
-```      
-3. Create a shared folder between Brewpitopes docker image and your local machine.
-```
-      sudo docker run -it brewpitopes --volume /your/machine/directory:/home/Projects
+      sudo docker run -it --volume /your/machine/directory:/home/Projects brewpitopes 
 ```
 
 ## PIPELINE
