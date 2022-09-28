@@ -161,11 +161,12 @@ Add path to output folder: brewpitopes/K_epitope_regions
 Rscript yield_plot.R --data /your/path/to/brewpitopes/H_epifilter/brewpitopes_unfiltered_df.csv --merged /your/path/to/brewpitopes/D_epimerger/merged.csv --eregs /your/path/to/brewpitopes/K_epitope_regions/epitope_regions_extracted.csv --outdir /your/path/to/brewpitopes/J_plots
 ```
 
-## APPENDIX FOR VARIANTS OF CONCERN
-1. Generate FASTA using fasta_mutator.R  
-      Download reference FASTA from Spike protein from UniprotKB.  
-      Upload where indicated at script instructions.  
-      Upload the mutations of the corresponding VOC found as attached files in this Github. (ie Gamma = 20211203_spike_gamma_vocs.csv)
-      Execute the script and save the VOC Fasta file.  
+## APPENDIX FOR VARIANTS (OF CONCERN)
+1. Generate a MUTANT FASTA using fasta_mutator.R  
+      Download reference FASTA from the target protein (in this case SARS-CoV-2 Spike) from UniprotKB.  
+      Save the mutations of the corresponding mutant protein or VOC as .csv. Ensure the format is equal to the example file 20211203_spike_gamma_vocs.csv.
+```
+Rscript fasta_mutator.R  --fasta /your/path/to/brewpitopes/Z_fasta/your_target_protein.fasta --mut /your/path/to/brewpitopes/Z_fasta/your_target_mutations.csv --sample mutant_protein.fasta --outdir /your/path/to/brewpitopes/Z_fasta
+```      
       Once saved, remove "" from the file to obtain a properly formatted FASTA.  
       Start the pipeline above with the mutated FASTA file.  
