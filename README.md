@@ -37,9 +37,9 @@ mkdir your_project
 ## PIPELINE
 4. Use directories.R to create the folder environment.
 
-      ```
-      Rscript directories.R --path ../Projects/your_project
-      ```
+```
+Rscript directories.R --path ../Projects/your_project
+```
 
 5. Download the FASTA file of the target protein at [Uniprot](https://www.uniprot.org/).    
       
@@ -96,22 +96,24 @@ Add path to output folder: ../Projects/your_project/brewpitopes/C_epixtractor
 Rscript epimerger.R --abcpred ../Projects/your_project/brewpitopes/C_epixtractor/abcpred_results_extracted.csv --bepipred ../Projects/your_project/brewpitopes/C_epixtractor/abcpred_results_extracted.csv --discotope ../Projects/your_project/brewpitopes/C_epixtractor/discotope_results_extracted.csv --outdir ../Projects/your_project/brewpitoeps/D_epimerger
 ```
 
+Take steps 13, 14 and 15.1 if you want to predict protein topology using CCTOP. Otherwise, if the topology of your protein is already described and you want to add it manually go directly to step 15.2.
+
 13. Predict the protein topology using [CCTOP](http://cctop.enzim.ttk.mta.hu/?_=/jobs/submit) server.  
       Donwload results as .xml.
       Save at ../Projects/your_project/brewpitopes/E_topology/CCTOP/cctop.xml
       
-14. Extract the topological domains using xml_cctop_parser.R  
+14. Extract the topological domains using xml_cctop_parser.R  (ONLY IF 
 ```
 Rscript xml_cctop_parser.R --xml ../Projects/your_project/brewpitopes/E_epitopology/CCTOP/cctop.xml --outdir ../Projects/your_project/brewpitopes/E_epitopology/CCTOP
 ```
 
 15. Label the epitopes based on their topology (intracellular, membrane or extracellular) using epitopology.R
-Using CCTOP predictions --> use epitopology_cctop.R
+15.1 Using CCTOP predictions --> use epitopology_cctop.R
 ```
 Rscript epitopology_cctop.R --input_CCTOP ../Projects/your_project/brewpitopes/E_epitopology/CCTOP/cctop_domains.csv --input_epitopes ../Projects/your_project/brewpitopes/D_epimerger/merged.csv --outdir ../Projects/your_project/brewpitopes/E_epitopology
 ```
 
-Using manual annotation --> use epitopology_manual.R
+15.2 Manual topology annotation --> use epitopology_manual.R. Add manually the starting and ending positions of your extracellular domains at --start_pos and end_pos.
 ```
 Rscript epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --input_epitopes ../Projects/your_project/brewpitopes/D_epimerger/merged.csv --outdir ../Projects/your_project/brewpitopes/E_epitopology
 ```
