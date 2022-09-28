@@ -195,8 +195,12 @@ Rscript yield_plot.R --data ../Projects/your_project/brewpitopes/H_epifilter/bre
 
 ## APPENDIX FOR VARIANTS (OF CONCERN)
 1. Generate a MUTANT FASTA using fasta_mutator.R  
-      (Locally) Download reference FASTA from the target protein (in this case SARS-CoV-2 Spike) from UniprotKB and save at /host/your/path/to/brewpitopes_projects/your_project/Z_fasta
-      Save the mutations of the corresponding mutant protein or VOC as .csv at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/Z_fasta
+      (Locally) Download reference FASTA from the target protein (in this case SARS-CoV-2 Spike) from UniprotKB and save at 
+      /host/your/path/to/brewpitopes_projects/your_project/Z_fasta
+      
+      Save the mutations of the corresponding mutant protein or VOC as .csv at 
+      /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/Z_fasta
+      
       Ensure the format is equal to the example file 20211203_spike_gamma_vocs.csv.
 ```
 Rscript fasta_mutator.R --fasta ../Projects/your_project/brewpitopes/Z_fasta/target_protein.fasta --mut ../Projects/your_project/brewpitopes/Z_fasta/target_mutations.csv --mut_header your_header_without_> --sample yourfile.fasta --outdir ../Projects/your_project/brewpitopes/Z_fasta
