@@ -1,10 +1,25 @@
 ## FASTA MUTATOR
 
-## IMPLEMENT FOR gamma VARIANT
+## IMPLEMENT FOR mut VARIANT
 
 ## LIBRARIES
 library(dplyr)
 library(seqinr)
+library(argparser)
+
+### SCRIPT ARGUMENTS
+# Create a parser
+p <- arg_parser("FASTA MUTATOR")
+
+# Add command line arguments
+p <- add_argument(p, "--fasta", help= "Path to FASTA of the WT targeted protein (.fasta format)", type="character", default = ".")
+p <- add_argument(p, "--mut", help= "Path to CSV containing the mutations (.csv format)", type="character", default = ".")
+p <- add_argument(p, "--sample", help = "Sample name to label output files", type = "character", default = "fasta_mut.fasta")
+p <- add_argument(p, "--outdir", help = "Path to output files", type = "character", default = "Z_fasta")
+p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = "Z_fasta")
+
+# Parse the command line arguments
+argv <- parse_args(p)
 
 ## IMPORT FASTA FROM REFERENCE SPIKE (UNIPROT)
 fasta <- read.csv(header = F, col.names = "sequence", comment.char = ">", "path/to/spike_fasta.txt")
@@ -18,15 +33,14 @@ for (x in fasta$sequence){
 }
 nchar(y)
 
-## IMPORT MUTATIONS FROM THE CORRESPONDING VOC (IN THIS CASE GAMMA)
-gamma <- read.csv("path/to/gamma_mutations.csv") ## MUTATIONS FILE FOR GAMMA : 20211203_spike_gamma_vocs.csv
-glimpse(gamma)
+## IMPORT MUTATIONS FROM THE CORRESPONDING VOC (IN THIS CASE mut)
+mut <- read.csv(path = argv$mut) ## MUTATIONS FILE FOR mut : 20211203_spike_mut_vocs.csv
 
 ## EXTRACT MUT POSITION
-gamma$position <- regmatches(gamma$mut_code, gregexpr("[[:digit:]]+", gamma$mut_code))
-gamma
+mut$position <- regmatches(mut$mut_code, gregexpr("[[:digit:]]+", mut$mut_code))
+mut
 
-### EXTRACT MUT AND WT
+
 ### DEFINE LEFT AND RIGHT FUNCTIONS FOR EXTRACTION
 left <- function(text, n) {
   substr(text, 1, n)
@@ -36,22 +50,20 @@ right <- function(text, n) {
   substr(text, nchar(text) - (n - 1), nchar(text))
 }
 
-gamma$mut_code <- as.character(gamma$mut_code)
-gamma$mut <- right(gamma$mut_code, 1)
-gamma$wt <- left(gamma$mut_code, 1)
-gamma
-
-## REMOVE INSERTION (FOR THE MOMENT)
-##gamma <- gamma[1:36,]
+### EXTRACT MUT AND WT
+mut$mut_code <- as.character(mut$mut_code)
+mut$mut <- right(mut$mut_code, 1)
+mut$wt <- left(mut$mut_code, 1)
+mut
 
 ## MUTATE FASTA
 ### MUTATE FASTA LOOP
-for (x in 1:length(gamma$position)){
+for (x in 1:length(mut$position)){
   if (x == 1) {
-    z <- paste(substring(y,1,as.numeric(gamma$position[x])-1), gamma$mut[x], substring(y, as.numeric(gamma$position[x])+1,), sep = "")  
+    z <- paste(substring(y,1,as.numeric(mut$position[x])-1), mut$mut[x], substring(y, as.numeric(mut$position[x])+1,), sep = "")  
   }
   else{
-    z <- paste(substring(z,1,as.numeric(gamma$position[x])-1), gamma$mut[x], substring(z, as.numeric(gamma$position[x])+1,), sep = "")  
+    z <- paste(substring(z,1,as.numeric(mut$position[x])-1), mut$mut[x], substring(z, as.numeric(mut$position[x])+1,), sep = "")  
   }
 }
 
@@ -59,16 +71,16 @@ fasta <- z
 
 ### CHECK MUTATED POSITIONS IN MUTATIONS DF
 muts <- c()
-for (x in 1:length(gamma$mut)){
-  m <- gamma$mut[x]
+for (x in 1:length(mut$mut)){
+  m <- mut$mut[x]
   muts <- c(muts, m)
 }
 muts
 
 ### CHECK MUTATED POSITIONS IN MUTATED FASTA
 muts_f <- c()
-for (x in 1:length(gamma$position)){
-  n <- substring(fasta, gamma$position[x], gamma$position[x])
+for (x in 1:length(mut$position)){
+  n <- substring(fasta, mut$position[x], mut$position[x])
   muts_f <- c(muts_f, n)
 }
 
@@ -78,8 +90,13 @@ muts_f # YES
 
 
 ## SAVE AS TEXT
-sink(file = "Z_fasta/gamma_fasta_seq.txt")
+sink(file = paste0(argv$outdir, "/", argv$sample, sep = ""))
 fasta
 sink()
 
 ## ONCE SAVED REMOVE ""
+
+### EXPORT RDATA
+#p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = ".")
+dir.create(paste0(argv$save_rdata_dir, "/rdata", sep = ""))
+save.image(paste0(argv$save_rdata_dir, "/rdata/", argv$sample, ".rdata", sep = ""))
