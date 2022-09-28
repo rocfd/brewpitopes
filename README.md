@@ -148,9 +148,14 @@ Add path to extracted buried positions: brewpitopes/G_episurft/buried_positions_
 Rscript epifilter.R --data /your/path/to/brewpitopes/G_episurf/access_extracted.csv --outdir /your/path/to/brewpitopes/I_final_candidates
 ```
 
-23. Use epicontig.ipynb (Jupiter Notebook) to extract the epitopic regions / contigs.  
-      Upload the candidates_df.csv generated at step 22.
-      Follow the instructions in the Notebook.  
+23. Extract the epitope regions using epiregions.py
+```
+python3 epiregions.py
+```
+```
+Add path to input epitope dataframe: brewpitopes/I_final_candidates/brewpitopes_results_df.csv
+Add path to output folder: brewpitopes/K_epitope_regions
+```
 24. Use yield_plot.R to plot the results of the pipeline.  
       Follow the instructions in the R file.  
       
