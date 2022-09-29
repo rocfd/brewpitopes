@@ -25,7 +25,7 @@ ls
 ```
 You should see the folders: brewpitopes, example, Projects
 
-3.1 To execute the scripts go to:
+3.1 To execute the scripts of the pipeline go to:
 ```      
 cd brewpitopes
 ```
