@@ -2,7 +2,7 @@
 Suite of tools to manage epitope prediction results from linear and structural origin and to integrate a pipeline of prioritization filters to curate B-cell epitopes specific for neutralizing antibody recognition.
 
 ## INSTALLATION (DOCKER IMAGE)
-0. Download the Dockerfile in this repository. To compile the Dockerfile you will need to have docker installed. 
+0. Download the Dockerfile from this [repository](https://github.com/AlbertCS/Brewpitopes_container). To compile the Dockerfile you will need to have docker installed. 
 
 2. Create docker image from Dockerfile (may take a while):
 ```
