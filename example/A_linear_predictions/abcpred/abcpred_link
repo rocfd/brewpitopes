@@ -1,0 +1,3 @@
+To perform ABCpred predictions load the FASTA to webpage bellow and predict using all the length windows (10-20) with the Overlapping Filter ON.
+
+https://webs.iiitd.edu.in/raghava/abcpred/
