@@ -1,0 +1,4 @@
+To perform topology predictions using CCTOP you can use their server (find it below) and download the .xml output. 
+Then you can parse it using xml_parser.R and further process the results using epitopology_cctop.R
+
+http://cctop.ttk.hu/?_=/jobs/ack/b4ff3568a4dc7f38cb3b16dc672add61
