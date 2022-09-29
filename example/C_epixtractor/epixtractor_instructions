@@ -1,0 +1,5 @@
+Use epixtractor_linear_abcpred.R to extract the epitopes from the ABCpred results saved at A_linear_predictions/abcpred.
+
+Use epixtractor_linear_bepipred.py to extract the epitopes from the Bepipred 2.0 results saved at A_linear_predictions/bepipred.
+
+Use the epixtractor_structural.py to extract the epitopes from the Discotope 2.0 results saved at B_structural_predictions/discotope.
