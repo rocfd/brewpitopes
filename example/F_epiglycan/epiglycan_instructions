@@ -1,0 +1,11 @@
+To predict N-glycosylations and O-glycosylations you should use the Net-N-Glyc and Net-O-Glyc servers.
+
+N-glycosylations
+https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0
+
+O-glycosylations
+https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0
+
+
+Once you have the outputs in .csv you can use epiglycan_extractor.R to extract the glycosylated residues.
+Then, use epiglycan.py to label the glycosylated residues in epitopes.
