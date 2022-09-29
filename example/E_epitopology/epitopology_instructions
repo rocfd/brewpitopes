@@ -1,0 +1,2 @@
+To predict the extracellular/extraviral regions of your protein of interest you should use epitopology_cctop.R. 
+If instead, you want to use annotated regions, you should use epitopology_manual.R
