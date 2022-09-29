@@ -1,0 +1,2 @@
+Sequence;Start;End;Positions;Score;Tool;Length;Extracellular;Glycosilation;accessibility_icm
+ECSLQSCTQHQPYVVD;19;34;19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34;0.82;ABCpred;16;c("Extracellular", "Non-extracel");Non-glycosilated;Accessible
