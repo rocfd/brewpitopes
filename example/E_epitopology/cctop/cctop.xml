@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<CCTOPItem id="797870" transmembrane="yes" evidence="Experiment">
+	<Copyright>Copyrighted by the Institute of Enzymology!</Copyright>
+	<Name>sp|P0DTC3|AP3A_SARS2 ORF3a protein OS=Severe acute respiratory syndrome coronavirus 2 OX=2697049 GN=3a PE=1 SV=1</Name>
+	<CrossRef>
+		<TOPDB id="AP02631">
+			<Alignment>
+				<CrossRefSeq>MDLFMRFFTLGSITAQPVKIDNASPASTVHATATIPLQASLPFGWLVIGVAFLAVFQSATKIIALNKRWQLALYKGFQFICNLLLLFVTIYSHLLLVAAGMEAQFLYLYALIYFLQCINACRIIMRCWLCWKCKSKNPLLYDANYFVCWHTHNYDYCIPYNSVTDTIVVTEGDGISTPKLKEDYQIGGYSEDRHSGVKDYVVVHGYFTEVYYQLESTQITTDTGIENATFFIFNKLVKDP-PNVQIHTIDGSSGVANPAMDPIYDEPTTTTSVPL</CrossRefSeq>
+				<OrigSeq>MDLFMRIFTIGTVTLKQGEIKDATPSDFVRATATIPIQASLPFGWLIVGVALLAVFQSASKIITLKKRWQLALSKGVHFVCNLLLLFVTVYSHLLLVAAGLEAPFLYLYALVYFLQSINFVRIIMRLWLCWKCRSKNPLLYDANYFLCWHTNCYDYCIPYNSVTSSIVITSGDGTTSPISEHDYQIGGYTEKWESGVKDCVVLHSYFTSDYYQLYSTQLSTDTGVEHVTFFIYNKIVDEPEEHVQIHTIDGSSGVVNPVMEPIYDEPTTTTSVPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+	</CrossRef>
+	<Sequence length="275" checkSum="f5c8b89ceac3f14e456577557df1ef40">
+		<Seq>MDLFMRIFTIGTVTLKQGEIKDATPSDFVRATATIPIQASLPFGWLIVGV
+ALLAVFQSASKIITLKKRWQLALSKGVHFVCNLLLLFVTVYSHLLLVAAG
+LEAPFLYLYALVYFLQSINFVRIIMRLWLCWKCRSKNPLLYDANYFLCWH
+TNCYDYCIPYNSVTSSIVITSGDGTTSPISEHDYQIGGYTEKWESGVKDC
+VVLHSYFTSDYYQLYSTQLSTDTGVEHVTFFIYNKIVDEPEEHVQIHTID
+GSSGVVNPVMEPIYDEPTTTTSVPL</Seq>
+	</Sequence>
+	<Topology numTM="3" reliability="87.0318">
+		<Region from="1" to="38" loc="O"/>
+		<Region from="39" to="56" loc="M"/>
+		<Region from="57" to="78" loc="I"/>
+		<Region from="79" to="99" loc="M"/>
+		<Region from="100" to="104" loc="O"/>
+		<Region from="105" to="125" loc="M"/>
+		<Region from="126" to="275" loc="I"/>
+	</Topology>
+	<Predictions>
+		<Prediction name="HMMTOP">
+			<Region from="1" to="2" loc="I"/>
+			<Region from="3" to="18" loc="M"/>
+			<Region from="19" to="40" loc="O"/>
+			<Region from="41" to="56" loc="M"/>
+			<Region from="57" to="78" loc="I"/>
+			<Region from="79" to="100" loc="M"/>
+			<Region from="101" to="275" loc="O"/>
+		</Prediction>
+		<Prediction name="Memsat">
+			<Region from="1" to="36" loc="O"/>
+			<Region from="37" to="56" loc="M"/>
+			<Region from="57" to="76" loc="I"/>
+			<Region from="77" to="100" loc="M"/>
+			<Region from="101" to="103" loc="O"/>
+			<Region from="104" to="129" loc="M"/>
+			<Region from="130" to="275" loc="I"/>
+		</Prediction>
+		<Prediction name="Octopus">
+			<Region from="1" to="39" loc="O"/>
+			<Region from="40" to="60" loc="M"/>
+			<Region from="61" to="78" loc="I"/>
+			<Region from="79" to="99" loc="M"/>
+			<Region from="100" to="100" loc="O"/>
+			<Region from="101" to="121" loc="M"/>
+			<Region from="122" to="275" loc="I"/>
+		</Prediction>
+		<Prediction name="Philius">
+			<Region from="1" to="40" loc="O"/>
+			<Region from="41" to="59" loc="M"/>
+			<Region from="60" to="75" loc="I"/>
+			<Region from="76" to="97" loc="M"/>
+			<Region from="98" to="104" loc="O"/>
+			<Region from="105" to="125" loc="M"/>
+			<Region from="126" to="275" loc="I"/>
+		</Prediction>
+		<Prediction name="Phobius">
+			<Region from="1" to="34" loc="O"/>
+			<Region from="35" to="56" loc="M"/>
+			<Region from="57" to="76" loc="I"/>
+			<Region from="77" to="101" loc="M"/>
+			<Region from="102" to="106" loc="O"/>
+			<Region from="107" to="129" loc="M"/>
+			<Region from="130" to="275" loc="I"/>
+		</Prediction>
+		<Prediction name="Pro">
+			<Region from="1" to="38" loc="O"/>
+			<Region from="39" to="59" loc="M"/>
+			<Region from="60" to="79" loc="I"/>
+			<Region from="80" to="100" loc="M"/>
+			<Region from="101" to="104" loc="O"/>
+			<Region from="105" to="125" loc="M"/>
+			<Region from="126" to="275" loc="I"/>
+		</Prediction>
+		<Prediction name="Prodiv">
+			<Region from="1" to="35" loc="O"/>
+			<Region from="36" to="56" loc="M"/>
+			<Region from="57" to="76" loc="I"/>
+			<Region from="77" to="97" loc="M"/>
+			<Region from="98" to="105" loc="O"/>
+			<Region from="106" to="126" loc="M"/>
+			<Region from="127" to="275" loc="I"/>
+		</Prediction>
+		<Prediction name="Scampi">
+			<Region from="1" to="38" loc="O"/>
+			<Region from="39" to="58" loc="M"/>
+			<Region from="59" to="78" loc="I"/>
+			<Region from="79" to="98" loc="M"/>
+			<Region from="99" to="104" loc="O"/>
+			<Region from="105" to="124" loc="M"/>
+			<Region from="125" to="275" loc="I"/>
+		</Prediction>
+		<Prediction name="ScampiMsa">
+			<Region from="1" to="38" loc="O"/>
+			<Region from="39" to="58" loc="M"/>
+			<Region from="59" to="78" loc="I"/>
+			<Region from="79" to="98" loc="M"/>
+			<Region from="99" to="104" loc="O"/>
+			<Region from="105" to="124" loc="M"/>
+			<Region from="125" to="275" loc="I"/>
+		</Prediction>
+		<Prediction name="TMHMM">
+			<Region from="1" to="33" loc="O"/>
+			<Region from="34" to="56" loc="M"/>
+			<Region from="57" to="76" loc="I"/>
+			<Region from="77" to="99" loc="M"/>
+			<Region from="100" to="102" loc="O"/>
+			<Region from="103" to="125" loc="M"/>
+			<Region from="126" to="275" loc="I"/>
+		</Prediction>
+	</Predictions>
+	<Constraints>
+		<Constraint source="TOPDB" sourceId="AP02631">
+			<ConstraintRegion from="27" to="27" loc="O" subId="00001" subSource="16474139"/>
+			<ConstraintRegion from="28" to="28" loc="O" subId="00002" subSource="16474139"/>
+			<ConstraintRegion from="32" to="32" loc="O" subId="00003" subSource="16474139"/>
+			<ConstraintRegion from="34" to="34" loc="O" subId="00004" subSource="16474139"/>
+		</Constraint>
+	</Constraints>
+</CCTOPItem>
+
