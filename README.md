@@ -72,8 +72,8 @@ Add path to output folder: ../Projects/your_project/brewpitopes/C_epixtractor
 8. (Locally) Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
 
       Predict using all the epitope windows (10,12,14,16,18,20) and overlapping filter ON.  
-      Copy results from the webpage to a .csv  
-      Save at: /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_10mers.csv 
+      Copy results from the webpage table to a .csv  
+      Save as: /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_10mers.csv 
       
 9. Extract epitopes from ABCpred results using epixtractor_linear_abcpred.R  
 
