@@ -6,10 +6,10 @@ Suite of tools to manage epitope prediction results from linear and structural o
 
 2. Create docker image from Dockerfile (may take a while):
 ```
-sudo docker build -t brewpitopes PATH/TO/Dockerfile
+sudo docker build -t brewpitopes /host/your/path/to/Dockerfile
 ``` 
 
-2. Create a shared folder between Brewpitopes docker image and your local machine.
+2. To create a shared folder between Brewpitopes docker image and your local machine, first create a local folder named “brewpitopes_projects” and then link them by running: 
 
 ```
 sudo docker run -it --volume /host/your/path/to/brewpitopes_projects:/home/Projects brewpitopes 
@@ -21,13 +21,14 @@ Once you add files/folders in this directory, they will appear automatically wit
 
 3. Explore the folder structure of the Docker image named "brewpitopes".
 ```
+cd ..
 ls
 ```
-You should see the folders: brewpitopes, example, Projects
+You should see the folders: Brewpitopes, example, Projects
 
 3.1 To execute the scripts of the pipeline go to:
 ```      
-cd brewpitopes
+cd Brewpitopes
 ```
 
 3.2 To find an example of a brewpitopes project and the required files go to
@@ -44,7 +45,7 @@ mkdir your_project
 3.4 Once you have created "your_project" folder, to start running the pipeline move back to the folder "brewpitopes" and you are ready to go !!
 
 ## PIPELINE
-** All the steps shoud be run within the Docker image except when it indicates "(Locally)".
+** All the steps should be run within the Docker image except when it indicates "(Locally)".**
 
 4. Use directories.R to create the folder environment.
 
@@ -54,7 +55,7 @@ Rscript directories.R --path ../Projects/your_project
 
 5. (Locally) Download the FASTA file of the target protein at [Uniprot](https://www.uniprot.org/).    
       
-      Save at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/Z_fasta  
+      Save at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/Z_fasta  (Check if it requires SUDO permissions).
       
 6. (Locally) Use the FASTA to predict linear epitopes using [Bepipred 2.0] (https://services.healthtech.dtu.dk/service.php?BepiPred-2.0) server and export results as csv (default parameters).  
        
@@ -71,7 +72,7 @@ Add path to output folder: ../Projects/your_project/brewpitopes/C_epixtractor
       
 8. (Locally) Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
 
-      Predict using all the epitope windows (10,12,14,16,18,20) and overlapping filter ON.  
+      Predict using all the epitope windows (10,12,14,16,18,20), overlapping filter ON and the default threshold at 0.51.
       Copy results from the webpage table to a .csv  
       Save as: /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_10mers.csv 
       
@@ -88,7 +89,7 @@ Rscript epixtractor_linear_abcpred.R --outpath your/path/to/brewpitopes/C_epixtr
       Download results as .pdb  
       Save at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/B_structural_predictions/pdbrenum 
       
-12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server and export the results as csv.    
+12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server and export the results as .txt. Remove the last line "Identified...". Then, save as .csv by changing "\t" for commas.
       Default threshold.  
       Select chain A by default.
       Save at ../Projects/your_project/brewpitopes/B_structural_predictions/discotope  
@@ -104,7 +105,7 @@ Add path to output folder: ../Projects/your_project/brewpitopes/C_epixtractor
 
 14. Merge the epitopes extracted from Bepipred, ABCpred and Discotope results using epimerger.R
 ```
-Rscript epimerger.R --abcpred ../Projects/your_project/brewpitopes/C_epixtractor/abcpred_results_extracted.csv --bepipred ../Projects/your_project/brewpitopes/C_epixtractor/abcpred_results_extracted.csv --discotope ../Projects/your_project/brewpitopes/C_epixtractor/discotope_results_extracted.csv --outdir ../Projects/your_project/brewpitoeps/D_epimerger
+Rscript epimerger.R --abcpred ../Projects/your_project/brewpitopes/C_epixtractor/abcpred_results_extracted.csv --bepipred ../Projects/your_project/brewpitopes/C_epixtractor/bepipred_results_extracted.csv --discotope ../Projects/your_project/brewpitopes/C_epixtractor/discotope_results_extracted.csv --outdir ../Projects/your_project/brewpitoeps/D_epimerger
 ```
 
 Take steps 15, 16 and 17.1 if you want to predict protein topology using CCTOP. Otherwise, if the topology of your protein is already described and you want to add it manually go directly to step 17.2.
@@ -113,7 +114,7 @@ Take steps 15, 16 and 17.1 if you want to predict protein topology using CCTOP. 
       Donwload results as .xml.
       Save at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/E_topology/CCTOP/cctop.xml
       
-16. Extract the topological domains using xml_cctop_parser.R  (ONLY IF 
+16. Extract the topological domains using xml_cctop_parser.R 
 ```
 Rscript xml_cctop_parser.R --xml ../Projects/your_project/brewpitopes/E_epitopology/CCTOP/cctop.xml --outdir ../Projects/your_project/brewpitopes/E_epitopology/CCTOP
 ```
@@ -138,7 +139,7 @@ Rscript epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --input_epito
       COPY MANUALLY THE DATAFRAME HEADED: seqName  	source	feature	start 	end	score strand      frame       comment  
       SAVE AS CSV at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/F_epiglycan/netoglyc
       
-19. Extract the glycosilated positions from both N-glyc and O-glyc outputs using epiglycan_extractor.R
+19. Extract the glycosylated positions from both N-glyc and O-glyc outputs using epiglycan_extractor.R
 ```
 Rscript epiglycan_extractor.R --oglyc ../Projects/your_project/brewpitopes/F_epiglycan/netoglyc/oglyc.csv --nglyc ../Projects/your_project/brewpitopes/F_epiglycan/netnglyc/nglyc.csv --outdir ../Projects/your_project/brewpitopes/F_epiglycan/
 ```
