@@ -57,7 +57,7 @@ Rscript directories.R --path ../Projects/your_project
       
       Save at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/Z_fasta  (Check if it requires SUDO permissions).
       
-6. (Locally) Use the FASTA to predict linear epitopes using [Bepipred 2.0] (https://services.healthtech.dtu.dk/service.php?BepiPred-2.0) server and export results as csv (default parameters).  
+6. (Locally) Use the FASTA to predict linear epitopes using [Bepipred 2.0](https://services.healthtech.dtu.dk/service.php?BepiPred-2.0) server and export results as csv (default parameters).  
        
       Save at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/A_linear_predictions/bepipred/bepipred_results.csv  
       
