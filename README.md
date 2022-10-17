@@ -45,7 +45,7 @@ mkdir your_project
 3.4 Once you have created "your_project" folder, to start running the pipeline move back to the folder "brewpitopes" and you are ready to go !!
 
 ## PIPELINE
-** All the steps should be run within the Docker image except when it indicates "(Locally)".**
+** All the steps should be run within the Docker image at your Terminal except when it indicates "(Locally)".**
 
 4. Use directories.R to create the folder environment.
 
