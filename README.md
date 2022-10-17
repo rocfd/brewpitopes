@@ -45,7 +45,7 @@ mkdir your_project
 3.4 Once you have created "your_project" folder, to start running the pipeline move back to the folder "brewpitopes" and you are ready to go !!
 
 ## PIPELINE
-** All the steps should be run within the Docker image at your Terminal except when it indicates "(Locally)".**
+** All the steps should be run within the Docker image at your Terminal except when it indicates "(Locally)". **
 
 4. Use directories.R to create the folder environment.
 
@@ -73,8 +73,10 @@ Add path to output folder: ../Projects/your_project/brewpitopes/C_epixtractor
 8. (Locally) Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
 
       Predict using all the epitope windows (10,12,14,16,18,20), overlapping filter ON and the default threshold at 0.51.
-      Copy results from the webpage table to a .csv  
-      Save as: /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_10mers.csv 
+      Copy results from the webpage table to a .csv (you can do so easily with Excel or similars).  
+      Save as:    /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_10mers.csv 
+                  /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_12mers.csv 
+                  ...
       
 9. Extract epitopes from ABCpred results using epixtractor_linear_abcpred.R  
 
