@@ -63,11 +63,11 @@ Rscript ../../Brewpitopes/brewpitopes/directories.R
       
 7. Extract epitopes from Bepipred results using epixtractor_linear_bebipred.py.  
 ```
-python3 epixtractor_linear_bepipred.py
+python3 ../../Brewpitopes/brewpitopes/epixtractor_linear_bepipred.py
 ```
 ```
-Add path to bepipred results: ../Projects/your_project/brewpitopes/A_linear_predictions/bepipred/bepipred_results.csv
-Add path to output folder: ../Projects/your_project/brewpitopes/C_epixtractor    
+Add path to bepipred results: brewpitopes/A_linear_predictions/bepipred/bepipred_results.csv
+Add path to output folder: brewpitopes/C_epixtractor    
 ```
       
 8. (Locally) Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
