@@ -9,7 +9,7 @@ Suite of tools to manage epitope prediction results from linear and structural o
 sudo docker build -t brewpitopes /host/your/path/to/Dockerfile
 ``` 
 
-2. To create a shared folder between Brewpitopes docker image and your local machine, first create a local folder named “brewpitopes_projects” and then link them by running: 
+2. To run the Brewpitopes docker image while linking a local folder to a folder within the docker image do:
 
 ```
 sudo docker run -it --volume /host/your/path/to/brewpitopes_projects:/home/Projects brewpitopes 
