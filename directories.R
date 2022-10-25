@@ -7,7 +7,7 @@ library(argparser)
 p <- arg_parser("PROJECT DIRECTORIES")
 
 # Add command line arguments
-p <- add_argument(p, "--path", help= "Path to project directory", type="character", default = "./brewpitopes")
+p <- add_argument(p, "--path", help= "Path to project directory", type="character", default = ".")
 
 # Parse the command line arguments
 argv <- parse_args(p)
