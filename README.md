@@ -42,7 +42,7 @@ cd ../Projects
 mkdir your_project
 ```
 
-3.4 Once you have created "your_project" folder, to start running the pipeline move back to the folder "brewpitopes" and you are ready to go !!
+3.4 You are now ready to predict and refine your B-cell epitope candidates.
 
 ## PIPELINE
 ** All the steps should be run within the Docker image at your Terminal except when it indicates "(Locally)". **
@@ -50,7 +50,7 @@ mkdir your_project
 4. Use directories.R to create the folder environment.
 
 ```
-Rscript directories.R --path ../Projects/your_project
+Rscript ../../Brewpitopes/brewpitopes/directories.R
 ```
 
 5. (Locally) Download the FASTA file of the target protein at [Uniprot](https://www.uniprot.org/).    
