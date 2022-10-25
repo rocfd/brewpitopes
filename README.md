@@ -208,3 +208,6 @@ Rscript yield_plot.R --data ../Projects/your_project/brewpitopes/H_epifilter/bre
 ```
 Rscript fasta_mutator.R --fasta ../Projects/your_project/brewpitopes/Z_fasta/target_protein.fasta --mut ../Projects/your_project/brewpitopes/Z_fasta/target_mutations.csv --mut_header your_header_without_> --sample yourfile.fasta --outdir ../Projects/your_project/brewpitopes/Z_fasta
 ```      
+
+## NOTES
+1. In the case one of the predictor sofwares (Bepipred, ABCpred or Discotope) does not identify any epitope in your target protein, do create the empty dataframe anyway as it will be used later in the pipeline.
