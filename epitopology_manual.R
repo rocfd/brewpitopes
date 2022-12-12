@@ -24,7 +24,7 @@ argv <- parse_args(p)
 ## MANUAL DOMAIN UPLOAD (info extracted from Uniprot)
 ## ADD ONLY EXTRAVIRAL DOMAINS
 topology <- data.frame(extracellular.start = c(argv$start_positions), extracellular.end = c(argv$end_positions))
-topology
+#topology
 
 ## CHARACTER TO NUMERIC
 topology$extracellular.start <- as.numeric(topology$extracellular.start)
@@ -50,7 +50,7 @@ for (x in 1:length(merged$Sequence)){
   }
   extracellular_label <- c(extracellular_label, extracellular_epitope)
   extracellular_epitope <- c()
-  print(extracellular_label)
+  #print(extracellular_label)
 }
 
 ### LABEL EPITOPES AS EXTRACELLULAR
@@ -58,6 +58,7 @@ merged <- cbind(merged, extracellular_label)
 
 ## EXPORT RESULTS
 write.table(merged, sep = ";", file = paste0(argv$outdir, "/", argv$sample, sep = ""), quote = F, row.names = F)
+print(paste("Find your output file at: ", argv$outdir, "/", argv$sample, sep = ""))
 
 ### EXPORT RDATA
 #p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = ".")
