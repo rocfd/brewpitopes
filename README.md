@@ -120,18 +120,19 @@ Take steps 15, 16 and 17.1 if you want to predict protein topology using CCTOP. 
       
 16. Extract the topological domains using xml_cctop_parser.R 
 ```
-Rscript xml_cctop_parser.R --xml ../Projects/your_project/brewpitopes/E_epitopology/CCTOP/cctop.xml --outdir ../Projects/your_project/brewpitopes/E_epitopology/CCTOP
+Rscript ../../../xml_cctop_parser.R --xml E_epitopology/CCTOP/cctop.xml --outdir /E_epitopology/CCTOP
 ```
 
 17. Label the epitopes based on their topology (intracellular, membrane or extracellular) using epitopology.R
+
 17.1 Using CCTOP predictions --> use epitopology_cctop.R
 ```
-Rscript epitopology_cctop.R --input_CCTOP ../Projects/your_project/brewpitopes/E_epitopology/CCTOP/cctop_domains.csv --input_epitopes ../Projects/your_project/brewpitopes/D_epimerger/merged.csv --outdir ../Projects/your_project/brewpitopes/E_epitopology
+Rscript ../../../epitopology_cctop.R --input_CCTOP E_epitopology/CCTOP/cctop_domains.csv --input_epitopes D_epimerger/merged.csv --outdir E_epitopology
 ```
 
 17.2 Manual topology annotation --> use epitopology_manual.R. Add manually the starting and ending positions of your extracellular domains at --start_pos and end_pos.
 ```
-Rscript epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --input_epitopes ../Projects/your_project/brewpitopes/D_epimerger/merged.csv --outdir ../Projects/your_project/brewpitopes/E_epitopology
+Rscript ../../../epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --input_epitopes D_epimerger/merged.csv --outdir E_epitopology
 ```
       
 18. (Locally) Predict the glycosilation profile of the protein using the FASTA file.  
