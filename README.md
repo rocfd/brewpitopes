@@ -156,7 +156,7 @@ python3 ../../../epiglycan.py
 ```
 Add path to input epitopes: E_epitopology/topology_extracted.csv
 Add path to output folder: F_epiglycan
-Add path to extracted glycosilated positions: .F_epiglycan/glycan_positions.csv  
+Add path to extracted glycosilated positions: F_epiglycan/glycan_positions.csv  
 ```
 
 21. (Locally) Use ICM_browser (MOLSOFT) to extract the RSA values for accessibility calculation.  
