@@ -52,3 +52,6 @@ data_final <- select(data_final, -contains("Rank"))
 ## EXPORT DATA
 write.table(data_final, sep = ";", row.names = F, quote = F, file = paste0(argv$outdir, "/", argv$sample_df, ".csv", sep = ""))
 write.table(data_candidates, sep = ";", row.names = F, quote = F, file = paste0(argv$outdir, "/", argv$sample_candidates, ".csv", sep = ""))
+
+### FINAL PRINT
+print(paste("Find your output file at: ", argv$outdir, sep = ""))
