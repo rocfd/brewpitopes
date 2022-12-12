@@ -67,7 +67,7 @@ Length <- c()
 for (x in 1:length(abc_all$Sequence)){
   z <- nchar(abc_all$Sequence[x])
   Length <- c(Length, z)
-  print(Length)
+  #print(Length)
 }
 
 abc_all <- cbind(abc_all, Length)
@@ -77,7 +77,7 @@ End <- c()
 for (x in 1:length(abc_all$Start)){
   z <- abc_all$Start[x] + abc_all$Length[x] -1
   End <- c(End, z)
-  print(End)
+  #print(End)
 }
 
 abc_all <- cbind(abc_all, End)
