@@ -43,7 +43,7 @@ for (x in 1:length(bepi$Sequence)){
 
 ## ADD LENGTH TO RESULTS
 bepi$Length <- len
-glimpse(bepi)
+#glimpse(bepi)
 
 ## RENAME SCORE COLUMNS
 abc <- rename(abc, Score = "ABCscore")
@@ -78,6 +78,7 @@ merged <- filter(merged, Length != 0)
 
 ## EXPORT DATAFRAME
 write.table(merged, file = paste0(argv$outdir, "/", argv$sample, ".csv"), row.names = F, quote = F, sep = ";")
+print(paste("Find your output file at:", argv$outdir, sep = " ")
 
 ### EXPORT RDATA
 #p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = ".")
