@@ -68,8 +68,8 @@ cd path/to/Projects/your_project/brewpitopes/
 python3 ../../../epixtractor_linear_bepipred.py
 ```
 ```
-Add path to bepipred results: brewpitopes/A_linear_predictions/bepipred/bepipred_results.csv
-Add path to output folder: brewpitopes/C_epixtractor    
+Add path to bepipred results: A_linear_predictions/bepipred/bepipred_results.csv
+Add path to output folder: C_epixtractor    
 ```
       
 8. (Locally) Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
@@ -83,7 +83,7 @@ Add path to output folder: brewpitopes/C_epixtractor
 9. Extract epitopes from ABCpred results using epixtractor_linear_abcpred.R  
 
 ````
-Rscript epixtractor_linear_abcpred.R --outpath your/path/to/brewpitopes/C_epixtractor --input_10mers ../Projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_10mers.csv --input_12mers ../Projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_12mers.csv --input_14mers ../Projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_14mers.csv --input_16mers ../Projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_16mers.csv --input_18mers ../Projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_18mers.csv --input_20mers ../Projects/your_project/brewpitopes/A_linear_predictions/abcpred/abcpred_20mers.csv
+Rscript ../../../epixtractor_linear_abcpred.R --outpath C_epixtractor --input_10mers A_linear_predictions/abcpred/abcpred_10mers.csv --input_12mers A_linear_predictions/abcpred/abcpred_12mers.csv --input_14mers A_linear_predictions/abcpred/abcpred_14mers.csv --input_16mers A_linear_predictions/abcpred/abcpred_16mers.csv --input_18mers A_linear_predictions/abcpred/abcpred_18mers.csv --input_20mers A_linear_predictions/abcpred/abcpred_20mers.csv
 ````
       
 10. (Locally) Download the PDB file of the target protein at PDB DB. 
