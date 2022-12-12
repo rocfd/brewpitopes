@@ -8,9 +8,9 @@
 # Save the output results as csv (for instance: copying the output into excel and save as csv)
 # Proceed with the following script.
 
-library(dplyr)
-library(purrr)
-library(argparser)
+library(dplyr, quietly = TRUE, warn.conflicts = FALSE)
+library(purrr, quietly = TRUE, warn.conflicts = FALSE)
+library(argparser, quietly = TRUE, warn.conflicts = FALSE)
 
 ### SCRIPT ARGUMENTS
 # Create a parser
