@@ -32,8 +32,8 @@ merged <- read.csv(file = argv$input_epitopes, header = T, sep = ";")
 topology <- filter(topology, loc == "O")
 
 ## CHARACTER TO NUMBER
-topology$extracellular.start <- as.numeric(topology$from)
-topology$extracellular.end <- as.numeric(topology$to)
+topology$extracellular.start <- as.numeric(topology$extracellular.start)
+topology$extracellular.end <- as.numeric(topology$extracellular.end)
 
 ### LOOP TO LABEL EXTRACELLULARITY
 extracellular_list <- list()
