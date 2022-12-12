@@ -39,12 +39,12 @@ abc_18 <- read.csv(argv$input_18mers)
 abc_20 <- read.csv(argv$input_20mers)
 
 ## REMOVE COLUMN X
-abc_10 <- select(abc_10, -X)
-abc_12 <- select(abc_12, -X)
-abc_14 <- select(abc_14, -X)
-abc_16 <- select(abc_16, -X)
-abc_18 <- select(abc_18, -X)
-abc_20 <- select(abc_20, -X)
+#abc_10 <- select(abc_10, -X)
+#abc_12 <- select(abc_12, -X)
+#abc_14 <- select(abc_14, -X)
+#abc_16 <- select(abc_16, -X)
+#abc_18 <- select(abc_18, -X)
+#abc_20 <- select(abc_20, -X)
 
 ## MERGE RESULT FILES
 abc_all <- rbind(abc_10, abc_12, abc_14, abc_16, abc_18, abc_20)
