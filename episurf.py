@@ -82,16 +82,16 @@ print("Input file:" + inputaccess)
 
 ## READ DATA
 data = pd.read_csv(data_file, sep = ",")
-data
+#data
 
 
 ## READ MOLSOFT EXTRACTED RESULTS (single column file titled "buried" and containing buried positions separated by rows")
 access_df = pd.read_csv(inputaccess, sep = ",")
-access_df
+#access_df
 
 ## DF TO LIST
 access = access_df["buried"]
-access
+#access
 
 ## LOOP TO EXTRACT access
 z = []
@@ -104,13 +104,16 @@ for index, row in data.iterrows():
             break
     if y == "Accessible":
         z.append(y)
-print(z)
-len(z)
+#print(z)
+#len(z)
 
 ## APPEND GLYCOSILATION TO DF
 data['accessibility_icm'] = z
-data
+#data
 
 ## EXPORT DATA
 data.to_csv(path_or_buf= nameOutFile,
          index = True, index_label = "Rank")
+
+### FINAL PRINT
+print("Find your output file at: ", + nameOutFile)
