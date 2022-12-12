@@ -109,7 +109,7 @@ Add path to output folder: C_epixtractor
 
 14. Merge the epitopes extracted from Bepipred, ABCpred and Discotope results using epimerger.R
 ```
-Rscript epimerger.R --abcpred ../Projects/your_project/brewpitopes/C_epixtractor/abcpred_results_extracted.csv --bepipred ../Projects/your_project/brewpitopes/C_epixtractor/bepipred_results_extracted.csv --discotope ../Projects/your_project/brewpitopes/C_epixtractor/discotope_results_extracted.csv --outdir ../Projects/your_project/brewpitoeps/D_epimerger
+Rscript ../../../epimerger.R --abcpred C_epixtractor/abcpred_results_extracted.csv --bepipred C_epixtractor/bepipred_results_extracted.csv --discotope C_epixtractor/discotope_results_extracted.csv --outdir D_epimerger
 ```
 
 Take steps 15, 16 and 17.1 if you want to predict protein topology using CCTOP. Otherwise, if the topology of your protein is already described and you want to add it manually go directly to step 17.2.
