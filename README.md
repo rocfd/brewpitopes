@@ -188,11 +188,11 @@ Rscript ../../../epifilter.R --data G_episurf/access_extracted.csv --outdir I_fi
 
 23. Extract the epitope regions using epiregions.py
 ```
-python3 epiregions.py
+python3 ../../../epiregions.py
 ```
 ```
-Add path to input epitope dataframe: ../Projects/your_project/brewpitopes/I_final_candidates/brewpitopes_results_df.csv
-Add path to output folder: ../Projects/your_project/brewpitopes/K_epitope_regions
+Add path to input epitope dataframe: I_final_candidates/brewpitopes_results_df.csv
+Add path to output folder: K_epitope_regions
 ```
 24. Plot the yield results of the pipeline using yield_plot.R
 ```
