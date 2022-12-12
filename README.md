@@ -40,6 +40,7 @@ cd ../example
 ```
 cd ../Projects
 mkdir your_project
+cd your_project
 ```
 
 3.4 You are now ready to predict and refine your B-cell epitope candidates.
@@ -50,7 +51,7 @@ mkdir your_project
 4. Use directories.R to create the folder environment.
 
 ```
-Rscript ../../Brewpitopes/brewpitopes/directories.R
+Rscript ../../directories.R
 ```
 
 5. (Locally) Download the FASTA file of the target protein at [Uniprot](https://www.uniprot.org/).    
