@@ -151,12 +151,12 @@ Rscript ../../../epiglycan_extractor.R --oglyc F_epiglycan/netoglyc/oglyc_result
 
 20. Use epiglycan.py to label the glycosilated epitopes.  
 ```
-python3 epiglycan.py
+python3 ../../../epiglycan.py
 ```
 ```
-Add path to input epitopes: ../Projects/your_project/brewpitopes/E_epitopology/topology_extracted.csv
-Add path to output folder: ../Projects/your_project/brewpitopes/F_epiglycan
-Add path to extracted glycosilated positions: ../Projects/your_project/brewpitopes/F_epiglycan/glycosilated_positions.csv  
+Add path to input epitopes: E_epitopology/topology_extracted.csv
+Add path to output folder: F_epiglycan
+Add path to extracted glycosilated positions: .F_epiglycan/glycan_positions.csv  
 ```
 
 21. (Locally) Use ICM_browser (MOLSOFT) to extract the RSA values for accessibility calculation.  
