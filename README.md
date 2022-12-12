@@ -62,9 +62,10 @@ Rscript ../../directories.R
        
       Save at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/A_linear_predictions/bepipred/bepipred_results.csv  
       
-7. Extract epitopes from Bepipred results using epixtractor_linear_bebipred.py.  
+7. Extract epitopes from Bepipred results using epixtractor_linear_bepipred.py.  
 ```
-python3 ../../Brewpitopes/brewpitopes/epixtractor_linear_bepipred.py
+cd path/to/Projects/your_project/brewpitopes/
+python3 ../../../epixtractor_linear_bepipred.py
 ```
 ```
 Add path to bepipred results: brewpitopes/A_linear_predictions/bepipred/bepipred_results.csv
