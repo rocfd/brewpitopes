@@ -58,7 +58,7 @@ merged$Extracellular <- as.character(merged$Extracellular)
 
 ## EXPORT RESULTS
 write.table(merged, sep = ";", file = paste0(argv$outdir, "/", argv$sample, sep = ""), quote = F, row.names = F)
-print(paste("Find your output file at:", argv$outdir, sep = " "))
+print(paste("Find your output file at: ", argv$outdir, "/", argv$sample, sep = ""))
 
 ### EXPORT RDATA
 # #p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = ".")
