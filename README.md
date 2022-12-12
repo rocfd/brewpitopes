@@ -183,7 +183,7 @@ Add path to extracted buried positions: G_episurf/buried_positions_list.csv
 
 22. Select the epitopes that are extraviral, non-glycosilated, exposed and length >= 5 using epifilter.R  
 ```
-Rscript epifilter.R --data ../Projects/your_project/brewpitopes/G_episurf/access_extracted.csv --outdir ../Projects/your_project/brewpitopes/I_final_candidates
+Rscript ../../../epifilter.R --data G_episurf/access_extracted.csv --outdir I_final_candidates
 ```
 
 23. Extract the epitope regions using epiregions.py
