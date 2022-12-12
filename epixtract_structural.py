@@ -91,7 +91,7 @@ prediction = pd.read_csv(data_file,
 			 sep=',',
 			 names = ["chain_id", "residue_id", "residue_name", "contact_number", "propensity_score", "discotope_score", "status"])
 
-print(prediction)
+#print(prediction)
 
 ## 3-LETTER TO 1-LETTER AA SCRIPT
 
@@ -155,7 +155,7 @@ for group in resid_grouped_filtered:
     for n in group:
         sequence.append(scored.aa[scored.residue_id==n].values[0])
     sequences.append(''.join(sequence))
-sequences
+#sequences
 
 # LOOP TO EXTRACT START AND END POSITION
 start = []
@@ -163,19 +163,19 @@ end = []
 for group in resid_grouped_filtered:
     start.append(group[0])
     end.append(group[-1])
-    print(start)
-    print(end)
+    #print(start)
+    #print(end)
     
 # EXTRACT SCORE
 Score = scored.discotope_score
 
 # CREATE LIST TO PREPARE OUTPUT DATAFRAME
 out = list(zip(sequences,start,end,resid_grouped_filtered, Score))
-print (out)
+#print (out)
 
 # CREATE OUTPUT DATAFRAME
 out_file = pd.DataFrame(out, columns = ("Sequence", "Start", "End", "Positions", "Score"))
-print(out_file)
+#print(out_file)
 
 # EXPORT OUTPUT FILE
 out_file.to_csv(nameOutFile, sep = ";", index = True, index_label = "Rank")
