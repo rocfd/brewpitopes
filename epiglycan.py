@@ -76,7 +76,7 @@ while not fileExist(inputGlycans):
         For example: data/file_test.csv
             (-h for help)
         Here: ''')
-print("Input file:" + inputGlycans)
+#print("Input file:" + inputGlycans)
 
 ## READ DATA
 data = pd.read_csv(data_file, sep = ";")
@@ -84,12 +84,12 @@ data
 
 ## READ GLYCANS (single column file with "glyc_pos" as column title and positions in separate rows)
 glycans_df = pd.read_csv(inputGlycans, sep = ",")
-glycans_df
+#glycans_df
 
 ## DF TO LIST
 glycans_list = glycans_df["glyc_pos"].values.tolist()
-glycans_list
-type(glycans_list)
+#glycans_list
+#type(glycans_list)
 
 ## LOOP TO DETERMINE GLYCOSILATED EPITOPES
 z = []
@@ -102,13 +102,16 @@ for index, row in data.iterrows():
             break
     if y == "Non-glycosilated":
         z.append(y)
-print(z)
-len(z)
+#print(z)
+#len(z)
 
 ## APPEND GLYCOSILATION TO DF
 data['Glycosilation'] = z
-data
+#data
 
 ## EXPORT DATA
 data.to_csv(path_or_buf= nameOutFile,
          index = True, index_label = "Rank")
+
+### FINAL PRINT
+print("Find your output file at: " + nameOutFile)
