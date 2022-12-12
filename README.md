@@ -138,15 +138,15 @@ Rscript ../../../epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --in
 18. (Locally) Predict the glycosilation profile of the protein using the FASTA file.  
       N-GLYCOSILATIONS at [NetNGlyc 1.0](https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0) server.    
       COPY MANUALLY THE DATAFRAME HEADED: SeqName	Position	Potential	Jury_agreement	NGlyc_result	Prediction  
-      SAVE AS CSV at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/F_epiglycan/netnglyc  
+      SAVE AS CSV as /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/F_epiglycan/netnglyc/nglyc_results.csv  
       
       O-GLYCOSILATIONS AT [NetOGlyc 4.0](https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0) server.
       COPY MANUALLY THE DATAFRAME HEADED: seqName  	source	feature	start 	end	score strand      frame       comment  
-      SAVE AS CSV at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/F_epiglycan/netoglyc
+      SAVE AS CSV at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/F_epiglycan/netoglyc/oglyc_results.csv
       
 19. Extract the glycosylated positions from both N-glyc and O-glyc outputs using epiglycan_extractor.R
 ```
-Rscript epiglycan_extractor.R --oglyc ../Projects/your_project/brewpitopes/F_epiglycan/netoglyc/oglyc.csv --nglyc ../Projects/your_project/brewpitopes/F_epiglycan/netnglyc/nglyc.csv --outdir ../Projects/your_project/brewpitopes/F_epiglycan/
+Rscript ../../../epiglycan_extractor.R --oglyc F_epiglycan/netoglyc/oglyc_results.csv --nglyc F_epiglycan/netnglyc/nglyc_results.csv --outdir F_epiglycan
 ```
 
 20. Use epiglycan.py to label the glycosilated epitopes.  
