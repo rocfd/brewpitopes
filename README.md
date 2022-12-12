@@ -196,7 +196,7 @@ Add path to output folder: K_epitope_regions
 ```
 24. Plot the yield results of the pipeline using yield_plot.R
 ```
-Rscript yield_plot.R --data ../Projects/your_project/brewpitopes/H_epifilter/brewpitopes_unfiltered_df.csv --merged ../Projects/your_project/brewpitopes/D_epimerger/merged.csv --eregs ../Projects/your_project/brewpitopes/K_epitope_regions/epitope_regions_extracted.csv --outdir ../Projects/your_project/brewpitopes/J_plots
+Rscript ../../../yield_plot.R --data H_epifilter/brewpitopes_unfiltered_df.csv --merged D_epimerger/merged.csv --eregs K_epitope_regions/epitope_regions_extracted.csv --outdir J_plots
 ```
 
 ## APPENDIX FOR VARIANTS (OF CONCERN)
