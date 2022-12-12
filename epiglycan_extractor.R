@@ -77,7 +77,7 @@ glyc_df <- rbind(nglyc_df, oglyc1_df)
 
 ## EXPORT DATA
 write.csv(glyc_df, file = paste0(argv$outdir, "/", argv$sample, sep = ""), row.names = F, quote = F)
-print(paste("Find your output files at :", argv$outdir, sep = ""))
+print(paste("Find your output files at: ", argv$outdir, sep = ""))
 
 ### EXPORT RDATA
 #p <- add_argument(p, "--save_rdata_dir", help = "file to save rData image", type = "character", default = ".")
