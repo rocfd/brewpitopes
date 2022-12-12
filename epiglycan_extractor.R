@@ -45,7 +45,7 @@ oglyc1_filt <- rename(oglyc1_filt, oglyc1_pos = "start")
 oglyc1_pos <- oglyc1_filt$oglyc1_pos
 
 ## EXPORT AS TABLE
-write.table(oglyc1_pos, file = paste0(argv$outdir, "oglyc_positions.csv", sep = ""), row.names = T, quote = F, col.names = "Index   Glyc_positions")
+write.table(oglyc1_pos, file = paste0(argv$outdir, "/", "oglyc_positions.csv", sep = ""), row.names = T, quote = F, col.names = "Index   Glyc_positions")
 
 ### IMPORT N-GLYCOSILATION DATA
 nglyc <- read.csv(file = argv$nglyc, header = F, col.names = c("SeqName", "Position", "Potential", "Jury_agreement", "N-Glyc_result", "Prediction"))
@@ -58,7 +58,7 @@ nglyc_filt <- rename(nglyc_filt, nglyc_pos = "Position")
 nglyc_pos <- nglyc_filt$nglyc_pos
 
 # EXPORT DATA
-write.table(nglyc_pos, file = paste0(argv$outdir, "nglyc_positions.csv"), row.names = T, quote = F, col.names = "Index   Glyc_positions")
+write.table(nglyc_pos, file = paste0(argv$outdir, "/", "nglyc_positions.csv"), row.names = T, quote = F, col.names = "Index   Glyc_positions")
 
 ### LABEL GLYCOSYLATION TYPE
 oglyc1_filt$Type <- "O-glyc"
@@ -76,7 +76,8 @@ nglyc_df <- rename(nglyc_df, glyc_pos = "nglyc_pos")
 glyc_df <- rbind(nglyc_df, oglyc1_df)
 
 ## EXPORT DATA
-write.csv(glyc_df, file = paste0(argv$outdir, argv$sample, sep = ""), row.names = F, quote = F)
+write.csv(glyc_df, file = paste0(argv$outdir, "/", argv$sample, sep = ""), row.names = F, quote = F)
+print(paste("Find your output files at :", argv$outdir, sep = ""))
 
 ### EXPORT RDATA
 #p <- add_argument(p, "--save_rdata_dir", help = "file to save rData image", type = "character", default = ".")
