@@ -83,7 +83,7 @@ Add path to output folder: C_epixtractor
 9. Extract epitopes from ABCpred results using epixtractor_linear_abcpred.R  
 
 ````
-Rscript ../../../epixtractor_linear_abcpred.R --outpath C_epixtractor --input_10mers A_linear_predictions/abcpred/abcpred_10mers.csv --input_12mers A_linear_predictions/abcpred/abcpred_12mers.csv --input_14mers A_linear_predictions/abcpred/abcpred_14mers.csv --input_16mers A_linear_predictions/abcpred/abcpred_16mers.csv --input_18mers A_linear_predictions/abcpred/abcpred_18mers.csv --input_20mers A_linear_predictions/abcpred/abcpred_20mers.csv
+Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_10mers A_linear_predictions/abcpred/abcpred_10mers.csv --input_12mers A_linear_predictions/abcpred/abcpred_12mers.csv --input_14mers A_linear_predictions/abcpred/abcpred_14mers.csv --input_16mers A_linear_predictions/abcpred/abcpred_16mers.csv --input_18mers A_linear_predictions/abcpred/abcpred_18mers.csv --input_20mers A_linear_predictions/abcpred/abcpred_20mers.csv
 ````
       
 10. (Locally) Download the PDB file of the target protein at PDB DB. 
