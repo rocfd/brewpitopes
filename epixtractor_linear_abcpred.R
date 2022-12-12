@@ -61,16 +61,16 @@ abc_all <- rename(abc_all, ABCscore = "Score")
 
 
 ## EXTRACT LENGTH
-abc_all$Sequence <- as.character(abc_all$Sequence)
-abc_all$Sequence
-Length <- c()
-for (x in 1:length(abc_all$Sequence)){
-  z <- nchar(abc_all$Sequence[x])
-  Length <- c(Length, z)
+#abc_all$Sequence <- as.character(abc_all$Sequence)
+#abc_all$Sequence
+#Length <- c()
+#for (x in 1:length(abc_all$Sequence)){
+#  z <- nchar(abc_all$Sequence[x])
+#  Length <- c(Length, z)
   #print(Length)
-}
+#}
 
-abc_all <- cbind(abc_all, Length)
+#abc_all <- cbind(abc_all, Length)
 
 ## EXTRACT END POSITION
 End <- c()
