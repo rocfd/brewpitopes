@@ -87,24 +87,24 @@ Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_10m
 ````
       
 10. (Locally) Download the PDB file of the target protein at PDB DB. 
-       Save at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/B_structural_predictions/pdb  
+       Save at ZZ_pdb/pdb  
        
 11. (Locally) Use [PDBrenum](http://dunbrack3.fccc.edu/PDBrenum/) server to renumerate the PDB residues according to its corresponding FASTA file in Uniprot.  
       Download results as .pdb  
-      Save at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/B_structural_predictions/pdbrenum 
+      Save at ZZ_pdb/pdbrenum 
       
 12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server and export the results as .txt. Remove the last line "Identified...". Then, save as .csv by changing "\t" for commas.
       Default threshold.  
       Select chain A by default.
-      Save at ../Projects/your_project/brewpitopes/B_structural_predictions/discotope  
+      Save as B_structural_predictions/discotope/discotope_results.csv  
       
 13. Extract epitopes from Discotope results using epixtract_structural.py
 ```
-python3 epixtract_structural.py  
+python3 ../../../epixtract_structural.py  
 ```
 ```
-Add path to discotope results: ../Projects/your_project/brewpitopes/B_structural_predictions/discotope/discotope_results.csv  
-Add path to output folder: ../Projects/your_project/brewpitopes/C_epixtractor
+Add path to discotope results: B_structural_predictions/discotope/discotope_results.csv
+Add path to output folder: C_epixtractor
 ```
 
 14. Merge the epitopes extracted from Bepipred, ABCpred and Discotope results using epimerger.R
