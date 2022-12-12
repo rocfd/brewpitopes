@@ -168,17 +168,17 @@ Add path to extracted glycosilated positions: F_epiglycan/glycan_positions.csv
       
 22. Extract the buried positions using icm_extractor.R  
 ```
-Rscript ../../../icm_extractor.R --icm G_episurf/icm/rsa.csv --outdir G_episurf/
+Rscript ../../../icm_extractor.R --icm G_episurf/icm/rsa.csv --outdir G_episurf
 ```
 
 21. Label the epitopes based on their buried positions using episurf.py
 ```
-python3 episurf.py  
+python3 ../../../episurf.py
 ```
 ```
-Add path to input epitopes: ../Projects/your_project/brewpitopes/F_epiglycan/glycan_extracted.csv
-Add path to output folder: ../Projects/your_project/brewpitopes/G_episurf
-Add path to extracted buried positions: ../Projects/your_project/brewpitopes/G_episurft/buried_positions_list.csv
+Add path to input epitopes: F_epiglycan/glycan_extracted.csv
+Add path to output folder: G_episurf
+Add path to extracted buried positions: G_episurf/buried_positions_list.csv
 ```
 
 22. Select the epitopes that are extraviral, non-glycosilated, exposed and length >= 5 using epifilter.R  
