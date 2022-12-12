@@ -23,7 +23,7 @@ dir.create(paste0(argv$path, "/", "brewpitopes", "/", "Z_fasta", sep = ""))
 
 ## DIRECTORIES
 dir.create(paste0(argv$path, "/", "brewpitopes", "/", "A_linear_predictions", sep = ""))
-dir.create(paste0(argv$path, "/", "brewpitopes", "/", "A_linear_predictions/bebipred", sep = ""))
+dir.create(paste0(argv$path, "/", "brewpitopes", "/", "A_linear_predictions/bepipred", sep = ""))
 dir.create(paste0(argv$path, "/", "brewpitopes", "/", "A_linear_predictions/abcpred", sep = ""))
 dir.create(paste0(argv$path, "/", "brewpitopes", "/", "B_structural_predictions", sep = ""))
 dir.create(paste0(argv$path, "/", "brewpitopes", "/", "B_structural_predictions/discotope", sep = ""))
