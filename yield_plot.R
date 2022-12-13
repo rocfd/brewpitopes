@@ -9,7 +9,7 @@ library(argparser, quietly = T, warn.conflicts = F)
 
 ### SCRIPT ARGUMENTS
 # Create a parser
-p <- arg_parser("EPIFILTER")
+p <- arg_parser("YIELD PLOT")
 
 # Add command line arguments
 #p <- add_argument(p, "--bepi", help= "Path to Bepipred2.0 file output (.csv format)", type="character", default = "/brewpitopes/A_linear_predictions/bepipred/bepipred_results.csv")
