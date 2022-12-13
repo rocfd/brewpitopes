@@ -14,9 +14,11 @@ p <- arg_parser("EPIFILTER")
 
 # Add command line arguments
 p <- add_argument(p, "--data", help= "Path to labeled epitope file output of episurf.py, by default 'access_extracted.csv' (.csv format)", type="character", default = "G_episurf/access_extracted.csv")
+p <- add_argument(p, "--unfiltered_df", help = "Sample name to label the unfiltered dataframe", type = "character", default = "brewpitopes_unfiltered_df")
+p <- add_argument(p, "--unfiltered_dir", help = "Path to save the unfiltered results", type = "character", default = "H_epifilter")
 p <- add_argument(p, "--sample_df", help = "Sample name to label the output dataframe", type = "character", default = "brewpitopes_results_df")
 p <- add_argument(p, "--sample_candidates", help = "Sample name to label the output list of candidates", type = "character", default = "brewpitopes_results_candidates")
-p <- add_argument(p, "--outdir", help = "Path to output files", type = "character", default = "I_final_candidates")
+p <- add_argument(p, "--outdir", help = "Path to output the filtered result files", type = "character", default = "I_final_candidates")
 #p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = "I_final_candidates")
 
 # Parse the command line arguments
@@ -25,9 +27,8 @@ argv <- parse_args(p)
 ## IMPORT DATA
 data <- read.csv(file = argv$data)
 
-# REMOVE UNDESIRED COLUMNS
-#data <- select(data, -X)
-#data <- select(data, -Rank.1)
+## SAVE AS UNFILTERED
+write.table(data, sep = ";", row.names = F, quote = F, file = paste0(argv$unfiltered_dir, "/", argv$unfiltered_df, ".csv", sep = ""))
 
 ## FILTER BY SPECIFIED CONDITIONS
 ## TOPOLOGY
@@ -53,5 +54,5 @@ data_final <- select(data_final, -contains("Rank"))
 write.table(data_final, sep = ";", row.names = F, quote = F, file = paste0(argv$outdir, "/", argv$sample_df, ".csv", sep = ""))
 write.table(data_candidates, sep = ";", row.names = F, quote = F, file = paste0(argv$outdir, "/", argv$sample_candidates, ".csv", sep = ""))
 
-### FINAL PRINT
-print(paste("Find your output file at: ", argv$outdir, sep = ""))
+## FINAL PRINT
+print(paste("Find your filtered candidates at: ", argv$outdir, sep = ""))
