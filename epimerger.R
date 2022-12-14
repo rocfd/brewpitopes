@@ -32,17 +32,34 @@ bepi <- read.csv(file = argv$bepipred, sep = ";")
 
 ## ADD EXTRA COLUMNS TO bepi
 bepi$Sequence <- as.character(bepi$Sequence)
-bepi$Tool <- "Bepipred 2.0"
+
+### IF EMPTY
+if(dim(bepi)[1] == 0){
+  bepi[1,] <- NA
+  bepi[,"Tool"] <- "Bepipred 2.0"
+  bepi <- bepi[0,]
+} else {
+  bepi$Tool <- "Bepipred 2.0"
+}
 
 ## CALCULATE SEQUENCE LENGTH
 len <- c()
-for (x in 1:length(bepi$Sequence)){
+
+### IF EMPTY
+if(dim(bepi)[1] == 0){
+  bepi[1,] <- NA
+  bepi[,"Length"] <- NA
+  bepi <- bepi[0,]
+} else {
+  for (x in 1:length(bepi$Sequence)){
   x <- nchar(bepi$Sequence[x])
   len <- c(len, x)
+  }
+bepi$Length <- len
 }
 
 ## ADD LENGTH TO RESULTS
-bepi$Length <- len
+#bepi$Length <- len
 #glimpse(bepi)
 
 ## RENAME SCORE COLUMNS
@@ -58,17 +75,30 @@ disc <- read.csv(file = argv$discotope, sep = ";")
 ## ADD VARIABLES
 disc$Sequence <- as.character(disc$Sequence)
 
-## CALCULATE EPITOPE LENGTH
-len2 <- c()
-for (x in 1:length(disc$Sequence)){
-  x <- nchar(disc$Sequence[x])
-  len2 <- c(len2, x)
+### IF EMPTY
+if(dim(disc)[1] == 0){
+  disc[1,] <- NA
+  disc[,"Tool"] <- "Discotope 2.0"
+  disc <- disc[0,]
+} else {
+  disc$Tool <- "Discotope 2.0"
 }
 
-disc$Length <- len2
+## CALCULATE SEQUENCE LENGTH
+len2 <- c()
 
-## ADD PREDICTION TOOL
-disc$Tool <- "Discotope 2.0"
+### IF EMPTY
+if(dim(disc)[1] == 0){
+  disc[1,] <- NA
+  disc[,"Length"] <- NA
+  disc <- disc[0,]
+} else {
+  for (x in 1:length(disc$Sequence)){
+  x <- nchar(disc$Sequence[x])
+  len2 <- c(len2, x)
+  }
+disc$Length <- len2
+}
 
 ## BIND DATAFRAMES
 merged <- rbind(linear, disc) 
@@ -78,7 +108,17 @@ merged <- filter(merged, Length != 0)
 
 ## EXPORT DATAFRAME
 write.table(merged, file = paste0(argv$outdir, "/", argv$sample, ".csv"), row.names = F, quote = F, sep = ";")
-print(paste("Find your output file at:", argv$outdir, sep = " ")
+
+## FINAL PRINT
+print(paste("Find your output merged file at: ", argv$outdir, "/", argv$sample, ".csv", sep = ""))
+
+## CHECK IF EPITOPES WERE PREDICTED BY ANY TOOL
+### CONTAINS EPITOPES PRINT
+if(dim(merged)[1] == 0){
+  print("None of the three predictors used (ABCpred, Bepipred 2.0 and Discotope 2.0) was able to predict a single epitope in your target protein. You should STOP THE PIPELINE and look for other epitope predictors.")
+} else {
+  print("Epitopes were predcited by one or more tools in your target protein. Go ahead!")
+}
 
 ### EXPORT RDATA
 #p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = ".")
