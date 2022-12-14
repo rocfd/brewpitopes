@@ -1,5 +1,12 @@
-# BREWPITOPES
-Suite of tools to manage epitope prediction results from linear and structural origin and to integrate a pipeline of prioritization filters to curate B-cell epitopes specific for neutralizing antibody recognition.
+# BREWPITOPES: A PIPELINE TO REFINE B-CELL EPITOPE PREDICTIONS DURING PUBLIC HEALTH EMERGENCIES
+
+## ABSTRACT
+The application of B-cell epitope identification for the development of therapeutic antibodies is well established but consuming in terms of time and resources. For this reason, in the last few years, the immunoinformatic community has developed several computational predictive tools. While relatively successful, most of these tools only use a few properties of the candidate region to determine their likelihood of being a true B-cell epitope. However, this likelihood is influenced by a wide variety of protein features, including the presence of glycosylated residues in the neighbourhood of the candidate epitope, the subcellular location of the protein region or the three-dimensional information about their surface accessibility in the parental protein.
+
+In this study we created Brewpitopes, an integrative pipeline to curate computational predictions of B-cell epitopes by accounting for all the aforementioned features. To this end, we implemented a set of rational filters to mimic the conditions for the in vivo antibody recognition to enrich the B-cell epitope predictions in actionable candidates. To validate Brewpitopes, we analyzed the SARS-CoV-2 proteome. In the S protein, Brewpitopes enriched the initial predictions in 5-fold on epitopes with neutralizing potential (p-value < 2e-4). Other than S protein, 4 out of 16 proteins in the proteome contain curated B-cell epitopes and hence, have also potential interest for viral neutralization, since mutational escape mainly affects the S protein. Our results demonstrate that Brewpitopes is a powerful pipeline for the rapid prediction of refined B-cell epitopes during public health emergencies.
+
+Available as preprint at: https://doi.org/10.1101/2022.11.28.518301
+
 
 ## INSTALLATION (DOCKER IMAGE)
 0. Download the Dockerfile from this [repository](https://github.com/AlbertCS/Brewpitopes_container). To compile the Dockerfile you will need to have docker installed. 
