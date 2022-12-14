@@ -103,7 +103,7 @@ Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_all
        Save at ZZ_pdb/pdb  
        
 11. (Locally) Use [PDBrenum](http://dunbrack3.fccc.edu/PDBrenum/) server to renumerate the PDB residues according to its corresponding FASTA file in Uniprot.  
-      Download results as .pdb  
+      Download results as .pdb  (Selecting the .pdb options and deselect .mmCIF options)
       Save at ZZ_pdb/pdbrenum 
       
 12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server.
