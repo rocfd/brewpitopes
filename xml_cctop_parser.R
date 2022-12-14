@@ -48,6 +48,9 @@ top_df <- mget(ls(pattern="^topdf\\.\\d+")) %>% bind_rows()
 ## EXPORT DATAFRAME
 write.csv(top_df, file = paste0(argv$outdir, "/", argv$sample, sep = ""), row.names = F, quote = F)
 
+## FINAL PRINT
+print(paste("Find your parsed to pology domains at: ", argv$outdir, "/", argv$sample, sep = ""))
+
 ### EXPORT RDATA
 #p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = ".")
 #dir.create(paste0(argv$save_rdata_dir, "/rdata", sep = ""))
