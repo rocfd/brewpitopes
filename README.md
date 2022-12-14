@@ -146,7 +146,7 @@ Take steps 15, 16 and 17.1 if you want to predict protein topology using CCTOP. 
       
 16. Extract the topological domains using xml_cctop_parser.R 
 ```
-Rscript ../../../xml_cctop_parser.R --xml E_epitopology/CCTOP/cctop.xml --outdir /E_epitopology/CCTOP
+Rscript ../../../xml_cctop_parser.R --xml E_epitopology/CCTOP/cctop.xml --outdir E_epitopology/CCTOP
 ```
 
 17. Label the epitopes based on their topology (intracellular, membrane or extracellular) using epitopology.R
