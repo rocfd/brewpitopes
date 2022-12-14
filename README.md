@@ -123,7 +123,7 @@ Take steps 15, 16 and 17.1 if you want to predict protein topology using CCTOP. 
 
 15. (Locally) Predict the protein topology using [CCTOP](http://cctop.enzim.ttk.mta.hu/?_=/jobs/submit) server.  
       Donwload results as .xml.
-      Save at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/E_topology/CCTOP/cctop.xml
+      Save at E_topology/CCTOP/cctop.xml
       
 16. Extract the topological domains using xml_cctop_parser.R 
 ```
@@ -145,11 +145,11 @@ Rscript ../../../epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --in
 18. (Locally) Predict the glycosilation profile of the protein using the FASTA file.  
       N-GLYCOSILATIONS at [NetNGlyc 1.0](https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0) server.    
       COPY MANUALLY THE DATAFRAME HEADED: SeqName	Position	Potential	Jury_agreement	NGlyc_result	Prediction  
-      SAVE AS CSV as /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/F_epiglycan/netnglyc/nglyc_results.csv  
+      SAVE AS CSV as F_epiglycan/netnglyc/nglyc_results.csv  
       
       O-GLYCOSILATIONS AT [NetOGlyc 4.0](https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0) server.
       COPY MANUALLY THE DATAFRAME HEADED: seqName  	source	feature	start 	end	score strand      frame       comment  
-      SAVE AS CSV at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/F_epiglycan/netoglyc/oglyc_results.csv
+      SAVE AS CSV at F_epiglycan/netoglyc/oglyc_results.csv
       
 19. Extract the glycosylated positions from both N-glyc and O-glyc outputs using epiglycan_extractor.R
 ```
@@ -171,7 +171,7 @@ Add path to extracted glycosilated positions: F_epiglycan/glycan_positions.csv
       Move the PDB renumbered file of the corresponding protein (step 11) to a local folder.
       Move the script Compute_ASA.icm to the same local folder.
       Execute in the command line of the programme ICM Browser the code in Compute_ASA.icm  
-      Save results at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/G_episurf
+      Save results at G_episurf
       
 22. Extract the buried positions using icm_extractor.R  
 ```
