@@ -132,20 +132,25 @@ end = []
 for group in resid_grouped_filtered:
     start.append(group[0])
     end.append(group[-1])
-    print(start)
-    print(end)
+    #print(start)
+    #print(end)
 
 # EXTRACT BEBIPRED SCORE
 BebiScore = scored.EpitopeProbability
     
 # CREATE LIST TO PREPARE OUTPUT DATAFRAME
 out = list(zip(sequences,start,end,resid_grouped_filtered,BebiScore))
-print (out)
+#print (out)
 
 # CREATE OUTPUT DATAFRAME
 out_file = pd.DataFrame(out, columns = ("Sequence", "Start", "End", "Positions", "BebiScore"))
-print(out_file)
+#print(out_file)
 
 # EXPORT OUTPUT FILE
 out_file.to_csv(nameOutFile, sep = ";", index = True, index_label = "Rank")
 print("Output file: "+nameOutFile)
+
+if out_file.empty:
+    print("Bepipred 2.0 could not predict any epitopes in your target sequence. You will get an empty dataframe and you can continue the pipeline with the other predictors.")
+else:
+    print("Bepipred 2.0 could not predict one or more epitopes in your target sequence. Go ahead!")
