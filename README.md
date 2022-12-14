@@ -86,7 +86,7 @@ Add path to output folder: C_epixtractor
 
       Predict using all the epitope windows (10,12,14,16,18,20), overlapping filter ON and the default threshold at 0.51.
       
-      Copy results from the webpage table to a text editor (See Note 1, 2 and 3).
+      Copy results from the webpage table to a text editor (See Note 2 and 3).
       
       Save as: A_linear_predictions/abcpred/abcpred_allmers.csv
       
