@@ -27,6 +27,7 @@ dir.create(paste0(argv$path, "/", "brewpitopes", "/", "A_linear_predictions/bepi
 dir.create(paste0(argv$path, "/", "brewpitopes", "/", "A_linear_predictions/abcpred", sep = ""))
 dir.create(paste0(argv$path, "/", "brewpitopes", "/", "B_structural_predictions", sep = ""))
 dir.create(paste0(argv$path, "/", "brewpitopes", "/", "B_structural_predictions/discotope", sep = ""))
+dir.create(paste0(argv$path, "/", "brewpitopes", "/", "ZZ_pdb", sep = ""))
 dir.create(paste0(argv$path, "/", "brewpitopes", "/", "ZZ_pdb/pdb", sep = ""))
 dir.create(paste0(argv$path, "/", "brewpitopes", "/", "ZZ_pdb/alphafold", sep = ""))
 dir.create(paste0(argv$path, "/", "brewpitopes", "/", "ZZ_pdb/pdbrenum", sep = ""))
