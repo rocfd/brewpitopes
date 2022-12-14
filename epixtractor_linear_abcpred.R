@@ -66,37 +66,64 @@ abc_all <- rename(abc_all, ABCscore = "Score")
 
 ## EXTRACT LENGTH
 abc_all$Sequence <- as.character(abc_all$Sequence)
-#abc_all$Sequence
-Length <- c()
-for (x in 1:length(abc_all$Sequence)){
-  z <- nchar(abc_all$Sequence[x])
-  Length <- c(Length, z)
-  #print(Length)
+len <- c()
+### IF EMPTY
+if(dim(abc_all)[1] == 0){
+  abc_all[1,] <- NA
+  abc_all[,"Length"] <- NA
+  abc_all <- abc_all[0,]
+} else {
+  for (x in 1:length(abc_all$Sequence)){
+  x <- nchar(abc_all$Sequence[x])
+  len <- c(len, x)
+  }
+abc_all$Length <- len
 }
-
-abc_all <- cbind(abc_all, Length)
 
 ## EXTRACT END POSITION
 End <- c()
-for (x in 1:length(abc_all$Start)){
+if(dim(abc_all)[1] == 0){
+  abc_all[1,] <- NA
+  abc_all[,"End"] <- NA
+  abc_all <- abc_all[0,]
+} else {for (x in 1:length(abc_all$Start)){
   z <- abc_all$Start[x] + abc_all$Length[x] -1
   End <- c(End, z)
-  #print(End)
+  }
+abc_all$End <- End
 }
 
-abc_all <- cbind(abc_all, End)
-
 ## EXTRACT EPITOPE POSITIONS
+Positions <- c()
+if(dim(abc_all)[1] == 0){
+  abc_all[1,] <- NA
+  abc_all[,"Positions"] <- NA
+  abc_all <- abc_all[0,]
+} else {
 abc_all$Positions = apply(abc_all,1, function(x) paste(x['Start']:x['End'],collapse=','))
+}
 
 ## CREATE TOOL COLUMN
-abc_all$Tool <- "ABCpred"
+if(dim(abc_all)[1] == 0){
+  abc_all[1,] <- NA
+  abc_all[,"Tool"] <- NA
+  abc_all <- abc_all[0,]
+} else {
+  abc_all$Tool <- "ABCpred"
+}
 
 ## EXPORT RESULTS AS CSV
 write.table(abc_all, file = paste0(argv$outdir, "/", argv$sample, ".csv"), quote = F, row.names = F, sep = ";")
 
 ## FINAL PRINT
 print(paste("Find your output file at: ", argv$outdir, "/", argv$sample, ".csv", sep = ""))
+
+### CONTAINS EPITOPES PRINT
+if(dim(abc_all)[1] == 0){
+  print("ABCpred did not find any epitope in your target sequence. You will get an empty dataframe but you can continue the pipeline with the other predictors")
+} else {
+  print("ABCpred found one or more epitopes in your target sequence. Go ahead!")
+}
 
 ### EXPORT RDATA
 # #p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = ".")
