@@ -221,5 +221,5 @@ Rscript fasta_mutator.R --fasta ../Projects/your_project/brewpitopes/Z_fasta/tar
 
 ## NOTES
 1. In the case one of the predictor softwares (Bepipred, ABCpred or Discotope) does not identify any epitope in your target protein, do create the empty dataframe anyway as it will be used later in the pipeline.
-2. When copying the tabular results from ABCpred into a text file make sure to remove all lines with no sequence information (see example). Otherwise, the script "epixtractor_linear_abcpred.R" will not be able to read the file and will prompt the following error: " ". 
+2. When copying the tabular results from ABCpred into a text file make sure to remove all lines with no sequence information (see example). Otherwise, the script "epixtractor_linear_abcpred.R" will not be able to read the file and will prompt the following error: "Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : line XXX did not have 5 elements ". 
 ![ABCpred results processing](/abcpred_processing.png?raw=true "ABCpred processing")
