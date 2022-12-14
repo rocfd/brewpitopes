@@ -115,7 +115,7 @@ print(paste("Find your output merged file at: ", argv$outdir, "/", argv$sample, 
 ## CHECK IF EPITOPES WERE PREDICTED BY ANY TOOL
 ### CONTAINS EPITOPES PRINT
 if(dim(merged)[1] == 0){
-  print("None of the three predictors used (ABCpred, Bepipred 2.0 and Discotope 2.0) was able to predict a single epitope in your target protein. You should STOP THE PIPELINE and look for other epitope predictors.")
+  print("None of the three predictors used (ABCpred, Bepipred 2.0 and Discotope 2.0) was able to predict a single epitope in your target protein. You should STOP THE PIPELINE or alternatively look for other epitope predictors.")
 } else {
   print("One or more tools predicted epitopes in your target protein. Go ahead!")
 }
