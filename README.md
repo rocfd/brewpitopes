@@ -60,19 +60,19 @@ cd your_project
 ```
 cd Projects/your_project
 Rscript ../../directories.R
+cd brewpitopes
 ```
 
 5. (Locally) Download the FASTA file of the target protein at [Uniprot](https://www.uniprot.org/).    
       
-      Save at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/Z_fasta  (Check if it requires SUDO permissions).
+      Save at Z_fasta  ##(Check if it requires SUDO permissions when using Docker).
       
 6. (Locally) Use the FASTA to predict linear epitopes using [Bepipred 2.0](https://services.healthtech.dtu.dk/service.php?BepiPred-2.0) server and export results as csv (default parameters).  
        
-      Save at /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/A_linear_predictions/bepipred/bepipred_results.csv  
+      Save at A_linear_predictions/bepipred/bepipred_results.csv - See Note 1
       
 7. Extract epitopes from Bepipred results using epixtractor_linear_bepipred.py.  
 ```
-cd path/to/Projects/your_project/brewpitopes/
 python3 ../../../epixtractor_linear_bepipred.py
 ```
 ```
@@ -83,7 +83,7 @@ Add path to output folder: C_epixtractor
 8. (Locally) Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
 
       Predict using all the epitope windows (10,12,14,16,18,20), overlapping filter ON and the default threshold at 0.51.
-      Copy results from the webpage table to a text editor (See Note 1).
+      Copy results from the webpage table to a text editor (See Note 1 and 2).
       Save as: A_linear_predictions/abcpred/abcpred_allmers.csv 
 
       
@@ -220,4 +220,5 @@ Rscript fasta_mutator.R --fasta ../Projects/your_project/brewpitopes/Z_fasta/tar
 ```      
 
 ## NOTES
-1. In the case one of the predictor sofwares (Bepipred, ABCpred or Discotope) does not identify any epitope in your target protein, do create the empty dataframe anyway as it will be used later in the pipeline.
+1. In the case one of the predictor softwares (Bepipred, ABCpred or Discotope) does not identify any epitope in your target protein, do create the empty dataframe anyway as it will be used later in the pipeline.
+2. When copying the tabular results from ABCpred into a text file make sure to remove all lines with no sequence information (see example). Otherwise, the script "epixtractor_linear_abcpred.R" will not be able to read the file and will prompt the following error: " ". 
