@@ -117,7 +117,7 @@ print(paste("Find your output merged file at: ", argv$outdir, "/", argv$sample, 
 if(dim(merged)[1] == 0){
   print("None of the three predictors used (ABCpred, Bepipred 2.0 and Discotope 2.0) was able to predict a single epitope in your target protein. You should STOP THE PIPELINE and look for other epitope predictors.")
 } else {
-  print("Epitopes were predcited by one or more tools in your target protein. Go ahead!")
+  print("One or more tools predicted epitopes in your target protein. Go ahead!")
 }
 
 ### EXPORT RDATA
