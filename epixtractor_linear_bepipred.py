@@ -153,4 +153,4 @@ print("Output file: "+nameOutFile)
 if out_file.empty:
     print("Bepipred 2.0 could not predict any epitopes in your target sequence. You will get an empty dataframe and you can continue the pipeline with the other predictors.")
 else:
-    print("Bepipred 2.0 could not predict one or more epitopes in your target sequence. Go ahead!")
+    print("Bepipred 2.0 could predict one or more epitopes in your target sequence. Go ahead!")
