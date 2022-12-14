@@ -115,7 +115,7 @@ Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_all
 
       Select default score threshold.  
       
-      Select chain A by default.
+      Select chain A by default or your target chain of interest.
       
       Export the results as .txt. Remove the last line "Identified...". Then, save as .csv by changing "\t" for commas.
       
