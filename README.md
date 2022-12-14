@@ -113,7 +113,7 @@ Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_all
       
 12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server (input type 3).
 
-      Select default score threshold.  
+      Select default score threshold (-3.7).  
       
       Select chain A by default or your target chain of interest.
       
