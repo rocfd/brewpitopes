@@ -32,7 +32,7 @@ p <- add_argument(p, "--outdir", help = "file to output files", type = "characte
 argv <- parse_args(p)
 
 ## IMPORT O-GLYCOSILATION DATA
-oglyc1 <- read.csv(header = F, col.names = c("seqname", "source", "feature", "start", "end", "score", "strand", "frame", "comment"), file = argv$oglyc, skip = 5)
+oglyc1 <- read.table(header = F, col.names = c("seqname", "source", "feature", "start", "end", "score", "strand", "frame", "comment"), file = argv$oglyc, sep = "\t")
 oglyc1$comment <- as.factor(oglyc1$comment)
 
 ## FILTER GLYCOSILATED POSITIONS
@@ -48,7 +48,7 @@ oglyc1_pos <- oglyc1_filt$oglyc1_pos
 write.table(oglyc1_pos, file = paste0(argv$outdir, "/", "oglyc_positions.csv", sep = ""), row.names = T, quote = F, col.names = "Index   Glyc_positions")
 
 ### IMPORT N-GLYCOSILATION DATA
-nglyc <- read.csv(file = argv$nglyc, header = F, col.names = c("SeqName", "Position", "Potential", "Jury_agreement", "N-Glyc_result", "Prediction"))
+nglyc <- read.table(file = argv$nglyc, header = F, col.names = c("SeqName", "Position", "Potential", "Jury_agreement", "N-Glyc_result", "Prediction"), sep = "\t")
 
 ## FILTER GLYCOSILATED POSITIONS
 nglyc_filt <- filter(nglyc, Prediction == "++" | Prediction == "+" | Prediction == "+++")
