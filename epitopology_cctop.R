@@ -31,6 +31,10 @@ merged <- read.csv(file = argv$input_epitopes, header = T, sep = ";")
 ### FILTER EXTRACELLULAR DOMAINS
 topology <- filter(topology, loc == "O" | loc == "S")
 
+### RENAME COLUMNS
+topology <- rename(topology, extracellular.start = "from")
+topology <- rename(topology, extracellular.end = "to")
+
 ## CHARACTER TO NUMBER
 topology$extracellular.start <- as.numeric(topology$extracellular.start)
 topology$extracellular.end <- as.numeric(topology$extracellular.end)
