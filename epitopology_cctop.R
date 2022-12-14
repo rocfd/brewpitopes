@@ -29,7 +29,7 @@ topology <- read.csv(file = argv$input_CCTOP, header = T)
 merged <- read.csv(file = argv$input_epitopes, header = T, sep = ";")
 
 ### FILTER EXTRACELLULAR DOMAINS
-topology <- filter(topology, loc == "O")
+topology <- filter(topology, loc == "O" | loc == "S")
 
 ## CHARACTER TO NUMBER
 topology$extracellular.start <- as.numeric(topology$extracellular.start)
