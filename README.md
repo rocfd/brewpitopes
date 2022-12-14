@@ -70,6 +70,7 @@ cd brewpitopes
 6. (Locally) Use the FASTA to predict linear epitopes using [Bepipred 2.0](https://services.healthtech.dtu.dk/service.php?BepiPred-2.0) server and export results as csv (default parameters).  
        
       Save at A_linear_predictions/bepipred/bepipred_results.csv
+      
       If Bepipred2.0 does not predict any epitope in your target sequence see Note1.
       
 7. Extract epitopes from Bepipred results using epixtractor_linear_bepipred.py.  
@@ -84,8 +85,11 @@ Add path to output folder: C_epixtractor
 8. (Locally) Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
 
       Predict using all the epitope windows (10,12,14,16,18,20), overlapping filter ON and the default threshold at 0.51.
+      
       Copy results from the webpage table to a text editor (See Note 1 and 2).
+      
       Save as: A_linear_predictions/abcpred/abcpred_allmers.csv
+      
       If ABCpred does not predict any epitope in your target sequence see Note1.
 
       
@@ -104,9 +108,13 @@ Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_all
       
 12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server.
       Select default score threshold.  
+      
       Select chain A by default.
+      
       Export the results as .txt. Remove the last line "Identified...". Then, save as .csv by changing "\t" for commas.
+      
       Save as B_structural_predictions/discotope/discotope_results.csv 
+      
       If Discotope2.0 does not predict any epitope in your target sequence see Note1.
       
       
