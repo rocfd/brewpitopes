@@ -31,7 +31,7 @@ Once you add files/folders in this directory, they will appear automatically wit
 cd ..
 ls
 ```
-You should see the folders: Brewpitopes, example, Projects
+You should see the folders: Brewpitopes ## revise
 
 3.1 To execute the scripts of the pipeline go to:
 ```      
@@ -55,9 +55,10 @@ cd your_project
 ## PIPELINE
 ** All the steps should be run within the Docker image at your Terminal except when it indicates "(Locally)". **
 
-4. Use directories.R to create the folder environment.
+4. Use directories.R to create the directory environment in your project folder.
 
 ```
+cd Projects/your_project
 Rscript ../../directories.R
 ```
 
