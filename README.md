@@ -102,11 +102,13 @@ Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_all
       Download results as .pdb  
       Save at ZZ_pdb/pdbrenum 
       
-12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server and export the results as .txt. Remove the last line "Identified...". Then, save as .csv by changing "\t" for commas.
-      Default threshold.  
+12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server.
+      Select default score threshold.  
       Select chain A by default.
+      Export the results as .txt. Remove the last line "Identified...". Then, save as .csv by changing "\t" for commas.
       Save as B_structural_predictions/discotope/discotope_results.csv 
       If Discotope2.0 does not predict any epitope in your target sequence see Note1.
+      
       
 13. Extract epitopes from Discotope results using epixtract_structural.py
 ```
