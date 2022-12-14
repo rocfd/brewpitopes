@@ -174,7 +174,7 @@ Rscript ../../../epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --in
       
 19. Extract the glycosylated positions from both N-glyc and O-glyc outputs using epiglycan_extractor.R
 ```
-Rscript ../../../epiglycan_extractor.R --oglyc F_epiglycan/netoglyc/oglyc_results.csv --nglyc F_epiglycan/netnglyc/nglyc_results.csv --outdir F_epiglycan
+Rscript ../../../epiglycan_extractor.R --oglyc F_epiglycan/netoglyc/oglyc_results.tsv --nglyc F_epiglycan/netnglyc/nglyc_results.tsv --outdir F_epiglycan
 ```
 
 20. Use epiglycan.py to label the glycosilated epitopes.  
