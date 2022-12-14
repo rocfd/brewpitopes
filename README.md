@@ -1,4 +1,4 @@
-# BREWPITOPES: A PIPELINE TO REFINE B-CELL EPITOPE PREDICTIONS DURING PUBLIC HEALTH EMERGENCIES
+# BREWPITOPES: a pipeline to refine B-cell epitope predictions during public health emergencies
 
 ## ABSTRACT
 The application of B-cell epitope identification for the development of therapeutic antibodies is well established but consuming in terms of time and resources. For this reason, in the last few years, the immunoinformatic community has developed several computational predictive tools. While relatively successful, most of these tools only use a few properties of the candidate region to determine their likelihood of being a true B-cell epitope. However, this likelihood is influenced by a wide variety of protein features, including the presence of glycosylated residues in the neighbourhood of the candidate epitope, the subcellular location of the protein region or the three-dimensional information about their surface accessibility in the parental protein.
