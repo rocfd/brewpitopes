@@ -17,12 +17,7 @@ library(argparser, quietly = TRUE, warn.conflicts = FALSE)
 p <- arg_parser("EPIXTRACTOR LINEAR ABCPRED")
 
 # Add command line arguments
-p <- add_argument(p, "--input_10mers", help= "Path to ABCPRED 10-mers output dataset (.csv format)", type="character", default = ".")
-p <- add_argument(p, "--input_12mers", help= "Path to ABCPRED 12-mers output dataset (.csv format)", type="character", default = ".")
-p <- add_argument(p, "--input_14mers", help= "Path to ABCPRED 14-mers output dataset (.csv format)", type="character", default = ".")
-p <- add_argument(p, "--input_16mers", help= "Path to ABCPRED 16-mers output dataset (.csv format)", type="character", default = ".")
-p <- add_argument(p, "--input_18mers", help= "Path to ABCPRED 18-mers output dataset (.csv format)", type="character", default = ".")
-p <- add_argument(p, "--input_20mers", help= "Path to ABCPRED 20-mers output dataset (.csv format)", type="character", default = ".")
+p <- add_argument(p, "--input_allmers", help= "Path to ABCPRED all-mers output dataset (.csv format)", type="character", default = "A_linear_predictions/abcpred/abcpred.tsv")
 p <- add_argument(p, "--sample", help = "Sample name to label output files", type = "character", default = "abcpred_results_extracted")
 p <- add_argument(p, "--outdir", help = "Path to output files", type = "character", default = "brewpitopes/C_epixtractor")
 #p <- add_argument(p, "--rdata", help = "Path to save rData image", type = "character", default = "brewpitopes/A_linear_predictions/abcpred")
@@ -31,12 +26,19 @@ p <- add_argument(p, "--outdir", help = "Path to output files", type = "characte
 argv <- parse_args(p)
 
 ## IMPORT CSV - ABCPred RESULTS
-abc_10 <- read.csv(argv$input_10mers)
-abc_12 <- read.csv(argv$input_12mers)
-abc_14 <- read.csv(argv$input_14mers)
-abc_16 <- read.csv(argv$input_16mers)
-abc_18 <- read.csv(argv$input_18mers)
-abc_20 <- read.csv(argv$input_20mers)
+abc_all <- read.table(argv$input_allmers, sep = "\t", header = TRUE, row.names = NULL)  #, fill=TRUE, row.names = NULL)
+#abc_10 <- read.table(argv$input_10mers, sep = "\t")
+#abc_12 <- read.table(argv$input_12mers, sep = "\t")
+#abc_14 <- read.table(argv$input_14mers, sep = "\t")
+#abc_16 <- read.table(argv$input_16mers, sep = "\t")
+#abc_18 <- read.table(argv$input_18mers, sep = "\t")
+#abc_20 <- read.table(argv$input_20mers, sep = "\t")
+
+### RENAME COLUMNS ACCORDINGLY
+colnames(abc_all) <- colnames(abc_all)[2:ncol(abc_all)]  
+
+## REMOVE NA COLUMN
+abc_all <- abc_all[ , - ncol(abc_all)]
 
 ## REMOVE COLUMN X
 #abc_10 <- select(abc_10, -X)
@@ -47,30 +49,32 @@ abc_20 <- read.csv(argv$input_20mers)
 #abc_20 <- select(abc_20, -X)
 
 ## MERGE RESULT FILES
-abc_all <- rbind(abc_10, abc_12, abc_14, abc_16, abc_18, abc_20)
+#abc_all <- rbind(abc_10, abc_12, abc_14, abc_16, abc_18, abc_20)
 
 ## FILTER by SCORE
 abc_all <- filter(abc_all, Score >= 0.8)
 
 ## RENAME COLUMNS
-colnames(abc_all)
+#colnames(abc_all)
 #abc_all <- rename(abc_all, Length = "Window")
 abc_all <- rename(abc_all, Start = "Start.position")
 abc_all <- rename(abc_all, ABCscore = "Score")
 #abc_all <- select(abc_all, -X)
 
+### FILTER BLANK SEQUENCES
+#abc_all <- filter(abc_all, !is.na(Sequence))
 
 ## EXTRACT LENGTH
-#abc_all$Sequence <- as.character(abc_all$Sequence)
+abc_all$Sequence <- as.character(abc_all$Sequence)
 #abc_all$Sequence
-#Length <- c()
-#for (x in 1:length(abc_all$Sequence)){
-#  z <- nchar(abc_all$Sequence[x])
-#  Length <- c(Length, z)
+Length <- c()
+for (x in 1:length(abc_all$Sequence)){
+  z <- nchar(abc_all$Sequence[x])
+  Length <- c(Length, z)
   #print(Length)
-#}
+}
 
-#abc_all <- cbind(abc_all, Length)
+abc_all <- cbind(abc_all, Length)
 
 ## EXTRACT END POSITION
 End <- c()
@@ -90,6 +94,9 @@ abc_all$Tool <- "ABCpred"
 
 ## EXPORT RESULTS AS CSV
 write.table(abc_all, file = paste0(argv$outdir, "/", argv$sample, ".csv"), quote = F, row.names = F, sep = ";")
+
+## FINAL PRINT
+print(paste("Find your output file at: ", argv$outdir, "/", argv$sample, ".csv", sep = ""))
 
 ### EXPORT RDATA
 # #p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = ".")
