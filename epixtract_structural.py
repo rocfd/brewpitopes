@@ -180,3 +180,8 @@ out_file = pd.DataFrame(out, columns = ("Sequence", "Start", "End", "Positions",
 # EXPORT OUTPUT FILE
 out_file.to_csv(nameOutFile, sep = ";", index = True, index_label = "Rank")
 print("Output file: "+nameOutFile)
+
+if out_file.empty:
+    print("Discotope 2.0 could not predict any epitopes in your target structure. You will get an empty dataframe and you can continue the pipeline with the other predictors.")
+else:
+    print("Discotope 2.0 could predict one or more epitopes in your target structure. Go ahead!")
