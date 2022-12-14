@@ -88,7 +88,7 @@ Add path to output folder: C_epixtractor
       
       Copy results from the webpage table to a text editor (See Note 2 and 3).
       
-      Save as: A_linear_predictions/abcpred/abcpred_allmers.csv
+      Save as: A_linear_predictions/abcpred/abcpred_allmers.tsv
       
       If ABCpred does not predict any epitope in your target sequence see Note1.
 
@@ -96,7 +96,7 @@ Add path to output folder: C_epixtractor
 9. Extract epitopes from ABCpred results using epixtractor_linear_abcpred.R  
 
 ````
-Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_allmers A_linear_predictions/abcpred/abcpred_allmers.csv 
+Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_allmers A_linear_predictions/abcpred/abcpred_allmers.tsv 
 ````
       
 10. (Locally) Download the PDB file of the target protein at PDB DB. 
