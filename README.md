@@ -188,11 +188,11 @@ Add path to extracted glycosylated positions: F_epiglycan/glycan_positions.csv
 ```
 
 21. (Locally) Use ICM_browser (MOLSOFT) to extract the RSA values for accessibility calculation.  
-      Download ICM_browser from [http://www.molsoft.com/icm_browser.html](http://www.molsoft.com/icm_browser.html)
-      Move the PDB renumbered file of the corresponding protein (step 11) to a local folder.
-      Move the script Compute_ASA.icm to the same local folder.
-      Execute in the command line of the programme ICM Browser the code in Compute_ASA.icm  
-      Save results at G_episurf
+      Download ICM_browser from [http://www.molsoft.com/icm_browser.html](http://www.molsoft.com/icm_browser.html)      
+      Move the PDB renumbered file of the corresponding protein (step 11) to a local folder.    
+      Move the script Compute_ASA.icm to the same local folder.   
+      Execute in the command line of the programme ICM Browser the code in Compute_ASA.icm        
+      Save results at G_episurf     
       
 22. Extract the buried positions using icm_extractor.R  
 ```
