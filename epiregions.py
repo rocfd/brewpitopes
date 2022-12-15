@@ -74,11 +74,11 @@ nameOutFile=outpath+"/epitope_regions_extracted"+extension
 data = pd.read_csv(data_file, sep = ";")
 
 ## REMOVE RANK COLUMNS
-data = data[data.columns.drop(list(data.filter(regex='Rank')))]
+#data = data[data.columns.drop(list(data.filter(regex='Rank')))]
 
 ## SORT ASCENDINGLY BY START
 data_sorted = data.sort_values(by ='Start', ascending = 1)
-#data_sorted
+data_sorted
 
 ### epregs, SCORE AND POSITION EXTRACTOR
 inici=0
@@ -90,15 +90,15 @@ epregs=""
 epregs_vector=[]
 epregs_vectors=[]
 Score_ABCpred=0.0
-Score_Bepipred_2_0=0.0
+Score_Bebipred_2_0=0.0
 Score_Discotope_2_0=-10.0
 #data = pd.read_csv(data_file, sep = ",")
 #Rank,Sequence,Start,End,Positions,Score,Tool,Length,extracellular1,Glycosilation,accessibility
-epregs_vector=["Sequence","Start","End","Score_ABCpred","Score_Bepipred_2_0","Score_Discotope_2_0"]
+epregs_vector=["Sequence","Start","End","Score_ABCpred","Score_Bebipred_2_0","Score_Discotope_2_0"]
 epregs_vectors.append(epregs_vector)
 for index, row in data_sorted.iterrows():
     iniAct=row[1]
-    fiAct=row[2]
+    fiAct=row[4]
     if iniAct>=iniAnt and iniAct<=fiAnt and fiAct> fiAnt:
         epregs=epregs + row[0][fiAnt-fiAct:]
     elif iniAct>iniAnt and fiAct>fiAnt:
@@ -108,7 +108,7 @@ for index, row in data_sorted.iterrows():
             epregs_vector.append(inici)
             epregs_vector.append(fiAnt)
             epregs_vector.append(Score_ABCpred)
-            epregs_vector.append(Score_Bepipred_2_0)
+            epregs_vector.append(Score_Bebipred_2_0)
             epregs_vector.append(Score_Discotope_2_0)
             epregs_vectors.append(epregs_vector)
             Score_ABCpred=0.0
@@ -118,7 +118,7 @@ for index, row in data_sorted.iterrows():
         inici=iniAct
     if row[5] == "ABCpred" and row[4]>Score_ABCpred:
         Score_ABCpred=row[4]
-    if row[5] == "Bepipred 2.0" and row[4]>Score_Bepipred_2_0:
+    if row[5] == "Bebipred 2.0" and row[4]>Score_Bebipred_2_0:
         Score_Bebipred_2_0=row[4]
     if row[5] == "Discotope 2.0" and row[4]>Score_Discotope_2_0:
         Score_Discotope_2_0=row[4]
@@ -130,7 +130,7 @@ epregs_vector.append(epregs)
 epregs_vector.append(inici)
 epregs_vector.append(fiAnt)
 epregs_vector.append(Score_ABCpred)
-epregs_vector.append(Score_Bepipred_2_0)
+epregs_vector.append(Score_Bebipred_2_0)
 epregs_vector.append(Score_Discotope_2_0)
 epregs_vectors.append(epregs_vector)
     #for vector in epregs_vectors:
@@ -144,8 +144,8 @@ epregs_df.columns = epregs_df.iloc[0]
 epregs_df = epregs_df[1:]
 
 ## ORDER epregs BY MULTIPLE COLUMNS
-epregs_df.sort_values(by = ["Score_Bepipred_2_0", "Score_Discotope_2_0", "Score_ABCpred"], ascending = [False, False, False])
-epregs_df_sorted = epregs_df.sort_values(by = ["Score_Bepipred_2_0", "Score_Discotope_2_0", "Score_ABCpred"], ascending = [False, False, False])
+epregs_df.sort_values(by = ["Score_Bebipred_2_0", "Score_Discotope_2_0", "Score_ABCpred"], ascending = [False, False, False])
+epregs_df_sorted = epregs_df.sort_values(by = ["Score_Bebipred_2_0", "Score_Discotope_2_0", "Score_ABCpred"], ascending = [False, False, False])
 
 ## RANK epregs
 epregs_df_sorted["epregs_rank"] = range(0,len(epregs_df_sorted["Sequence"]),1)
@@ -157,4 +157,5 @@ epregs_df_sorted['epregs_length'] = epregs_df_sorted['Sequence'].apply(len)
 epregs_df_sorted.to_csv(outpath+"/epitope_regions_extracted.csv", index = False)
 
 ## FINAL PRINT
-print("Find your output file at: " + outpath+"/epitope_regions_extracted.csv")
+print("Find your epitope regions at: " + outpath+ 
+    "/epitope_regions_extracted.csv")
