@@ -117,7 +117,7 @@ Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_all
       
       Select chain A by default or your target chain of interest.
       
-      Export the results as .txt. Remove the last line "Identified...". Then, save as .csv by changing "\t" for commas.
+      Export the results as .txt. Remove the last line "Identified...". Then, save as .csv by replacing "\t" for commas.
       
       Save as B_structural_predictions/discotope/discotope_results.csv 
       
@@ -170,21 +170,21 @@ Rscript ../../../epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --in
       O-GLYCOSYLATIONS AT [NetOGlyc 4.0](https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0) server.
       Copy manually into a spreadsheet the output table headed: seqName  	source	feature	start 	end	score strand      frame       comment  
       SAVE AS CSV at F_epiglycan/netoglyc/oglyc_results.csv
-      (See Note 5)
+      (See Note 4)
       
 19. Extract the glycosylated positions from both N-glyc and O-glyc outputs using epiglycan_extractor.R
 ```
 Rscript ../../../epiglycan_extractor.R --oglyc F_epiglycan/netoglyc/oglyc_results.tsv --nglyc F_epiglycan/netnglyc/nglyc_results.tsv --outdir F_epiglycan
 ```
 
-20. Use epiglycan.py to label the glycosilated epitopes.  
+20. Use epiglycan.py to label the glycosylated epitopes.  
 ```
 python3 ../../../epiglycan.py
 ```
 ```
 Add path to input epitopes: E_epitopology/topology_extracted.csv
 Add path to output folder: F_epiglycan
-Add path to extracted glycosilated positions: F_epiglycan/glycan_positions.csv  
+Add path to extracted glycosylated positions: F_epiglycan/glycan_positions.csv  
 ```
 
 21. (Locally) Use ICM_browser (MOLSOFT) to extract the RSA values for accessibility calculation.  
@@ -245,3 +245,5 @@ Rscript fasta_mutator.R --fasta ../Projects/your_project/brewpitopes/Z_fasta/tar
 2. When copying the tabular results from ABCpred into a text file make sure to remove all lines with no sequence information (see example). Otherwise, the script "epixtractor_linear_abcpred.R" will not be able to read the file and will prompt the following error: "Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : line XXX did not have 5 elements ". 
 ![ABCpred results processing](/abcpred_processing.png?raw=true "ABCpred processing")
 3. When copying the tabular results from ABCpred into a text file make sure to put a tab at the end of the last line and follow it by a blank line.
+4. You can use spreadsheet editors like Microsoft Excel or Libre Office.
+
