@@ -62,7 +62,7 @@ top <- filter(data, grepl('Extracellular', Extracellular))
 top_c <- length(top$Sequence)
 
 ## GLYCAN
-glyc <- filter(top, Glycosilation == "Glycosilated")
+glyc <- filter(top, Glycosilation == "Non-glycosilated")
 glyc_c <- length(glyc$Sequence)
 
 ## SURFACE
