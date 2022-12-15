@@ -74,7 +74,7 @@ if(dim(oglyc1_filt)[1] == 0){
 
 ### NGLYC
 ### IF EMPTY
-if(dim(nglyc_filt[1] == 0){
+if(dim(nglyc_filt)[1] == 0){
   nglyc_filt[1,] <- NA
   nglyc_filt[,"Type"] <- NA
   nglyc_filt <- nglyc_filt[0,]
