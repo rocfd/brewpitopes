@@ -147,7 +147,7 @@ epitope_regions <- data.frame(Yield = c(1,2,3), Tool = c("ABCpred", "Bepipred 2.
 ## ABC COUNT IN EPITOPE REGIONS
 abc_count <- 0
 for(i in 1:length(epregs$Sequence)){
-                            if(epregs$Score_Bepipred_2_0[i] == 0 & epregs$Score_ABCpred[i] != 0){
+                            if(epregs$Score_Bebipred_2_0[i] == 0 & epregs$Score_ABCpred[i] != 0){
                             abc_count <- abc_count + 1
                             }
 }
@@ -157,7 +157,7 @@ epitope_regions$Yield[1] <- abc_count
 ## BEPI COUNT IN EPITOPE REGIONS
 bepi_count <- 0
 for(i in 1:length(epregs$Sequence)){
-                            if(epregs$Score_Bepipred_2_0[i] != 0){
+                            if(epregs$Score_Bebipred_2_0[i] != 0){
                             bepi_count <- bepi_count + 1
                             }
 }
@@ -167,7 +167,7 @@ epitope_regions$Yield[2] <- bepi_count
 ## DISC COUNT IN EPITOPE REGIONS
 disc_count <- 0
 for(i in 1:length(epregs$Sequence)){
-                            if(epregs$Score_Bepipred_2_0[i] == 0 & epregs$Score_Discotope_2_0[i] != -10){
+                            if(epregs$Score_Bebipred_2_0[i] == 0 & epregs$Score_Discotope_2_0[i] != -10){
                             disc_count <- disc_count + 1
                             }
 }
