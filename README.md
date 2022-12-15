@@ -22,9 +22,8 @@ sudo docker build -t brewpitopes /host/your/path/to/Dockerfile
 sudo docker run -it --volume /host/your/path/to/brewpitopes_projects:/home/Projects brewpitopes 
 ```
 
-Change /host/your/path/to/brewpitopes_projects for your desired local directory.
-
-Once you add files/folders in this directory, they will appear automatically within the brewpitopes docker image at /home/Projects.
+Change /host/your/path/to/brewpitopes_projects for your desired local directory.    
+Once you add files/folders in this directory, they will appear automatically within the brewpitopes docker image at /home/Projects. 
 
 3. Explore the folder structure of the Docker image named "brewpitopes".
 ```
@@ -63,15 +62,13 @@ Rscript ../../directories.R
 cd brewpitopes
 ```
 
-5. (Locally) Download the FASTA file of the target protein at [Uniprot](https://www.uniprot.org/).    
-      
-      Save at Z_fasta  ##(Check if it requires SUDO permissions when using Docker).
+5. (Locally) Download the FASTA file of the target protein at [Uniprot](https://www.uniprot.org/).        
+      Save at Z_fasta  ##(Check if it requires SUDO permissions when using Docker).       
       
 6. (Locally) Use the FASTA to predict linear epitopes using [Bepipred 2.0](https://services.healthtech.dtu.dk/service.php?BepiPred-2.0) server and export results as csv (default parameters).  
        
-      Save at A_linear_predictions/bepipred/bepipred_results.csv
-      
-      If Bepipred2.0 does not predict any epitope in your target sequence see Note1.
+      Save at A_linear_predictions/bepipred/bepipred_results.csv  
+      If Bepipred2.0 does not predict any epitope in your target sequence see Note1.      
       
 7. Extract epitopes from Bepipred results using epixtractor_linear_bepipred.py.  
 ```
@@ -84,13 +81,10 @@ Add path to output folder: C_epixtractor
       
 8. (Locally) Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
 
-      Predict using all the epitope windows (10,12,14,16,18,20), overlapping filter ON and the default threshold at 0.51.
-      
-      Copy results from the webpage table to a text editor (See Note 2 and 3).
-      
-      Save as: A_linear_predictions/abcpred/abcpred_allmers.tsv
-      
-      If ABCpred does not predict any epitope in your target sequence see Note1.
+      Predict using all the epitope windows (10,12,14,16,18,20), overlapping filter ON and the default threshold at 0.51.     
+      Copy results from the webpage table to a text editor (See Note 2 and 3).      
+      Save as: A_linear_predictions/abcpred/abcpred_allmers.tsv         
+      If ABCpred does not predict any epitope in your target sequence see Note1.    
 
       
 9. Extract epitopes from ABCpred results using epixtractor_linear_abcpred.R  
@@ -103,26 +97,18 @@ Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_all
        Save at ZZ_pdb/pdb  
        
 11. (Locally) Use [PDBrenum](http://dunbrack3.fccc.edu/PDBrenum/) server to renumerate the PDB residues according to its corresponding FASTA file in Uniprot.  
-      Download results as .pdb  (Selecting the .pdb options and deselect .mmCIF options)
-      
-      Uncompress the .zip file donwloaded.
-     
-      Uncompress the file your_pdb_id.pdb.gz
-      
-      Save your_pdb_id.pdb at ZZ_pdb/pdbrenum 
+      Download results as .pdb  (Selecting the .pdb options and deselect .mmCIF options)  
+      Uncompress the .zip file donwloaded.      
+      Uncompress the file your_pdb_id.pdb.gz    
+      Save your_pdb_id.pdb at ZZ_pdb/pdbrenum         
       
 12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server (input type 3).
 
-      Select default score threshold (-3.7).  
-      
-      Select chain A by default or your target chain of interest.
-      
-      Export the results as .txt. Remove the last line "Identified...". Then, save as .csv by replacing "\t" for commas.
-      
-      Save as B_structural_predictions/discotope/discotope_results.csv 
-      
-      If Discotope2.0 does not predict any epitope in your target sequence see Note1.
-      
+      Select default score threshold (-3.7).    
+      Select chain A by default or your target chain of interest.       
+      Export the results as .txt. Remove the last line "Identified...". Then, save as .csv by replacing "\t" for commas.      
+      Save as B_structural_predictions/discotope/discotope_results.csv        
+      If Discotope2.0 does not predict any epitope in your target sequence see Note1.     
       
 13. Extract epitopes from Discotope results using epixtract_structural.py
 ```
