@@ -116,12 +116,12 @@ for index, row in data_sorted.iterrows():
             Score_Discotope_2_0=-10.0
         epregs= row[0][:]
         inici=iniAct
-    if row[5] == "ABCpred" and row[4]>Score_ABCpred:
-        Score_ABCpred=row[4]
-    if row[5] == "Bebipred 2.0" and row[4]>Score_Bebipred_2_0:
-        Score_Bebipred_2_0=row[4]
-    if row[5] == "Discotope 2.0" and row[4]>Score_Discotope_2_0:
-        Score_Discotope_2_0=row[4]
+    if row[6] == "ABCpred" and row[2]>Score_ABCpred:
+        Score_ABCpred=row[2]
+    if row[6] == "Bebipred 2.0" and row[2]>Score_Bebipred_2_0:
+        Score_Bebipred_2_0=row[2]
+    if row[6] == "Discotope 2.0" and row[2]>Score_Discotope_2_0:
+        Score_Discotope_2_0=row[2]
     iniAnt=iniAct
     if fiAct > fiAnt:
         fiAnt=fiAct
