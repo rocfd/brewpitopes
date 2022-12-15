@@ -48,7 +48,7 @@ oglyc1_pos <- oglyc1_filt$oglyc1_pos
 write.table(oglyc1_pos, file = paste0(argv$outdir, "/", "oglyc_positions.csv", sep = ""), row.names = T, quote = F, col.names = "Index   Glyc_positions")
 
 ### IMPORT N-GLYCOSILATION DATA
-nglyc <- read.table(file = argv$nglyc, header = F, col.names = c("SeqName", "Position", "Potential", "Jury_agreement", "N-Glyc_result", "Prediction"), sep = "\t")
+nglyc <- read.table(file = argv$nglyc, header = F, col.names = c("SeqName", "Position", "Potential", "Jury_agreement", "N-Glyc_result", "Prediction"), sep = "")
 
 ## FILTER GLYCOSILATED POSITIONS
 nglyc_filt <- filter(nglyc, Prediction == "++" | Prediction == "+" | Prediction == "+++")
@@ -61,9 +61,26 @@ nglyc_pos <- nglyc_filt$nglyc_pos
 write.table(nglyc_pos, file = paste0(argv$outdir, "/", "nglyc_positions.csv"), row.names = T, quote = F, col.names = "Index   Glyc_positions")
 
 ### LABEL GLYCOSYLATION TYPE
-oglyc1_filt$Type <- "O-glyc"
 
-nglyc_filt$Type <- "N-glyc"
+### OGLYC
+### IF EMPTY
+if(dim(oglyc1_filt)[1] == 0){
+  oglyc1_filt[1,] <- NA
+  oglyc1_filt[,"Type"] <- NA
+  oglyc1_filt <- oglyc1_filt[0,]
+} else {  
+	oglyc1_filt$Type <- "O-glyc"
+}
+
+### NGLYC
+### IF EMPTY
+if(dim(nglyc_filt[1] == 0){
+  nglyc_filt[1,] <- NA
+  nglyc_filt[,"Type"] <- NA
+  nglyc_filt <- nglyc_filt[0,]
+} else {  
+	nglyc_filt$Type <- "N-glyc"
+}
 
 ## SUBSET DATAFRAMES
 oglyc1_df <- oglyc1_filt[,c("oglyc1_pos", "Type")]
