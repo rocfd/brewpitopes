@@ -15,6 +15,7 @@ add column area_info residue_name, residue_area, absolute_area, residue_relative
 
 
 ### EXPORT FILE
-write area_info header separator="," "/path/to/G_episurf/XXX_icm_rsa.csv"
+### CHANGE THE PATH TO YOUR TARGET FOLDER
+write area_info header separator="," "your/path/to/G_episurf/icm/rsa.csv"
 
 #q
