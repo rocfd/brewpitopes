@@ -149,12 +149,14 @@ Rscript ../../../epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --in
       
 18. (Locally) Predict the glycosilation profile of the protein using the FASTA file.  
       N-GLYCOSYLATIONS at [NetNGlyc 1.0](https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0) server.       
-      Copy manually into a spreadsheet the output table headed: SeqName	Position	Potential	Jury_agreement	NGlyc_result            
-      SAVE AS CSV as F_epiglycan/netnglyc/nglyc_results.csv       
+      Copy manually into a text editor the output table headed: SeqName	Position	Potential	Jury_agreement	NGlyc_result      
+      Do NOT include the header(error prone), only the data.
+      SAVE AS TSV as F_epiglycan/netnglyc/nglyc_results.tsv       
       (See Note 5)      
       
       O-GLYCOSYLATIONS AT [NetOGlyc 4.0](https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0) server.     
-      Copy manually into a spreadsheet the output rows of table headed: seqName  	source	feature	start 	end	score strand      frame       comment. Do NOT include the header, only the data.            
+      Copy manually into a text editor the rows of the output table headed: seqName  	source	feature	start 	end	score strand      frame       comment.    
+      Do NOT include the header(error prone), only the data.            
       SAVE AS CSV at F_epiglycan/netoglyc/oglyc_results.csv       
       (See Note 5)
       
@@ -232,5 +234,5 @@ Rscript fasta_mutator.R --fasta ../Projects/your_project/brewpitopes/Z_fasta/tar
 ![ABCpred results processing](/abcpred_processing.png?raw=true "ABCpred processing")
 3. When copying the tabular results from ABCpred into a text file make sure to put a tab at the end of the last line and follow it by a blank line below.
 4. When predicting the protein topology using CCTOP you might encounter no extracellular regions and you should not continue the Brewpitopes pipeline with this target protein. In such, case you will get the error: "STOPPER!! Your target protein has no predicted extracellular domains. Hence, neutralizing antibodies will not recognize it. You should consider another protein from your target organism."
-5. You can use spreadsheet editors like Microsoft Excel or Libre Office.
+5. You can use any text editor but make sure to place an empty line at the end of the TSV file. Otherwise, you will get an error due to incomplete final line.
 
