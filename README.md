@@ -130,7 +130,7 @@ Take steps 15, 16 and 17.1 if you want to predict protein topology using CCTOP. 
       Donwload results as .xml.
       Save at E_topology/CCTOP/cctop.xml
       
-16. Extract the topological domains using xml_cctop_parser.R 
+16. Extract the topological domains using xml_cctop_parser.R. (See Note 4)
 ```
 Rscript ../../../xml_cctop_parser.R --xml E_epitopology/CCTOP/cctop.xml --outdir E_epitopology/CCTOP
 ```
@@ -151,12 +151,12 @@ Rscript ../../../epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --in
       N-GLYCOSYLATIONS at [NetNGlyc 1.0](https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0) server.    
       Copy manually into a spreadsheet the output table headed: SeqName	Position	Potential	Jury_agreement	NGlyc_result          	 
       SAVE AS CSV as F_epiglycan/netnglyc/nglyc_results.csv 
-      (See Note 4)      
+      (See Note 5)      
       
       O-GLYCOSYLATIONS AT [NetOGlyc 4.0](https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0) server.
       Copy manually into a spreadsheet the output rows of table headed: seqName  	source	feature	start 	end	score strand      frame       comment. Do NOT include the header, only the data.           
       SAVE AS CSV at F_epiglycan/netoglyc/oglyc_results.csv       
-      (See Note 4)
+      (See Note 5)
       
 19. Extract the glycosylated positions from both N-glyc and O-glyc outputs using epiglycan_extractor.R
 ```
@@ -231,5 +231,6 @@ Rscript fasta_mutator.R --fasta ../Projects/your_project/brewpitopes/Z_fasta/tar
 2. When copying the tabular results from ABCpred into a text file make sure to remove all lines with no sequence information (see example). Otherwise, the script "epixtractor_linear_abcpred.R" will not be able to read the file and will prompt the following error: "Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : line XXX did not have 5 elements ". 
 ![ABCpred results processing](/abcpred_processing.png?raw=true "ABCpred processing")
 3. When copying the tabular results from ABCpred into a text file make sure to put a tab at the end of the last line and follow it by a blank line below.
-4. You can use spreadsheet editors like Microsoft Excel or Libre Office.
+4. When predicting the protein topology using CCTOP you might encounter no extracellular regions and you should not continue the Brewpitopes pipeline with this target protein. In such, case you will get the error: "STOPPER!! Your target protein has no predicted extracellular domains. Hence, neutralizing antibodies will not recognize it. You should consider another protein from your target organism."
+5. You can use spreadsheet editors like Microsoft Excel or Libre Office.
 
