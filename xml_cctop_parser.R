@@ -33,7 +33,7 @@ xml_data <- xmlToList(data)
 
 ## LIST TO DATAFRAME
 xml_df <- xml_data$Topology
-glimpse(xml_df)
+#glimpse(xml_df)
 
 ### EXTRACT ALL THE TOPOLOGY DOMAINS
 ### ADD ONE DATAFRAME PER DOMAIN
