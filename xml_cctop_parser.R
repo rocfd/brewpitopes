@@ -42,7 +42,7 @@ glimpse(xml_df)
 
 ### IF EMPTY
 if(is.null(xml_df)){
-  print("STOPPER!! Your target protein has no predicted extracellular domains. Hence, neutralizing antibodies will not recognize it. You should consider another protein from your target organism".)
+  print("STOPPER!! Your target protein has no predicted extracellular domains. Hence, neutralizing antibodies will not recognize it. You should consider another protein from your target organism.")
 } else {
   for(i in 1:(length(xml_df)-1)) {
     assign(paste0("topdf.", i), as.data.frame(t(xml_df[[i]])))
