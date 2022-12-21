@@ -26,7 +26,7 @@ p <- add_argument(p, "--outdir", help = "Path to output files", type = "characte
 argv <- parse_args(p)
 
 ## LOAD XML
-data <- xmlParse("/Users/rocfarriolduran/Desktop/BSC/B_SARS-CoV-2/A_SARS2_DEVELOPMENT/20221212_dockerized_final_test/brewpitopes/Projects/marina/brewpitopes/E_epitopology/CCTOP/cctop.xml")
+data <- xmlParse(argv$xml)
 
 ## TRANSFORM TO LIST
 xml_data <- xmlToList(data)
