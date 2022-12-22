@@ -113,7 +113,7 @@ data['accessibility_icm'] = z
 
 ## EXPORT DATA
 data.to_csv(path_or_buf= nameOutFile,
-         index = True, index_label = "Rank")
+         index = False) #index_label = "Rank")
 
 ### FINAL PRINT
 print("Find your output file at: " + nameOutFile)
