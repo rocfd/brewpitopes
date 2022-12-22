@@ -1,0 +1,918 @@
+<CCTOPItem id="SP|P01903|DRA_HUMAN" transmembrane="yes" evidence="Experiment">
+	<Copyright>Copyrighted by the Institute of Enzymology!</Copyright>
+	<Name>HLA class II histocompatibility antigen, DR alpha chain</Name>
+	<CrossRef>
+		<UniProt id="DRA_HUMAN">
+			<AC>P01903</AC>
+			<AC>A2BET4</AC>
+			<AC>Q30160</AC>
+			<AC>Q6IAZ1</AC>
+			<AC>Q861I2</AC>
+			<AC>Q9TP70</AC>
+		</UniProt>
+		<PDB id="1a6a">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1aqd">
+			<Chain id="A"/>
+			<Chain id="D"/>
+			<Chain id="G"/>
+			<Chain id="J"/>
+		</PDB>
+		<PDB id="1bii">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1bx2">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="1d5m">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1d5x">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1d5z">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1d6e">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1d9k">
+			<Chain id="C"/>
+			<Chain id="G"/>
+		</PDB>
+		<PDB id="1ddh">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1dlh">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1es0">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1f3j">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="1fne">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1fng">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1fv1">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1fyt">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1h15">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="1hqr">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1hxy">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1i3r">
+			<Chain id="A"/>
+			<Chain id="C"/>
+			<Chain id="E"/>
+			<Chain id="G"/>
+		</PDB>
+		<PDB id="1iak">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1iao">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1iea">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1ieb">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1j8h">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1jk8">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1jl4">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1jwm">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1jws">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1jwu">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1k2d">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1k8i">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1kg0">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1klg">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1klu">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1kt2">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1ktd">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1lnu">
+			<Chain id="A"/>
+			<Chain id="C"/>
+			<Chain id="E"/>
+			<Chain id="G"/>
+		</PDB>
+		<PDB id="1lo5">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1muj">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1pyw">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1qo3">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1r5i">
+			<Chain id="A"/>
+			<Chain id="E"/>
+		</PDB>
+		<PDB id="1r5v">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1r5w">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1s9v">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="1seb">
+			<Chain id="A"/>
+			<Chain id="E"/>
+		</PDB>
+		<PDB id="1sje">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1sjh">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1t5w">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="1t5x">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1u3h">
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="1uvq">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1ymm">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="1zgl">
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="2fse">
+			<Chain id="A"/>
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="2g9h">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="2iad">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="2iam">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="2ian">
+			<Chain id="A"/>
+			<Chain id="F"/>
+			<Chain id="K"/>
+			<Chain id="P"/>
+		</PDB>
+		<PDB id="2icw">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="2ipk">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="2nna">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="2oje">
+			<Chain id="A"/>
+			<Chain id="E"/>
+		</PDB>
+		<PDB id="2p24">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="2pxy">
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="2q6w">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="2seb">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="2wbj">
+			<Chain id="A"/>
+			<Chain id="E"/>
+		</PDB>
+		<PDB id="2xn9">
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="2z31">
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="3c5j">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="3c5z">
+			<Chain id="C"/>
+			<Chain id="G"/>
+		</PDB>
+		<PDB id="3c60">
+			<Chain id="C"/>
+			<Chain id="G"/>
+		</PDB>
+		<PDB id="3c6l">
+			<Chain id="C"/>
+			<Chain id="G"/>
+		</PDB>
+		<PDB id="3cup">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="3dmm">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="3e6f">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="3e6h">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="3ecb">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="3l6f">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="3lqz">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="3mbe">
+			<Chain id="A"/>
+			<Chain id="E"/>
+		</PDB>
+		<PDB id="3o6f">
+			<Chain id="A"/>
+			<Chain id="E"/>
+		</PDB>
+		<PDB id="3pdo">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="3pgc">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="3pgd">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="3qib">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="3qiu">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="3qiw">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="3qxa">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="3qxd">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="3rdt">
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="3s4s">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="3s5l">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="3t0e">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4aen">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4c56">
+			<Chain id="D"/>
+			<Chain id="J"/>
+		</PDB>
+		<PDB id="4e41">
+			<Chain id="A"/>
+			<Chain id="F"/>
+		</PDB>
+		<PDB id="4fqx">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4gbx">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4gg6">
+			<Chain id="A"/>
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="4h1l">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="4h25">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="4h26">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="4i0p">
+			<Chain id="C"/>
+			<Chain id="G"/>
+		</PDB>
+		<PDB id="4i5b">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="4is6">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4mcy">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4mcz">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4md0">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4md4">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4md5">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4mdi">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4mdj">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4ov5">
+			<Chain id="A"/>
+			<Chain id="D"/>
+			<Chain id="G"/>
+			<Chain id="J"/>
+			<Chain id="M"/>
+			<Chain id="P"/>
+		</PDB>
+		<PDB id="4ozf">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4ozg">
+			<Chain id="A"/>
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="4ozh">
+			<Chain id="A"/>
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="4ozi">
+			<Chain id="A"/>
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="4p23">
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="4p2o">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4p2q">
+			<Chain id="A"/>
+			<Chain id="F"/>
+			<Chain id="K"/>
+			<Chain id="P"/>
+		</PDB>
+		<PDB id="4p2r">
+			<Chain id="A"/>
+			<Chain id="F"/>
+			<Chain id="K"/>
+			<Chain id="P"/>
+		</PDB>
+		<PDB id="4p46">
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="4p4k">
+			<Chain id="A"/>
+			<Chain id="E"/>
+		</PDB>
+		<PDB id="4p4r">
+			<Chain id="A"/>
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="4p57">
+			<Chain id="A"/>
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="4p5k">
+			<Chain id="A"/>
+			<Chain id="D"/>
+		</PDB>
+		<PDB id="4p5m">
+			<Chain id="A"/>
+			<Chain id="C"/>
+			<Chain id="E"/>
+			<Chain id="G"/>
+		</PDB>
+		<PDB id="4p5t">
+			<Chain id="C"/>
+			<Chain id="G"/>
+		</PDB>
+		<PDB id="4x5w">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4x5x">
+			<Chain id="A"/>
+			<Chain id="C"/>
+		</PDB>
+		<PDB id="4y19">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="4y1a">
+			<Chain id="A"/>
+		</PDB>
+		<PDB id="5dmk">
+			<Chain id="A"/>
+			<Chain id="C"/>
+			<Chain id="E"/>
+			<Chain id="G"/>
+		</PDB>
+		<TOPDB id="AB00595">
+			<Alignment>
+				<CrossRefSeq>MAISGVPVLGFFIIAVLMSAQESWAIKEEHVIIQAEFYLNPDQSGEFMFDFDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTKRSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGVRKSNAAERRGPL</CrossRefSeq>
+				<OrigSeq>MAISGVPVLGFFIIAVLMSAQESWAIKEEHVIIQAEFYLNPDQSGEFMFDFDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTKRSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNAAERRGPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+		<TOPDB id="AB00712">
+			<Alignment>
+				<CrossRefSeq>MATIGALVLRFFFIAVLMSSQKSWAIKEEHTIIQAEFYLLPDKRGEFMFDFDGDEIFHVDIEKSETIWRLEEFAKFASFEAQGALANIAVDKANLDVMKERSNNTPDANVAPEVTVLSRSPVNLGEPNILICFIDKFSPPVVNVTWLRNGRPVTEGVSETVFLPRDDHLFRKFHYLTFLPSTDDFYDCEVDHWGLEEPLRKHWEFEEKTLLPETKENVVCALGLFVGLVGIVVGIILIMKGIKKRNVVERR----</CrossRefSeq>
+				<OrigSeq>MAISGVPVLGFFIIAVLMSAQESWAIKEEHVIIQAEFYLNPDQSGEFMFDFDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTKRSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNAAERRRGPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+		<TOPDB id="AB00754">
+			<Alignment>
+				<CrossRefSeq>MATIGALVLRFFFIAVLMSSQKSWAIKEEHTIIQAEFYLLPDKRGEFMFDFDGDEIFHVDIEKSETIWRLEEFAKFASFEAQGALANIAVDKANLDVMKERSNNTPDANVAPEVTVLSRSPVNLGEPNILICFIDKFSPPVVNVTWLRNGRPVTEGVSETVFLPRDDHLFRKFHYLTFLPSTDDFYDCEVDHWGLEEPLRKTWEFEEKTLLPETKENVMCALGLFVGLVGIVVGIILIMKGIKKRNVVERR----</CrossRefSeq>
+				<OrigSeq>MAISGVPVLGFFIIAVLMSAQESWAIKEEHVIIQAEFYLNPDQSGEFMFDFDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTKRSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNAAERRRGPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+		<TOPDB id="AB03736">
+			<Alignment>
+				<CrossRefSeq>MALRAGLVLGFHTLMTLLSPQEAGATKADHMGSYGPAFYQSYGASGQFTHEFDEEQLFSVDLKKSEAVWRLPEFGDFARFDPQGGLAGIAAIKAHLDILVERSNRSRAINVPPRVTVLPKSRVELGQPNILICIVDNIFPPVINITWLRNGQTVTEGVAQTSFYSQPDHLFRKFHYLPFVPSAEDVYDCQVEHWGLDAPLLRHWELQVPIPPPDAMETLVCALGLAIGLVGFLVGTVLIIMGTYVSS---------</CrossRefSeq>
+				<OrigSeq>MAISGVPVLGFFIIAVLMSAQESWAIKEEHV-IIQAEFYLNPDQSGEFMFDFDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTKRSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNNAAERRGPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+		<TOPDB id="AB00696">
+			<Alignment>
+				<CrossRefSeq>MPCSRALILGVLALNTMLSLCGGEDDIEADHVGFYGTTVYQSPGDIGQYTHEFDGDELFYVDLDKKKTVWRLPEFGQLILFEPQGGLQNIAAEKHNLGILTKRSNFTPATNEAPQATVFPKSPVLLGQPNTLICFVDNIFPPVINITWLRNSKSVTDGVYETSFLVNRDHSFHKLSYLTFIPSDDDIYDCKVEHWGLEEPVLKHWEPEIPAPMSELTETVVCALGLSVGLVGIVVGTIFIIQGLRSGGTSRHPGPL</CrossRefSeq>
+				<OrigSeq>MAISGVPVLGFFIIAVLMS-AQESWAIKEEHV-IIQAEFYLNPDQSGEFMFDFDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTKRSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNAAERRGPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+		<TOPDB id="AB02084">
+			<Alignment>
+				<CrossRefSeq>------------------------AIKADHVSTYAAFVQTHRPTGEFMFEFDEDEMFYVDLDKKETVWHLEEFGQAFSFEAQGGLANIAILNNNLNTLIQRSNHTQATNDPPEVTVFPKEPVELGQPNTLICHIDKFFPPVLNVTWLCNGELVTEGVAESLFLPRTDYSFHKFHYLTFVPSAEDFYDCRVEHWGLDQPLLKHWEAQEPIQMPETTETVLCALGLVLGLVGIIVGTVLIIKSLRSGHDPRAQGTL</CrossRefSeq>
+				<OrigSeq>MAISGVPVLGFFIIAVLMSAQESWAIKEEHVIIQAEFYLNPDQSGEFMFDFDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTKRSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNAAERRGPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+		<TOPDB id="AB02537">
+			<Alignment>
+				<CrossRefSeq>-------ILGVLALTTMLSLCGGEDDIEADHVGTYGISVYQSPGDIGQYTFEFDGDELFYVDLDKKETVWMLPEFGQLASFDPQGGLQNIAVVKHNLGVLTKRSNSTPATNEAPQATVFPKSPVLLGQPNTLICFVDNIFPPVINITWLRNSKSVADGVYETSFFVNRDYSFHKLSYLTFIPSDDDIYDCKVEHWGLEEPVLKHWEPEIPAPMSELTETVVCALGLSVGLVGIVVGTIFIIQGLRSGGTSRHPGPL</CrossRefSeq>
+				<OrigSeq>MAISGVPVLGFFIIAVLMS-AQESWAIKEEHVIIQA-EFYLNPDQSGEFMFDFDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTKRSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNAAERRGPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+		<TOPDB id="AB04292">
+			<Alignment>
+				<CrossRefSeq>-------ILGVLALTTMLSLCGGEDDIEADHVAFYGISVYQSPGDIGQYTFEFDGDELFYVDLDKKETVWMLPEFGQLTSFDPQGGLQEIATGKYNLEILIKDSNFTPAANEAPQATVFPKSPVLLGQPNTLICFVDNIFPPVINITWLRNSKSVTDGVYETSFLVNRDHSFHKLSYLTFIPSDDDIYDCKVEHWGLEEPVLKHWEPEIPAPMSELTETVVCALGLSVGLVGIVVGTIFIIQGLRSGGTSRHPGPL</CrossRefSeq>
+				<OrigSeq>MAISGVPVLGFFIIAVLMS-AQESWAIKEEHVIIQA-EFYLNPDQSGEFMFDFDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTKRSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNAAERRGPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+		<TOPDB id="AB00664">
+			<Alignment>
+				<CrossRefSeq>-------------------------------------YQSPGDIGQYTFEFDGDELFYVDLDKKETVWMLPEFAQLRRFEPQGGLQNIATGKHNLEILTKRSNSTPATNEAPQATVFPKSPVLLGQPNTLICFVDNIFPPVINITWLRNSKSVTDGVYETSFFVNRDYSFHKLSYLTFIPSDDDIYDCKVEHWGLEEPVLKHWEPEIPAPMSELTETVVCALGLSVGLVGIVVGTIFIIQGLRSGGTSRHPGPL</CrossRefSeq>
+				<OrigSeq>MAISGVPVLGFFIIAVLMSAQESWAIKEEHVIIQAEFYLNPDQSGEFMFDFDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTKRSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNAAERRGPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+		<TOPDB id="AB00780">
+			<Alignment>
+				<CrossRefSeq>-------------------------------------YQSPGDIGQYTFEFDGDELFYVDLDKKETIWMLPEFAQLRSFDPQGGLQNIATGKHNLGVLTKRSNSTPATNEAPQATVFPKSPVLLGQPNTLICFVDNIFPPVINITWLRNSKSVADGVYETSFFVNRDYSFHKLSYLTFIPSDDDIYDCKVEHWGLEEPVLKHWEPEIPAPMSELTETVVCALGLSVGLVGIVVGTIFIIQGLRSGGTSRHPGPL</CrossRefSeq>
+				<OrigSeq>MAISGVPVLGFFIIAVLMSAQESWAIKEEHVIIQAEFYLNPDQSGEFMFDFDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTKRSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNAAERRGPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+		<TOPDB id="AB03715">
+			<Alignment>
+				<CrossRefSeq>MILNKALMLGALALTTVMSPCGGEDIVADHVASYGVNLYQSYGPSGQYTHEFDGDEQFYVDLGRKETVWCLPVLRQF-RFDPQFALTNIAVLKHNLNSLIKRSNSTAATNEVPEVTVFSKSPVTLGQPNILICLVDNIFPPVVNITWLSNGHSVTEGVSETSFLSKSDHSFFKISYLTLLPSAEESYDCKVEHWGLDKPLLKHWEPEIPAPMSELTETVVCALGLSVGLVGIVVGTVFIIRGLRSVGASRHQGPL</CrossRefSeq>
+				<OrigSeq>MAISGVPVLGFFIIAVLMSAQESWAIKEEHVI-IQAEFYLNPDQSGEFMFDFDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTKRSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNAAERRGPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+		<TOPDB id="AB02571">
+			<Alignment>
+				<CrossRefSeq>--------------------------------------------------YDEDELFSFDFSQNTRVPRLPDFAEWA--QGQGDASAIAFGKSFCEMLMREVSPKLEGQIPVSRGLSVAEVFTLKPLEFGKPNTLVCFISNLFPPTLTVNWQLHSAPV-EGASPTSISAVDGLTFQAFSYLNFTPEPFDLYSCTVTHEIDRYTAIAYWVPQNALPSDL---LENALCGVAFALGVLGTIIGIVFFLCSQRPCSG--------</CrossRefSeq>
+				<OrigSeq>MAISGVPVLGFFIIAVLMSAQESWAIKEEHVIIQAEFYLNPDQSGEFMFDFDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMT-----KRSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHW--EFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNAAAERRGPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+		<TOPDB id="AB00626">
+			<Alignment>
+				<CrossRefSeq>--------------------------------------------GYWQFAYDGCDYIALNEDLKTWTAADMAAQITRRKWEQAG--AAERDRAYLEGECVEW--LRRYLKNGNATLLRTDPPKAHVTHH-----RRPEGDVTLRCWALGFYPADITLTWQLNGEELTQEMELVETRPAGDGTFQKWASVVVPLGKEQKYTCHVEHEGLPEPLTLRWGKEEP-PSSTKTNTVIIAVPVVLGAV-VILGAVMAFVMKRRRNTGGKGG---</CrossRefSeq>
+				<OrigSeq>MAISGVPVLGFFIIAVLMSAQESWAIKEEHVIIQAEFYLNPDQSGEFMFDFDGDEIFHV----------DMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTKRSNYTPITNVPPEVTVLTNSPVELREPN---VLICFIDKFTPPVVNVTWLRNGKPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLLKHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNAAERRGGPL</OrigSeq>
+			</Alignment>
+		</TOPDB>
+		<Signal id="TopDB-AB00595">
+			<Results>1-25</Results>
+		</Signal>
+		<Signal id="SignalP">
+			<Results>1-26</Results>
+			<Parameters>0.999496</Parameters>
+		</Signal>
+	</CrossRef>
+	<Sequence length="254" checkSum="64a52c8907b4500d6845dc8814903997">
+		<Signal from="1" to="25"/>
+		<Seq>MAISGVPVLGFFIIAVLMSAQESWAIKEEHVIIQAEFYLNPDQSGEFMFD
+FDGDEIFHVDMAKKETVWRLEEFGRFASFEAQGALANIAVDKANLEIMTK
+RSNYTPITNVPPEVTVLTNSPVELREPNVLICFIDKFTPPVVNVTWLRNG
+KPVTTGVSETVFLPREDHLFRKFHYLPFLPSTEDVYDCRVEHWGLDEPLL
+KHWEFDAPSPLPETTENVVCALGLTVGLVGIIIGTIFIIKGLRKSNAAER
+RGPL</Seq>
+	</Sequence>
+	<Topology numTM="1" reliability="97.9472">
+		<Region from="1" to="25" loc="S"/>
+		<Region from="26" to="226" loc="O"/>
+		<Region from="227" to="242" loc="M"/>
+		<Region from="243" to="254" loc="I"/>
+	</Topology>
+	<Predictions>
+		<Prediction name="HMMTOP">
+			<Region from="26" to="227" loc="O"/>
+			<Region from="228" to="243" loc="M"/>
+			<Region from="244" to="254" loc="I"/>
+		</Prediction>
+		<Prediction name="Memsat">
+			<Region from="26" to="215" loc="O"/>
+			<Region from="216" to="239" loc="M"/>
+			<Region from="240" to="254" loc="I"/>
+		</Prediction>
+		<Prediction name="Octopus">
+			<Region from="26" to="218" loc="O"/>
+			<Region from="219" to="239" loc="M"/>
+			<Region from="240" to="254" loc="I"/>
+		</Prediction>
+		<Prediction name="Philius">
+			<Region from="26" to="217" loc="O"/>
+			<Region from="218" to="239" loc="M"/>
+			<Region from="240" to="254" loc="I"/>
+		</Prediction>
+		<Prediction name="Phobius">
+			<Region from="26" to="220" loc="O"/>
+			<Region from="221" to="242" loc="M"/>
+			<Region from="243" to="254" loc="I"/>
+		</Prediction>
+		<Prediction name="Pro">
+			<Region from="26" to="218" loc="O"/>
+			<Region from="219" to="239" loc="M"/>
+			<Region from="240" to="254" loc="I"/>
+		</Prediction>
+		<Prediction name="Prodiv">
+			<Region from="26" to="216" loc="O"/>
+			<Region from="217" to="239" loc="M"/>
+			<Region from="240" to="254" loc="I"/>
+		</Prediction>
+		<Prediction name="Scampi">
+			<Region from="26" to="218" loc="O"/>
+			<Region from="219" to="239" loc="M"/>
+			<Region from="240" to="254" loc="I"/>
+		</Prediction>
+		<Prediction name="ScampiMsa">
+			<Region from="26" to="218" loc="O"/>
+			<Region from="219" to="238" loc="M"/>
+			<Region from="239" to="254" loc="I"/>
+		</Prediction>
+		<Prediction name="TMHMM">
+			<Region from="26" to="216" loc="I"/>
+			<Region from="217" to="239" loc="M"/>
+			<Region from="240" to="254" loc="O"/>
+		</Prediction>
+	</Predictions>
+	<Constraints>
+		<Constraint source="SIGNAL" sourceId="TopDB-AB00595">
+			<ConstraintRegion from="26" to="26" loc="O"/>
+		</Constraint>
+		<Constraint source="TOPDB" sourceId="AB00595">
+			<ConstraintRegion from="26" to="217" loc="O" subId="00100" subSource="4aenA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00068" subSource="2ipkA"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00086" subSource="3pdoA"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00087" subSource="3pgcA"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00088" subSource="3pgcD"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00089" subSource="3pgdA"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00090" subSource="3pgdD"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00130" subSource="4x5wA"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00131" subSource="4x5xA"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00132" subSource="4x5xC"/>
+			<ConstraintRegion from="26" to="45" loc="O" subId="00039" subSource="1r5iA"/>
+			<ConstraintRegion from="26" to="45" loc="O" subId="00043" subSource="1r5iE"/>
+			<ConstraintRegion from="26" to="205" loc="O" subId="00000" subSource="2sebA"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00001" subSource="1sebA"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00002" subSource="1sebE"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00031" subSource="1fytA"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00035" subSource="1j8hA"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00082" subSource="3c5jA"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00134" subSource="4y1aA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00032" subSource="1h15A"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00033" subSource="1h15D"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00034" subSource="1hxyA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00037" subSource="1lo5A"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00038" subSource="1pywA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00054" subSource="2g9hA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00055" subSource="2iamA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00056" subSource="2ianA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00057" subSource="2ianF"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00058" subSource="2ianK"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00059" subSource="2ianP"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00077" subSource="2q6wA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00078" subSource="2q6wD"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00081" subSource="2xn9D"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00083" subSource="3l6fA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00084" subSource="3o6fA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00085" subSource="3o6fE"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00091" subSource="3qxaA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00092" subSource="3qxaD"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00093" subSource="3qxdA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00094" subSource="3qxdD"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00095" subSource="3s4sA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00096" subSource="3s4sD"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00097" subSource="3s5lA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00098" subSource="3s5lD"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00099" subSource="3t0eA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00102" subSource="4c56D"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00103" subSource="4c56J"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00104" subSource="4e41A"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00105" subSource="4e41F"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00116" subSource="4is6A"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00124" subSource="4ov5A"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00125" subSource="4ov5D"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00126" subSource="4ov5G"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00127" subSource="4ov5J"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00128" subSource="4ov5M"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00129" subSource="4ov5P"/>
+			<ConstraintRegion from="26" to="214" loc="O" subId="00117" subSource="4mcyA"/>
+			<ConstraintRegion from="26" to="214" loc="O" subId="00118" subSource="4mczA"/>
+			<ConstraintRegion from="26" to="214" loc="O" subId="00119" subSource="4md0A"/>
+			<ConstraintRegion from="26" to="214" loc="O" subId="00120" subSource="4md4A"/>
+			<ConstraintRegion from="26" to="214" loc="O" subId="00121" subSource="4md5A"/>
+			<ConstraintRegion from="26" to="214" loc="O" subId="00122" subSource="4mdiA"/>
+			<ConstraintRegion from="26" to="214" loc="O" subId="00123" subSource="4mdjA"/>
+			<ConstraintRegion from="26" to="214" loc="O" subId="00133" subSource="4y19A"/>
+			<ConstraintRegion from="26" to="216" loc="O" subId="00106" subSource="4fqxA"/>
+			<ConstraintRegion from="26" to="216" loc="O" subId="00107" subSource="4gbxA"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00025" subSource="1aqdA"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00026" subSource="1aqdD"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00027" subSource="1aqdG"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00028" subSource="1aqdJ"/>
+			<ConstraintRegion from="26" to="219" loc="O" subId="00079" subSource="2wbjA"/>
+			<ConstraintRegion from="26" to="219" loc="O" subId="00080" subSource="2wbjE"/>
+			<ConstraintRegion from="27" to="45" loc="O" subId="00069" subSource="2ojeA"/>
+			<ConstraintRegion from="27" to="45" loc="O" subId="00073" subSource="2ojeE"/>
+			<ConstraintRegion from="27" to="206" loc="O" subId="00029" subSource="1bx2A"/>
+			<ConstraintRegion from="27" to="206" loc="O" subId="00030" subSource="1bx2D"/>
+			<ConstraintRegion from="27" to="206" loc="O" subId="00049" subSource="1t5wA"/>
+			<ConstraintRegion from="27" to="206" loc="O" subId="00050" subSource="1t5wD"/>
+			<ConstraintRegion from="27" to="207" loc="O" subId="00051" subSource="1t5xA"/>
+			<ConstraintRegion from="27" to="208" loc="O" subId="00003" subSource="1ymmA"/>
+			<ConstraintRegion from="27" to="213" loc="O" subId="00114" subSource="4i5bA"/>
+			<ConstraintRegion from="27" to="213" loc="O" subId="00115" subSource="4i5bD"/>
+			<ConstraintRegion from="28" to="45" loc="O" subId="00060" subSource="2icwA"/>
+			<ConstraintRegion from="28" to="45" loc="O" subId="00064" subSource="2icwD"/>
+			<ConstraintRegion from="28" to="154" loc="O" subId="00004" subSource="1hqrA"/>
+			<ConstraintRegion from="28" to="205" loc="O" subId="00005" subSource="1d5zA"/>
+			<ConstraintRegion from="28" to="205" loc="O" subId="00108" subSource="4h1lA"/>
+			<ConstraintRegion from="28" to="205" loc="O" subId="00109" subSource="4h1lD"/>
+			<ConstraintRegion from="28" to="206" loc="O" subId="00006" subSource="1d5xA"/>
+			<ConstraintRegion from="28" to="206" loc="O" subId="00007" subSource="1fv1A"/>
+			<ConstraintRegion from="28" to="206" loc="O" subId="00112" subSource="4h26A"/>
+			<ConstraintRegion from="28" to="206" loc="O" subId="00113" subSource="4h26D"/>
+			<ConstraintRegion from="28" to="207" loc="O" subId="00008" subSource="1dlhA"/>
+			<ConstraintRegion from="28" to="207" loc="O" subId="00009" subSource="1jwmA"/>
+			<ConstraintRegion from="28" to="207" loc="O" subId="00010" subSource="1jwsA"/>
+			<ConstraintRegion from="28" to="207" loc="O" subId="00011" subSource="1jwuA"/>
+			<ConstraintRegion from="28" to="207" loc="O" subId="00036" subSource="1kg0A"/>
+			<ConstraintRegion from="28" to="207" loc="O" subId="00047" subSource="1sjeA"/>
+			<ConstraintRegion from="28" to="207" loc="O" subId="00048" subSource="1sjhA"/>
+			<ConstraintRegion from="28" to="207" loc="O" subId="00110" subSource="4h25A"/>
+			<ConstraintRegion from="28" to="207" loc="O" subId="00111" subSource="4h25D"/>
+			<ConstraintRegion from="29" to="205" loc="O" subId="00012" subSource="1d6eA"/>
+			<ConstraintRegion from="29" to="205" loc="O" subId="00013" subSource="1klgA"/>
+			<ConstraintRegion from="29" to="206" loc="O" subId="00014" subSource="1d5mA"/>
+			<ConstraintRegion from="29" to="206" loc="O" subId="00015" subSource="1zglD"/>
+			<ConstraintRegion from="29" to="206" loc="O" subId="00052" subSource="2fseA"/>
+			<ConstraintRegion from="29" to="206" loc="O" subId="00053" subSource="2fseC"/>
+			<ConstraintRegion from="29" to="207" loc="O" subId="00016" subSource="1kluA"/>
+			<ConstraintRegion from="30" to="205" loc="O" subId="00017" subSource="1a6aA"/>
+			<ConstraintRegion from="47" to="60" loc="O" subId="00040" subSource="1r5iA"/>
+			<ConstraintRegion from="47" to="60" loc="O" subId="00044" subSource="1r5iE"/>
+			<ConstraintRegion from="47" to="60" loc="O" subId="00061" subSource="2icwA"/>
+			<ConstraintRegion from="47" to="60" loc="O" subId="00065" subSource="2icwD"/>
+			<ConstraintRegion from="47" to="60" loc="O" subId="00070" subSource="2ojeA"/>
+			<ConstraintRegion from="47" to="60" loc="O" subId="00074" subSource="2ojeE"/>
+			<ConstraintRegion from="62" to="99" loc="O" subId="00041" subSource="1r5iA"/>
+			<ConstraintRegion from="62" to="99" loc="O" subId="00045" subSource="1r5iE"/>
+			<ConstraintRegion from="62" to="99" loc="O" subId="00062" subSource="2icwA"/>
+			<ConstraintRegion from="62" to="99" loc="O" subId="00066" subSource="2icwD"/>
+			<ConstraintRegion from="62" to="99" loc="O" subId="00071" subSource="2ojeA"/>
+			<ConstraintRegion from="62" to="99" loc="O" subId="00075" subSource="2ojeE"/>
+			<ConstraintRegion from="101" to="206" loc="O" subId="00042" subSource="1r5iA"/>
+			<ConstraintRegion from="101" to="206" loc="O" subId="00046" subSource="1r5iE"/>
+			<ConstraintRegion from="101" to="206" loc="O" subId="00063" subSource="2icwA"/>
+			<ConstraintRegion from="101" to="206" loc="O" subId="00067" subSource="2icwD"/>
+			<ConstraintRegion from="101" to="206" loc="O" subId="00072" subSource="2ojeA"/>
+			<ConstraintRegion from="101" to="206" loc="O" subId="00076" subSource="2ojeE"/>
+			<ConstraintRegion from="103" to="103" loc="O" subId="00019" subSource="19159218"/>
+			<ConstraintRegion from="103" to="103" loc="O" subId="00020" subSource="7477400"/>
+			<ConstraintRegion from="143" to="143" loc="O" subId="00021" subSource="19159218"/>
+			<ConstraintRegion from="143" to="143" loc="O" subId="00022" subSource="7477400"/>
+			<ConstraintRegion from="156" to="206" loc="O" subId="00018" subSource="1hqrA"/>
+			<ConstraintRegion from="244" to="244" loc="I" subId="00023" subSource="19117940"/>
+			<ConstraintRegion from="244" to="244" loc="I" subId="00024" subSource="19117940"/>
+		</Constraint>
+		<Constraint source="TOPDB" sourceId="AB00712">
+			<ConstraintRegion from="26" to="226" loc="O" subId="00011" subSource="4p2oA"/>
+			<ConstraintRegion from="26" to="226" loc="O" subId="00012" subSource="4p2qA"/>
+			<ConstraintRegion from="26" to="226" loc="O" subId="00013" subSource="4p2qF"/>
+			<ConstraintRegion from="26" to="226" loc="O" subId="00014" subSource="4p2qK"/>
+			<ConstraintRegion from="26" to="226" loc="O" subId="00015" subSource="4p2qP"/>
+			<ConstraintRegion from="26" to="226" loc="O" subId="00016" subSource="4p2rA"/>
+			<ConstraintRegion from="26" to="226" loc="O" subId="00017" subSource="4p2rF"/>
+			<ConstraintRegion from="26" to="226" loc="O" subId="00018" subSource="4p2rK"/>
+			<ConstraintRegion from="26" to="226" loc="O" subId="00019" subSource="4p2rP"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00000" subSource="1fneA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00001" subSource="1fngA"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00004" subSource="1i3rA"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00005" subSource="1i3rC"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00006" subSource="1i3rE"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00007" subSource="1i3rG"/>
+			<ConstraintRegion from="26" to="217" loc="O" subId="00010" subSource="3qiwA"/>
+			<ConstraintRegion from="26" to="218" loc="O" subId="00008" subSource="3qibA"/>
+			<ConstraintRegion from="28" to="206" loc="O" subId="00009" subSource="3qiuA"/>
+			<ConstraintRegion from="28" to="207" loc="O" subId="00002" subSource="1r5vA"/>
+			<ConstraintRegion from="28" to="207" loc="O" subId="00003" subSource="1r5wA"/>
+		</Constraint>
+		<Constraint source="TOPDB" sourceId="AB00754">
+			<ConstraintRegion from="26" to="207" loc="O" subId="00000" subSource="1ieaA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00001" subSource="1iebA"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00002" subSource="1kt2A"/>
+			<ConstraintRegion from="26" to="207" loc="O" subId="00003" subSource="1ktdA"/>
+		</Constraint>
+		<Constraint source="TOPDB" sourceId="AB03736">
+			<ConstraintRegion from="27" to="206" loc="O" subId="00001" subSource="4i0pC"/>
+			<ConstraintRegion from="27" to="206" loc="O" subId="00002" subSource="4i0pG"/>
+		</Constraint>
+		<Constraint source="TOPDB" sourceId="AB00696">
+			<ConstraintRegion from="26" to="211" loc="O" subId="00006" subSource="3cupA"/>
+			<ConstraintRegion from="26" to="211" loc="O" subId="00007" subSource="3mbeA"/>
+			<ConstraintRegion from="26" to="211" loc="O" subId="00008" subSource="3mbeE"/>
+			<ConstraintRegion from="26" to="196" loc="O" subId="00009" subSource="5dmkA"/>
+			<ConstraintRegion from="26" to="196" loc="O" subId="00010" subSource="5dmkC"/>
+			<ConstraintRegion from="26" to="196" loc="O" subId="00011" subSource="5dmkE"/>
+			<ConstraintRegion from="26" to="196" loc="O" subId="00012" subSource="5dmkG"/>
+			<ConstraintRegion from="26" to="205" loc="O" subId="00000" subSource="1es0A"/>
+			<ConstraintRegion from="26" to="203" loc="O" subId="00001" subSource="2iadA"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00004" subSource="1f3jA"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00005" subSource="1f3jD"/>
+			<ConstraintRegion from="27" to="203" loc="O" subId="00002" subSource="1iaoA"/>
+			<ConstraintRegion from="208" to="215" loc="O" subId="00003" subSource="2iadA"/>
+		</Constraint>
+		<Constraint source="TOPDB" sourceId="AB02084">
+			<ConstraintRegion from="26" to="206" loc="O" subId="00002" subSource="3lqzA"/>
+			<ConstraintRegion from="26" to="208" loc="O" subId="00003" subSource="4p4kA"/>
+			<ConstraintRegion from="26" to="208" loc="O" subId="00004" subSource="4p4kE"/>
+			<ConstraintRegion from="26" to="208" loc="O" subId="00005" subSource="4p4rA"/>
+			<ConstraintRegion from="26" to="208" loc="O" subId="00006" subSource="4p4rC"/>
+			<ConstraintRegion from="26" to="208" loc="O" subId="00007" subSource="4p57A"/>
+			<ConstraintRegion from="26" to="208" loc="O" subId="00008" subSource="4p57C"/>
+			<ConstraintRegion from="26" to="208" loc="O" subId="00009" subSource="4p5kA"/>
+			<ConstraintRegion from="26" to="208" loc="O" subId="00010" subSource="4p5kD"/>
+			<ConstraintRegion from="26" to="208" loc="O" subId="00011" subSource="4p5mA"/>
+			<ConstraintRegion from="26" to="208" loc="O" subId="00012" subSource="4p5mC"/>
+			<ConstraintRegion from="26" to="208" loc="O" subId="00013" subSource="4p5mE"/>
+			<ConstraintRegion from="26" to="208" loc="O" subId="00014" subSource="4p5mG"/>
+			<ConstraintRegion from="143" to="143" loc="O" subId="00001" subSource="19159218"/>
+		</Constraint>
+		<Constraint source="TOPDB" sourceId="AB02537">
+			<ConstraintRegion from="26" to="203" loc="O" subId="00006" subSource="1mujA"/>
+			<ConstraintRegion from="26" to="203" loc="O" subId="00014" subSource="4p23C"/>
+			<ConstraintRegion from="26" to="203" loc="O" subId="00015" subSource="4p46C"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00002" subSource="1lnuA"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00003" subSource="1lnuC"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00004" subSource="1lnuE"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00005" subSource="1lnuG"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00007" subSource="3c5zC"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00008" subSource="3c5zG"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00009" subSource="3c60C"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00010" subSource="3c60G"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00011" subSource="3c6lC"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00012" subSource="3c6lG"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00013" subSource="3rdtC"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00016" subSource="4p5tC"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00017" subSource="4p5tG"/>
+			<ConstraintRegion from="143" to="143" loc="O" subId="00001" subSource="12589760"/>
+		</Constraint>
+		<Constraint source="TOPDB" sourceId="AB04292">
+			<ConstraintRegion from="103" to="103" loc="O" subId="00001" subSource="3980466"/>
+			<ConstraintRegion from="143" to="143" loc="O" subId="00002" subSource="3980466"/>
+		</Constraint>
+		<Constraint source="TOPDB" sourceId="AB00664">
+			<ConstraintRegion from="38" to="206" loc="O" subId="00000" subSource="1iakA"/>
+			<ConstraintRegion from="38" to="207" loc="O" subId="00001" subSource="1d9kC"/>
+			<ConstraintRegion from="38" to="207" loc="O" subId="00002" subSource="1d9kG"/>
+			<ConstraintRegion from="38" to="206" loc="O" subId="00004" subSource="1jl4A"/>
+			<ConstraintRegion from="103" to="103" loc="O" subId="00005" subSource="3980466"/>
+			<ConstraintRegion from="143" to="143" loc="O" subId="00006" subSource="3980466"/>
+		</Constraint>
+		<Constraint source="TOPDB" sourceId="AB00780">
+			<ConstraintRegion from="38" to="205" loc="O" subId="00004" subSource="2pxyC"/>
+			<ConstraintRegion from="38" to="205" loc="O" subId="00005" subSource="2z31C"/>
+			<ConstraintRegion from="38" to="206" loc="O" subId="00001" subSource="1u3hC"/>
+			<ConstraintRegion from="38" to="206" loc="O" subId="00002" subSource="1k2dA"/>
+			<ConstraintRegion from="38" to="227" loc="O" subId="00003" subSource="2p24A"/>
+		</Constraint>
+		<Constraint source="TOPDB" sourceId="AB03715">
+			<ConstraintRegion from="26" to="206" loc="O" subId="00005" subSource="2nnaA"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00006" subSource="4gg6A"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00007" subSource="4gg6C"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00008" subSource="4ozfA"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00009" subSource="4ozgA"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00010" subSource="4ozgC"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00011" subSource="4ozhA"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00012" subSource="4ozhC"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00013" subSource="4oziA"/>
+			<ConstraintRegion from="26" to="206" loc="O" subId="00014" subSource="4oziC"/>
+			<ConstraintRegion from="26" to="216" loc="O" subId="00002" subSource="1s9vA"/>
+			<ConstraintRegion from="26" to="216" loc="O" subId="00003" subSource="1s9vD"/>
+			<ConstraintRegion from="26" to="219" loc="O" subId="00004" subSource="1uvqA"/>
+			<ConstraintRegion from="27" to="206" loc="O" subId="00001" subSource="1jk8A"/>
+			<ConstraintRegion from="103" to="103" loc="O" subId="00015" subSource="11376336"/>
+		</Constraint>
+		<Constraint source="TOPDB" sourceId="AB02571">
+			<ConstraintRegion from="51" to="204" loc="O" subId="00002" subSource="1k8iA"/>
+		</Constraint>
+		<Constraint source="TOPDB" sourceId="AB00626">
+			<ConstraintRegion from="45" to="203" loc="O" subId="00000" subSource="1biiA"/>
+			<ConstraintRegion from="45" to="203" loc="O" subId="00001" subSource="1ddhA"/>
+			<ConstraintRegion from="45" to="203" loc="O" subId="00004" subSource="3e6fA"/>
+			<ConstraintRegion from="45" to="204" loc="O" subId="00003" subSource="3dmmA"/>
+			<ConstraintRegion from="45" to="204" loc="O" subId="00005" subSource="3e6hA"/>
+			<ConstraintRegion from="45" to="206" loc="O" subId="00002" subSource="1qo3A"/>
+			<ConstraintRegion from="45" to="206" loc="O" subId="00006" subSource="3ecbA"/>
+		</Constraint>
+	</Constraints>
+</CCTOPItem>

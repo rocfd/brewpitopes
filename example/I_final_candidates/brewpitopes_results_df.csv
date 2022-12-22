@@ -1,0 +1,2 @@
+Sequence;Start;Score;Length;End;Positions;Tool;Extracellular;Glycosilation;accessibility_icm
+PLPETTENVVCALG;210;0.84;14;223;210,211,212,213,214,215,216,217,218,219,220,221,222,223;ABCpred;c("Non-extracel", "Extracellular");Non-glycosilated;Accessible

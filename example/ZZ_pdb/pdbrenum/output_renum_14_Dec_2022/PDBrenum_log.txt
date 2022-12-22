@@ -1,0 +1,7 @@
+SP PDB_id chain_PDB   chain_auth  UniProt             SwissProt              uni_len chain_len     renum 5k_or_50k
++  1fv1   A           A           P01903              DRA_HUMAN                  179       179       179         0
++  1fv1   B           B           Q30154              DRB5_HUMAN                 190       190       190         0
++  1fv1   C           C           P02686              MBP_HUMAN                   20        20        20         0
++  1fv1   D           D           P01903              DRA_HUMAN                  178       178       178         0
++  1fv1   E           E           Q30154              DRB5_HUMAN                 190       190       190         0
++  1fv1   F           F           P02686              MBP_HUMAN                   18        18        18         0
