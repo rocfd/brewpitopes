@@ -235,5 +235,5 @@ Rscript fasta_mutator.R --fasta ../Projects/your_project/brewpitopes/Z_fasta/tar
 ![ABCpred results processing](/abcpred_processing.png?raw=true "ABCpred processing")
 3. When copying the tabular results from ABCpred into a text file make sure to put a tab at the end of the last line and follow it by a blank line below.
 4. When predicting the protein topology using CCTOP you might encounter no extracellular regions and you should not continue the Brewpitopes pipeline with this target protein. In such, case you will get the error: "STOPPER!! Your target protein has no predicted extracellular domains. Hence, neutralizing antibodies will not recognize it. You should consider another protein from your target organism."
-5. You can use any text editor but make sure to place an empty line at the end of the TSV file. Otherwise, you will get an error due to incomplete final line.
+5. You can use any text editor but make sure to place an empty line at the end of the TSV file. Otherwise, you might get an error due to incomplete final line.
 
