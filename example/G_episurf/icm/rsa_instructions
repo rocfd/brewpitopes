@@ -1,3 +1,0 @@
-The script compute_asa.icm calculates the RSA value per each amino acid of the target protein.
-Then it generates a csv file named rsa.csv that will be used to filter those epitopes containing buried epitopes.
-

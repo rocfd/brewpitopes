@@ -1,4 +1,0 @@
-In case you used Alphafold to predict the structure of your protein it will not need renumbering since it is already based in the FASTA you provided.
-Please use the same FASTA used for the linear predictions.
-
-Once you have you model, save it here.

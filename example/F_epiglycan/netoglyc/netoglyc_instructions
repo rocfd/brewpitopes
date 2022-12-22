@@ -1,5 +1,0 @@
-To predict O-glycosylations you can use Net-O-glyc server. 
-https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0
-
-Copy the dataframe of the output in the webpage to a excel file and save it as .csv
-

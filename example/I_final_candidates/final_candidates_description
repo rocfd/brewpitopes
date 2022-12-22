@@ -1,5 +1,0 @@
-In this folder you will find examples on how the epitope output of Brewpitopes look like.
-
-A dataframe named brewpitopes_results_df.csv and a list brewpitopes_results_candidates.csv
-
-You can use these candidates as final or you could further process them into epitope regions using epiconsensus.R

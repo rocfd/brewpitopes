@@ -1,8 +1,0 @@
-Using epifilter.R you will discard all those epitopes that are not-extracellular, glycosylated and non-accessible.
-
-The ouput files will be generated as final candidates at /I_final_candidates.
-
-You will have a dataframe describing all the features of the candidates.
-Additionally, you will have a list of the candidates.
-
-On the other hand, epifilter will also generate a dataframe containing all the candidates, discarded and selected, that will be later used at yield_plot.R
