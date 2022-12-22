@@ -63,7 +63,7 @@ cd brewpitopes
 ```
 
 5. (Locally) Download the FASTA file of the target protein at [Uniprot](https://www.uniprot.org/).        
-      Save at Z_fasta  ##(Check if it requires SUDO permissions when using Docker).       
+      Save at Z_fasta               
       
 6. (Locally) Use the FASTA to predict linear epitopes using [Bepipred 2.0](https://services.healthtech.dtu.dk/service.php?BepiPred-2.0) server and export results as csv (default parameters).  
        
@@ -150,13 +150,13 @@ Rscript ../../../epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --in
 18. (Locally) Predict the glycosilation profile of the protein using the FASTA file.  
       N-GLYCOSYLATIONS at [NetNGlyc 1.0](https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0) server.       
       Copy manually into a text editor the output table headed: SeqName	Position	Potential	Jury_agreement	NGlyc_result      
-      Do NOT include the header(error prone), only the data.      
+      Do NOT include the header(error prone), only the data.            
       SAVE AS TSV as F_epiglycan/netnglyc/nglyc_results.tsv       
       (See Note 5)      
       
       O-GLYCOSYLATIONS AT [NetOGlyc 4.0](https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0) server.     
-      Copy manually into a text editor the rows of the output table headed: seqName  	source	feature	start 	end	score strand      frame       comment.    
-      Do NOT include the header(error prone), only the data.            
+      Copy manually into a text editor the rows of the output table headed: seqName  	source	feature	start 	end	score strand      frame       comment.          
+      Do NOT include the header(error prone), only the data.               
       SAVE AS TSV at F_epiglycan/netoglyc/oglyc_results.tsv       
       (See Note 5)
       
@@ -177,11 +177,11 @@ Add path to extracted glycosylated positions: F_epiglycan/glycan_positions.csv
 
 21. (Locally) Use ICM_browser (MOLSOFT) to extract the RSA values for accessibility calculation.  
       Download ICM_browser from [http://www.molsoft.com/icm_browser.html](http://www.molsoft.com/icm_browser.html)      
-      Move the PDB renumbered file of the corresponding protein (step 11) to a local folder.    
-      Open the PDB in Molsoft.
-      Open Compute_ASA.icm in a text editor and modify the output path.
-      Execute in the command line of the programme ICM Browser the code in Compute_ASA.icm        
-      Your results will be exported at G_episurf/icm/rsa.csv     
+      Move the PDB renumbered file of the corresponding protein (step 11) to a local folder.          
+      Open the PDB in Molsoft.      
+      Open Compute_ASA.icm in a text editor and modify the output path.       
+      Execute in the command line of the programme ICM Browser the code in Compute_ASA.icm           
+      Your results will be exported at G_episurf/icm/rsa.csv      
       
 22. Extract the buried positions using icm_extractor.R  
 ```
