@@ -80,7 +80,7 @@ while not os.path.exists(outpath):
 print("Input file:" + outpath)
 
 # NAME THE OUTPUT FILE
-extension = os.path.splitext(data_file)[1]
+extension = ".csv"
 lenextension=len(extension)
 nameOutFile=outpath+"/discotope_results_extracted"+extension
 
@@ -146,7 +146,7 @@ resid_grouped = [list(group) for group in mit.consecutive_groups(resid)]
 
 # filter for groups larger than 4 elements
 resid_grouped_filtered = [group for group in resid_grouped if len(group)>=2]
-resid_grouped_filtered
+#resid_grouped_filtered
 
 # EXTRACT THE CONTINOUS SEQUENCES
 sequences = []
@@ -163,8 +163,8 @@ end = []
 for group in resid_grouped_filtered:
     start.append(group[0])
     end.append(group[-1])
-    #print(start)
-    #print(end)
+    print(start)
+    print(end)
     
 # EXTRACT SCORE
 Score = scored.discotope_score
