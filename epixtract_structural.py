@@ -88,7 +88,7 @@ nameOutFile=outpath+"/discotope_results_extracted"+extension
 
 # READ THE CSV INPUT & ADD HEADERS TO DISCOTOPE DATAFRAME
 prediction = pd.read_csv(data_file, 
-			 sep=',',
+			 sep='\t',
 			 names = ["chain_id", "residue_id", "residue_name", "contact_number", "propensity_score", "discotope_score", "status"])
 
 #print(prediction)
