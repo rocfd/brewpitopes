@@ -19,7 +19,7 @@ sudo docker build -t brewpitopes /host/your/path/to/Dockerfile
 2. To run the Brewpitopes docker image while linking a local folder to a folder within the docker image do:
 
 ```
-sudo docker run -it --volume /host/your/path/to/brewpitopes_projects:/home/Projects brewpitopes 
+sudo docker run -it --volume /host/your/path/to/brewpitopes_projects:/home/brewpitopes/Projects brewpitopes 
 ```
 
 Change /host/your/path/to/brewpitopes_projects for your desired local directory.    
