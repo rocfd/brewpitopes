@@ -100,7 +100,8 @@ Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_all
       Download results as .pdb  (Selecting the .pdb options and deselect .mmCIF options)  
       Uncompress the .zip file donwloaded.      
       Uncompress the file your_pdb_id.pdb.gz    
-      Save your_pdb_id.pdb at ZZ_pdb/pdbrenum         
+      Save your_pdb_id.pdb at ZZ_pdb/pdbrenum   
+      In the case you are using an Alphafold model, you will not need to renumber the pdb.
       
 12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server (input type 3).
 
