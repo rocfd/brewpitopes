@@ -128,8 +128,8 @@ Rscript ../../../epimerger.R --abcpred C_epixtractor/abcpred_results_extracted.c
 Take steps 15, 16 and 17.1 if you want to predict protein topology using CCTOP. Otherwise, if the topology of your protein is already described and you want to add it manually go directly to step 17.2.
 
 15. (Locally) Predict the protein topology using [CCTOP](http://cctop.enzim.ttk.mta.hu/?_=/jobs/submit) server.  
-      Donwload results as .xml.
-      Save at E_topology/CCTOP/cctop.xml
+      Copy the .xml output from the main page into a text file (do not copy the downloadable file).    
+      Save as E_topology/CCTOP/cctop.xml
       
 16. Extract the topological domains using xml_cctop_parser.R. (See Note 4)
 ```
