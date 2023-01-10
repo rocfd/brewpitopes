@@ -9,11 +9,10 @@ Available as preprint at: https://doi.org/10.1101/2022.11.28.518301
 
 
 ## INSTALLATION (DOCKER IMAGE)
-0. Download the Dockerfile from this [repository](https://github.com/AlbertCS/Brewpitopes_container). To compile the Dockerfile you will need to have docker installed. 
 
-2. Create docker image from Dockerfile (may take a while):
+1. Download the docker image from [Dockerhub](https://hub.docker.com/r/bsceapm/brewpitopes) (it might take a while). You need to have Docker installed.
 ```
-sudo docker build -t brewpitopes /host/your/path/to/Dockerfile
+docker pull bsceapm/brewpitopes:1.0
 ``` 
 
 2. To run the Brewpitopes docker image while linking a local folder to a folder within the docker image do:
@@ -23,33 +22,28 @@ sudo docker run -it --volume /host/your/path/to/brewpitopes_projects:/home/brewp
 ```
 
 Change /host/your/path/to/brewpitopes_projects for your desired local directory.    
-Once you add files/folders in this directory, they will appear automatically within the brewpitopes docker image at /home/Projects. 
+Once you add files/folders in this directory, they will appear automatically within the brewpitopes docker image at /home/brewpitopes/Projects. 
 
 3. Explore the folder structure of the Docker image named "brewpitopes".
 ```
 cd ..
 ls
 ```
-You should see the folders: Brewpitopes ## revise
+You should see the folder: brewpitopes
 
-3.1 To execute the scripts of the pipeline go to:
-```      
-cd Brewpitopes
+3.1 To find an example of a brewpitopes project and the required files go to
+```
+cd brewpitopes/example
 ```
 
-3.2 To find an example of a brewpitopes project and the required files go to
-```
-cd ../example
-```
-
-3.3 To create new project, do so within the Projects folder:
+3.2 To create new project, do so within the Projects folder:
 ```
 cd ../Projects
 mkdir your_project
 cd your_project
 ```
 
-3.4 You are now ready to predict and refine your B-cell epitope candidates.
+3.3 You are now ready to predict and refine your B-cell epitope candidates.
 
 ## PIPELINE
 ** All the steps should be run within the Docker image at your Terminal except when it indicates "(Locally)". **
