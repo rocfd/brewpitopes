@@ -180,8 +180,14 @@ Add path to extracted glycosylated positions: F_epiglycan/glycan_positions.csv
       Download ICM_browser from [http://www.molsoft.com/icm_browser.html](http://www.molsoft.com/icm_browser.html)      
       Move the PDB renumbered file of the corresponding protein (step 11) to a local folder.          
       Open the PDB in Molsoft.      
-      Open Compute_ASA.icm in a text editor and modify the output path.       
-      Execute in the command line of the programme ICM Browser the code in Compute_ASA.icm           
+      Open Compute_.icm using Vi:
+
+```
+vi ../../../compute_asa.icm
+%y+ # copy the entire script, paste into text editor and modify the output path (your/local/path/to/G_episurf/icm).
+```
+
+      Execute in the command line of the programme ICM Browser the copied code with your modified path.          
       Your results will be exported at G_episurf/icm/rsa.csv      
       
 22. Extract the buried positions using icm_extractor.R  
