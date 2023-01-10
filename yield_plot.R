@@ -106,34 +106,75 @@ cbPalette <- c("#999999", "#E69F00", "#56B4E9", "#009E73", "#F0E442", "#0072B2",
 
 ### STACKED BARPLOT
 ## DATAFRAME UNFILTERED DATA
+
+### IF EMPTY
 ep_pred <- data.frame(table(data$Tool))
-ep_pred <- rename(ep_pred, Tool = "Var1")
-ep_pred <- rename(ep_pred, Yield = "Freq")
-ep_pred$Dataset <- "Epitope Prediction"
+if(dim(ep_pred)[1] == 0){
+  ep_pred <- data.frame(Tool = "NA", Yield = 0, Dataset = "Epitope Prediction")
+  #ep_pred$Tool <- "NA"
+  #ep_pred$Yield <- 0
+  #ep_pred$Dataset <- "Epitope Prediction"
+} else {
+  ep_pred <- rename(ep_pred, Tool = "Var1")
+  ep_pred <- rename(ep_pred, Yield = "Freq")
+  ep_pred$Dataset <- "Epitope Prediction"
+}
+
 
 ### DATAFRAME TOPOLOGY
 topology <- data.frame(table(top$Tool))
-topology <- rename(topology, Tool = "Var1")
-topology <- rename(topology, Yield = "Freq")
-topology$Dataset <- "Topology"
+if(dim(topology)[1] == 0){
+  topology <- data.frame(Tool = "NA", Yield = 0, Dataset = "Topology")
+  #topology$Tool <- "NA"
+  #topology$Yield <- 0
+  #topology$Dataset <- "Topology"
+} else {
+  topology <- rename(topology, Tool = "Var1")
+  topology <- rename(topology, Yield = "Freq")
+  topology$Dataset <- "Topology"
+}
+
 
 ### DATAFRAME glycosylation
 glycosylation <- data.frame(table(glyc$Tool))
-glycosylation <- rename(glycosylation, Tool = "Var1")
-glycosylation <- rename(glycosylation, Yield = "Freq")
-glycosylation$Dataset <- "Glycosylation"
+if(dim(glycosylation)[1] == 0){
+  glycosylation <- data.frame(Tool = "NA", Yield = 0, Dataset = "Glycosylation")
+  #glycosylation$Tool <- "NA"
+  #glycosylation$Yield <- 0
+  #glycosylation$Dataset <- "Glycosylation"
+} else {
+  glycosylation <- rename(glycosylation, Tool = "Var1")
+  glycosylation <- rename(glycosylation, Yield = "Freq")
+  glycosylation$Dataset <- "Glycosylation"
+}
+
 
 ### DATAFRAME accessibility
 accessibility <- data.frame(table(surf$Tool))
-accessibility <- rename(accessibility, Tool = "Var1")
-accessibility <- rename(accessibility, Yield = "Freq")
-accessibility$Dataset <- "Accessibility"
+if(dim(accessibility)[1] == 0){
+  accessibility <- data.frame(Tool = "NA", Yield = 0, Dataset = "Accessibility")
+  #accessibility$Tool <- "NA"
+  #accessibility$Yield <- 0
+  #accessibility$Dataset <- "Accessibility"
+} else {
+  accessibility <- rename(accessibility, Tool = "Var1")
+  accessibility <- rename(accessibility, Yield = "Freq")
+  accessibility$Dataset <- "Accessibility"
+}
+
 
 ### DATAFRAME long
 long <- data.frame(table(len$Tool))
-long <- rename(long, Tool = "Var1")
-long <- rename(long, Yield = "Freq")
-long$Dataset <- "Length"
+if(dim(long)[1] == 0){
+  long <- data.frame(Tool = "NA", Yield = 0, Dataset = "Length")
+  #long$Tool <- "NA"
+  #long$Yield <- 0
+  #long$Dataset <- "Length"
+} else {
+  long <- rename(long, Tool = "Var1")
+  long <- rename(long, Yield = "Freq")
+  long$Dataset <- "Length"
+}
 
 ### DATAFRAME EPITOPE REGIONS
 #epitope_regions$Yield[1] <- if(epregs$Score_Bepipred_2_0 == 0 & epregs$Score_ABCpred != 0){
