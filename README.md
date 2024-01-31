@@ -59,19 +59,16 @@ cd brewpitopes
 5. (Locally) Download the FASTA file of the target protein at [Uniprot](https://www.uniprot.org/).        
       Save at Z_fasta               
 
-6. (Locally) Use the FASTA to predict linear epitopes using [Bepipred 2.0](https://services.healthtech.dtu.dk/service.php?BepiPred-2.0) server and export results as csv (default parameters).  
+6. (Locally) Use the FASTA to predict linear epitopes using [Bepipred 3.0](https://services.healthtech.dtu.dk/services/BepiPred-3.0/) server and export results (as csv)zip file). Use default options (High-confidence, Thr: 0.152).  
 
-      Save at A_linear_predictions/bepipred/bepipred_results.csv  
-      If Bepipred2.0 does not predict any epitope in your target sequence see Note1.      
+      Save the file Bcell_linepitope_top_20pct_preds.fasta (within zip) at A_linear_predictions/bepipred/bepipred_linear_pred.fasta 
+      If Bepipred3.0 does not predict any epitope in your target sequence see Note1.      
 
-7. Extract epitopes from Bepipred results using epixtractor_linear_bepipred.py.  
+7. Extract epitopes from Bepipred results using epixtractor_linear_bepipred3.py. This will automatically save the results at C_epixtractor
 ```
-python3 ../../../epixtractor_linear_bepipred.py
+python3 ../../../epixtractor_linear_bepipred3.py
 ```
-```
-Add path to bepipred results: A_linear_predictions/bepipred/bepipred_results.csv
-Add path to output folder: C_epixtractor    
-```
+
 
 8. (Locally) Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
 
