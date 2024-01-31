@@ -6,7 +6,7 @@ Created on Tue Nov 10 14:21:51 2020
 """
 ### EPITOPE EXTRACTOR
 ## GOAL: extract linear epitopes in tabulated data either from linear or structural prediction origin.
-## Variant for linear epitope predictions at: 
+## Variant for linear epitope predictions at:
 ## https://services.healthtech.dtu.dk/service.php?BepiPred-2.0
 ## SUBGOAL: Create epitopes from continous residues that surpass a given quality threshold in Linear Predictions predictions.
 
@@ -27,10 +27,10 @@ h = '''
         "location/file_name.csv"
     to the input questions that appear in the console.
     <file_name> should be a .csv separated by ","
-    OPTIONAL 
+    OPTIONAL
     The script returns a <file_name>_out.csv as output.
     You can also do the following (if using Mac/Linux OS):
-        $ chmod +x epixtractor_linear.py 
+        $ chmod +x epixtractor_linear.py
         $ ./epixtractor_linear_bepipred.py  <location/file_name.csv>
     You need python 3 installed in your computer!!!
     '''
@@ -88,10 +88,10 @@ nameOutFile=outpath+"/bepipred_results_extracted"+extension
 ## PIPELINE for EXTRACTION OF EPITOPES FROM LINEAR PREDICTIONS
 
 # READ THE CSV INPUT & ADD HEADERS TO BEBIPRED DATAFRAME
-prediction = pd.read_csv(data_file, 
-			 sep=',', 
+prediction = pd.read_csv(data_file,
+			 sep=',',
 			 header = "infer")
-    
+
 # Filter by bebipred_score threshold at 0.55
 scored = prediction[prediction.EpitopeProbability >= 0.55]
 
@@ -104,12 +104,12 @@ for i in range(len(scored)):
     try:
         if scored.loc[i,'Position']-scored.loc[i-1,'Position'] == 1:
             resid.append(scored.loc[i,'Position'])
-    
+
     ## misses first aminoacid of a stretch.
     except:
         resid.append(scored.loc[i,'Position'])
         continue
-        
+
 # Group the epitopes and extract positions
 resid_grouped = [list(group) for group in mit.consecutive_groups(resid)]
 
@@ -137,7 +137,7 @@ for group in resid_grouped_filtered:
 
 # EXTRACT BEBIPRED SCORE
 BebiScore = scored.EpitopeProbability
-    
+
 # CREATE LIST TO PREPARE OUTPUT DATAFRAME
 out = list(zip(sequences,start,end,resid_grouped_filtered,BebiScore))
 #print (out)
