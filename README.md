@@ -1,5 +1,5 @@
 # BREWPITOPES: a pipeline to refine B-cell epitope predictions during public health emergencies
-
+Update based on WNV project
 ## ABSTRACT
 The application of B-cell epitope identification for the development of therapeutic antibodies is well established but consuming in terms of time and resources. For this reason, in the last few years, the immunoinformatic community has developed several computational predictive tools. While relatively successful, most of these tools only use a few properties of the candidate region to determine their likelihood of being a true B-cell epitope. However, this likelihood is influenced by a wide variety of protein features, including the presence of glycosylated residues in the neighbourhood of the candidate epitope, the subcellular location of the protein region or the three-dimensional information about their surface accessibility in the parental protein.
 
@@ -13,16 +13,16 @@ Available as preprint at: https://doi.org/10.1101/2022.11.28.518301
 1. Download the docker image from [Dockerhub](https://hub.docker.com/r/bsceapm/brewpitopes) (it might take a while). You need to have Docker installed.
 ```
 docker pull bsceapm/brewpitopes:1.0
-``` 
+```
 
 2. To run the Brewpitopes docker image while linking a local folder to a folder within the docker image do:
 
 ```
-sudo docker run -it --volume /host/your/path/to/brewpitopes_projects:/home/brewpitopes/Projects brewpitopes 
+sudo docker run -it --volume /host/your/path/to/brewpitopes_projects:/home/brewpitopes/Projects brewpitopes
 ```
 
 Change /host/your/path/to/brewpitopes_projects for your desired local directory.    
-Once you add files/folders in this directory, they will appear automatically within the brewpitopes docker image at /home/brewpitopes/Projects. 
+Once you add files/folders in this directory, they will appear automatically within the brewpitopes docker image at /home/brewpitopes/Projects.
 
 3. Explore the folder structure of the Docker image named "brewpitopes".
 ```
@@ -58,12 +58,12 @@ cd brewpitopes
 
 5. (Locally) Download the FASTA file of the target protein at [Uniprot](https://www.uniprot.org/).        
       Save at Z_fasta               
-      
+
 6. (Locally) Use the FASTA to predict linear epitopes using [Bepipred 2.0](https://services.healthtech.dtu.dk/service.php?BepiPred-2.0) server and export results as csv (default parameters).  
-       
+
       Save at A_linear_predictions/bepipred/bepipred_results.csv  
       If Bepipred2.0 does not predict any epitope in your target sequence see Note1.      
-      
+
 7. Extract epitopes from Bepipred results using epixtractor_linear_bepipred.py.  
 ```
 python3 ../../../epixtractor_linear_bepipred.py
@@ -72,7 +72,7 @@ python3 ../../../epixtractor_linear_bepipred.py
 Add path to bepipred results: A_linear_predictions/bepipred/bepipred_results.csv
 Add path to output folder: C_epixtractor    
 ```
-      
+
 8. (Locally) Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
 
       Predict using all the epitope windows (10,12,14,16,18,20), overlapping filter ON and the default threshold at 0.51.     
@@ -80,23 +80,23 @@ Add path to output folder: C_epixtractor
       Save as: A_linear_predictions/abcpred/abcpred_allmers.tsv         
       If ABCpred does not predict any epitope in your target sequence see Note1.    
 
-      
+
 9. Extract epitopes from ABCpred results using epixtractor_linear_abcpred.R  
 
 ````
-Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_allmers A_linear_predictions/abcpred/abcpred_allmers.tsv 
+Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_allmers A_linear_predictions/abcpred/abcpred_allmers.tsv
 ````
-      
-10. (Locally) Download the PDB file of the target protein at PDB DB. 
+
+10. (Locally) Download the PDB file of the target protein at PDB DB.
        Save at ZZ_pdb/pdb  
-       
+
 11. (Locally) Use [PDBrenum](http://dunbrack3.fccc.edu/PDBrenum/) server to renumerate the PDB residues according to its corresponding FASTA file in Uniprot.  
       Download results as .pdb  (Selecting the .pdb options and deselect .mmCIF options)  
       Uncompress the .zip file donwloaded.      
       Uncompress the file your_pdb_id.pdb.gz    
       Save your_pdb_id.pdb at ZZ_pdb/pdbrenum   
       In the case you are using an Alphafold model, you will not need to renumber the pdb.
-      
+
 12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server (input type 3).
 
       Select default score threshold (-3.7).    
@@ -104,7 +104,7 @@ Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_all
       Export the results as .txt. Remove the last line "Identified...". Then, save as .csv by replacing "\t" for commas.      
       Save as B_structural_predictions/discotope/discotope_results.csv        
       If Discotope2.0 does not predict any epitope in your target sequence see Note1.     
-      
+
 13. Extract epitopes from Discotope results using epixtract_structural.py
 ```
 python3 ../../../epixtract_structural.py  
@@ -124,7 +124,7 @@ Take steps 15, 16 and 17.1 if you want to predict protein topology using CCTOP. 
 15. (Locally) Predict the protein topology using [CCTOP](http://cctop.enzim.ttk.mta.hu/?_=/jobs/submit) server.  
       Copy the .xml output from the main page into a text file (do not copy the downloadable file).    
       Save as E_topology/CCTOP/cctop.xml
-      
+
 16. Extract the topological domains using xml_cctop_parser.R. (See Note 4)
 ```
 Rscript ../../../xml_cctop_parser.R --xml E_epitopology/CCTOP/cctop.xml --outdir E_epitopology/CCTOP
@@ -141,20 +141,20 @@ Rscript ../../../epitopology_cctop.R --input_CCTOP E_epitopology/CCTOP/cctop_dom
 ```
 Rscript ../../../epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --input_epitopes D_epimerger/merged.csv --outdir E_epitopology
 ```
-      
+
 18. (Locally) Predict the glycosylation profile of the protein using the FASTA file.  
       N-GLYCOSYLATIONS at [NetNGlyc 1.0](https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0) server.       
       Copy manually into a text editor the output table headed: SeqName	Position	Potential	Jury_agreement	NGlyc_result      
       Do NOT include the header(error prone), only the data.            
       SAVE AS TSV as F_epiglycan/netnglyc/nglyc_results.tsv       
       (If you get an error, please see Note 5)      
-      
+
       O-GLYCOSYLATIONS AT [NetOGlyc 4.0](https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0) server.     
       Copy manually into a text editor the rows of the output table headed: seqName  	source	feature	start 	end	score strand      frame       comment.          
       Do NOT include the header(error prone), only the data.               
       SAVE AS TSV at F_epiglycan/netoglyc/oglyc_results.tsv       
       (If you get an error, please see Note 5)
-      
+
 19. Extract the glycosylated positions from both N-glyc and O-glyc outputs using epiglycan_extractor.R
 ```
 Rscript ../../../epiglycan_extractor.R --oglyc F_epiglycan/netoglyc/oglyc_results.tsv --nglyc F_epiglycan/netnglyc/nglyc_results.tsv --outdir F_epiglycan
@@ -184,7 +184,7 @@ vi ../../../compute_asa.icm
 Open the PDB in Molsoft.      
 Execute in the command line of the programme ICM Browser the copied code with your modified path.          
 Your results will be exported at G_episurf/icm/rsa.csv      
-      
+
 22. Extract the buried positions using icm_extractor.R  
 ```
 Rscript ../../../icm_extractor.R --icm G_episurf/icm/rsa.csv --outdir G_episurf
@@ -220,12 +220,12 @@ Rscript ../../../yield_plot.R --data H_epifilter/brewpitopes_unfiltered_df.csv -
 
 ## APPENDIX FOR VARIANTS (OF CONCERN)
 1. Generate a MUTANT FASTA using fasta_mutator.R  
-      (Locally) Download reference FASTA from the target protein (in this case SARS-CoV-2 Spike) from UniprotKB and save at 
+      (Locally) Download reference FASTA from the target protein (in this case SARS-CoV-2 Spike) from UniprotKB and save at
       /host/your/path/to/brewpitopes_projects/your_project/Z_fasta
-      
-      Save the mutations of the corresponding mutant protein or VOC as .csv at 
+
+      Save the mutations of the corresponding mutant protein or VOC as .csv at
       /host/your/path/to/brewpitopes_projects/your_project/brewpitopes/Z_fasta
-      
+
       Ensure the format is equal to the example file 20211203_spike_gamma_vocs.csv.
 ```
 Rscript fasta_mutator.R --fasta ../Projects/your_project/brewpitopes/Z_fasta/target_protein.fasta --mut ../Projects/your_project/brewpitopes/Z_fasta/target_mutations.csv --mut_header your_header_without_> --sample yourfile.fasta --outdir ../Projects/your_project/brewpitopes/Z_fasta
@@ -233,9 +233,8 @@ Rscript fasta_mutator.R --fasta ../Projects/your_project/brewpitopes/Z_fasta/tar
 
 ## NOTES
 1. In the case one of the predictor softwares (Bepipred, ABCpred or Discotope) does not identify any epitope in your target protein, do create the empty dataframe containing only the required headers. It will be used later in the pipeline.
-2. When copying the tabular results from ABCpred into a text file make sure to remove all lines with no sequence information (see example). Otherwise, the script "epixtractor_linear_abcpred.R" will not be able to read the file and will prompt the following error: "Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : line XXX did not have 5 elements ". 
+2. When copying the tabular results from ABCpred into a text file make sure to remove all lines with no sequence information (see example). Otherwise, the script "epixtractor_linear_abcpred.R" will not be able to read the file and will prompt the following error: "Error in scan(file = file, what = what, sep = sep, quote = quote, dec = dec, : line XXX did not have 5 elements ".
 ![ABCpred results processing](/abcpred_processing.png?raw=true "ABCpred processing")
 3. When copying the tabular results from ABCpred into a text file make sure to put a tab at the end of the last line and follow it by a blank line below.
 4. When predicting the protein topology using CCTOP you might encounter no extracellular regions and you should not continue the Brewpitopes pipeline with this target protein. In such, case you will get the error: "STOPPER!! Your target protein has no predicted extracellular domains. Hence, neutralizing antibodies will not recognize it. You should consider another protein from your target organism."
 5. You can use any text editor but make sure to place an empty line at the end of the TSV file. Otherwise, you might get an error due to incomplete final line.
-
