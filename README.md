@@ -66,7 +66,7 @@ cd brewpitopes
 
 7. Extract epitopes from Bepipred results using epixtractor_linear_bepipred3.py. This will automatically save the results at C_epixtractor
 ```
-python3 ../../../epixtractor_linear_bepipred3.py
+python3 ../../../epixtractor_linear_bepipred3.py --path /pathto/project/brewpitope
 ```
 
 
@@ -84,6 +84,21 @@ python3 ../../../epixtractor_linear_bepipred3.py
 Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_allmers A_linear_predictions/abcpred/abcpred_allmers.tsv
 ````
 
+10. (Locally atm). Install EpitopeVec from its repo (https://github.com/hzi-bifo/epitope-prediction)
+
+
+11. (Locally atm) Compute the epitope results from EpitopeVec for num_pep 10 to 20 (i.e 20 files)
+
+     Save the outputs at A_linear_predictions/epitopeveclinear_pred_{len_peptide}.csv
+     E.g A_linear_predictions/epitopeveclinear_pred_11.csv
+         A_linear_predictions/epitopeveclinear_pred_17.csv
+
+12. (Locally atm) Extract epitopes from EpitopeVec results using epixtractor_linear_epitopevec.R
+
+````
+Rscript ../../../epixtractor_linear_epitopevec.R --outdir C_epixtractor
+```
+
 10. (Locally) Download the PDB file of the target protein at PDB DB.
        Save at ZZ_pdb/pdb  
 
@@ -94,13 +109,25 @@ Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_all
       Save your_pdb_id.pdb at ZZ_pdb/pdbrenum   
       In the case you are using an Alphafold model, you will not need to renumber the pdb.
 
-12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 2.0](https://services.healthtech.dtu.dk/service.php?DiscoTope-2.0) server (input type 3).
+12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 3.0](https://services.healthtech.dtu.dk/services/DiscoTope-3.0/) server.
 
-      Select default score threshold (-3.7).    
-      Select chain A by default or your target chain of interest.       
-      Export the results as .txt. Remove the last line "Identified...". Then, save as .csv by replacing "\t" for commas.      
-      Save as B_structural_predictions/discotope/discotope_results.csv        
-      If Discotope2.0 does not predict any epitope in your target sequence see Note1.     
+      Select pertinent input PDB option (i.e AF or resolved).
+      Select Higher Confidence option
+      Download .zip from output
+      Copy the .pdb and .csv of desired Chain to B_structural_predictions/discotope
+      Rename files to B_structural_predictions/discotope/discotope_pred.csv
+                      B_structural_predictions/discotope/discotope_pred.pdb 
+      If Discotope3.0 does not predict any epitope in your target sequence see Note1.     
+
+13. (Locally) Clusterize the residues predicted to be epitope, based on surface-based proximity
+```
+     It is important to have the script prot_surface_cluster.py on same folder
+     as epixtractor_structural_discotope3.py
+     You will need to have MSMS installed (see script instructions and Note XX)
+     
+     python3 ../../../epixtract_structural.py
+python3 ../../../epixtractor_structural_discotope3.py --path /pathto/project/brewpitope
+```
 
 13. Extract epitopes from Discotope results using epixtract_structural.py
 ```
