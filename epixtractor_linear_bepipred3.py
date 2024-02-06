@@ -5,12 +5,12 @@ Created on Tue Nov 10 14:21:51 2020
 @author: rocfarriolduran
 
 Modified on Jan 31 2024
+@autor: victormontal
 """
 ### EPITOPE EXTRACTOR
 ## GOAL: extract linear epitopes in tabulated data either from linear prediction origin.
 ## Variant for linear epitope predictions at:
-## https://services.healthtech.dtu.dk/service.php?BepiPred-2.0
-## SUBGOAL: Create epitopes from continous residues that surpass a given quality threshold in Linear Predictions predictions.
+## https://services.healthtech.dtu.dk/services/BepiPred-3.0/
 
 
 # ---------------------------
