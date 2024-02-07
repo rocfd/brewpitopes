@@ -33,6 +33,7 @@ datafr = do.call("rbind", datalist)
 
 ## RENAME COLUMNS
 datafr <- rename(datafr, Sequence = "peptide")
+datafr <- rename(datafr, Rank = "seq_id")
 datafr <- rename(datafr, Score = "score")
 datafr <- rename(datafr, Start = "start")
 datafr <- rename(datafr, End = "end")
