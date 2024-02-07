@@ -31,7 +31,6 @@ argv <- parse_args(p)
 # --
 ## Define defaults 
 # --
-argv$path <- "/home/vmontalb/Desktop/todel/brewpitopes"
 ixml <- paste0(argv$path,"/E_epitopology/CCTOP/cctop.xml")
 imerged <- paste0(argv$path,"/D_epimerger/merged.csv")
 ofile <- paste0(argv$path,"/E_epitopology/CCTOP/cctop_domains.csv")
