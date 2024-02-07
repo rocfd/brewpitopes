@@ -145,7 +145,7 @@ def parse_discotope(args):
     print("> Dump results")
     cporigin = join(opath,f"groups.{oname}.csv")
     df_clen = pd.read_csv(cporigin)
-    df_clen['Tool'] = "Seppa3"
+    df_clen['Tool'] = "Bepipred3.0_conf"
     df_clen.to_csv(cporigin, index=False)
     cpdest = join(args.ipath, "C_epixtractor", "bepitope_conf_results_extracted.csv")
     copyfile(cporigin, cpdest)
