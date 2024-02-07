@@ -105,7 +105,9 @@ def parse_bepipred(args):
     odict["Start"] = []
     odict["End"] = []
     odict["Positions"] = []
-    odict["BebiScore"] = []
+    odict["Score"] = []
+    odict["Length"] = []
+    odict["Tool"] = "Bepipred3.0_lin"
 
     # Loop over fasta seq and identify linear peptides based on capital letters
     print("> Identify linear epitopes")
@@ -135,7 +137,8 @@ def parse_bepipred(args):
                         odict["Start"].append(start)
                         odict["End"].append(stop)
                         odict["Positions"].append(cepitopepos)
-                        odict["BebiScore"].append("NA")
+                        odict["Score"].append(1)
+                        odict["Length"].append(len(cepitope))
                     break
         else:
             idx1 += 1

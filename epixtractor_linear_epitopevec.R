@@ -33,7 +33,7 @@ datafr = do.call("rbind", datalist)
 
 ## RENAME COLUMNS
 datafr <- rename(datafr, Sequence = "peptide")
-datafr <- rename(datafr, EpitopeVecscore = "score")
+datafr <- rename(datafr, Score = "score")
 datafr <- rename(datafr, Start = "start")
 datafr <- rename(datafr, End = "end")
 
@@ -41,10 +41,11 @@ datafr <- rename(datafr, End = "end")
 seqs = mapply(FUN = function(a, b) {
   paste(a:b, collapse=",")
 }, a = datafr$Start, b = datafr$End)
-seqs =  paste0('[',seqs,']')
+seqs =  paste0('"',seqs,'"')
 datafr$Positions <- seqs
 
-datafr$Length <- datafr$End - datafr$Start
+datafr$Length <- datafr$End - datafr$Start + 1
+datafr$Tool <- "EpitopeVec"
 
 ## EXPORT RESULTS AS CSV
 opath <- paste0(argv$path,"/C_epixtractor/epitopevec_results_extracted.csv")
