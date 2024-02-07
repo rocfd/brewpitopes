@@ -31,7 +31,6 @@ argv <- parse_args(p)
 # --
 ## Define defaults 
 # --
-argv$path = "/home/vmontalb/Desktop/todel/brewpitopes"
 # Lineal
 ibepi_lin <- paste0(argv$path,"/C_epixtractor/bepipred_results_extracted.csv")
 iabc_lin <- paste0(argv$path,"/C_epixtractor/abcpred_results_extracted.csv")
