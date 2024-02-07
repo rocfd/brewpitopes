@@ -47,6 +47,7 @@ datafr$Positions <- seqs
 
 datafr$Length <- datafr$End - datafr$Start + 1
 datafr$Tool <- "EpitopeVec"
+datafr$Rank <- 0
 
 ## EXPORT RESULTS AS CSV
 opath <- paste0(argv$path,"/C_epixtractor/epitopevec_results_extracted.csv")
