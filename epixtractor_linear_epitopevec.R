@@ -49,7 +49,7 @@ datafr$Tool <- "EpitopeVec"
 
 ## EXPORT RESULTS AS CSV
 opath <- paste0(argv$path,"/C_epixtractor/epitopevec_results_extracted.csv")
-write.table(datafr, opath, quote = F, row.names = F, sep = ";")
+write.table(datafr, opath, quote = F, row.names = F, sep = ",")
 
 ## FINAL PRINT
 print(paste("Find your output file at: ", opath))
