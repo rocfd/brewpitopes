@@ -132,11 +132,13 @@ def parse_bepipred(args):
                     stop = idx2-1
 
                     if len(cepitope)> 2:
+                        posi_str = [str(xx) for xx in cepitopepos]
+
                         odict["Rank"].append(0)
                         odict["Sequence"].append("".join(cepitope))
                         odict["Start"].append(start)
                         odict["End"].append(stop)
-                        odict["Positions"].append(cepitopepos)
+                        odict["Positions"].append(",".join(posi_str))
                         odict["Score"].append(1)
                         odict["Length"].append(len(cepitope))
                     break
