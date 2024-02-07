@@ -259,6 +259,8 @@ def group_colors(vtx_group):
     Define RGB color scheme for k different groups
     """
     kgroups = np.unique(vtx_group).size - 1
+    if kgroups == 1:
+        kgroups = 2  # Force to have something beyond 0,0,0
     ranks = np.round(np.linspace(0,255,kgroups)).astype(int)
 
     combinations = np.array(np.meshgrid(ranks, ranks, ranks)).T.reshape(-1, 3)
