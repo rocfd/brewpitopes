@@ -344,18 +344,21 @@ def pdb2csv(pdb):
     csvdict["End"] = []
     csvdict["Positions"] = []
     csvdict["Score"] = []
+    csvdict["Length"] = []
 
     for cgroup in np.unique(groups)[1:]:
         pos_group = np.where(groups == cgroup)[0]
         cresi_names = [all_resname[xx] for xx in pos_group]
         cresi_pos = [str(all_resid[xx]) for xx in pos_group]
+        resi_len = len([all_resid[xx] for xx in pos_group])
 
         csvdict["Rank"].append(cgroup)
         csvdict["Sequence"].append("".join(cresi_names))
-        csvdict["Start"].append("NA")
-        csvdict["End"].append("NA")
+        csvdict["Start"].append("1")
+        csvdict["End"].append("-1")
         csvdict["Positions"].append(",".join(cresi_pos))
         csvdict["Score"] = 1
+        csvdict["Length"].append(resi_len)
 
     dfcsv = pd.DataFrame(csvdict)
     return dfcsv
@@ -440,7 +443,7 @@ def cluster_pdb(args):
     print(f"    dump csv")
     dfcsv = pdb2csv(newpdb)
     odf = join(opath,f"groups.{args.oname}.csv")
-    dfcsv.to_csv(odf)
+    dfcsv.to_csv(odf, index=False)
 
 
 #  -Run Code -
