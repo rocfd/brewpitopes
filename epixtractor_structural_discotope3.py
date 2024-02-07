@@ -142,6 +142,9 @@ def parse_discotope(args):
 
     print("> Dump results")
     cporigin = join(opath,"groups.discotope3.csv")
+    df_clen = pd.read_csv(cporigin)
+    df_clen['Tool'] = "Discotope3"
+    df_clen.to_csv(cporigin, index=False)
     cpdest = join(args.ipath, "C_epixtractor", "discotope_results_extracted.csv")
     copyfile(cporigin, cpdest)
 
