@@ -27,9 +27,10 @@ argv <- parse_args(p)
 # --
 ## Define defaults 
 # --
+argv$path <- "/home/vmontalb/Desktop/todel/brewpitopes"
 icctop <- paste0(argv$path,"/E_epitopology/CCTOP/cctop_domains.csv")
 imerged <- paste0(argv$path,"/D_epimerger/merged.csv")
-ofile <- paste0(argv$path,"/E_epitopology/CCTOP/topology_extracted.csv")
+ofile <- paste0(argv$path,"/E_epitopology/topology_extracted.csv")
   
 # --
 ## Load topology and merged df
