@@ -33,7 +33,6 @@ argv <- parse_args(p)
 # --
 # Lineal
 ibepi_lin <- paste0(argv$path,"/C_epixtractor/bepipred_results_extracted.csv")
-iabc_lin <- paste0(argv$path,"/C_epixtractor/abcpred_results_extracted.csv")
 iepivec_lin <- paste0(argv$path,"/C_epixtractor/epitopevec_results_extracted.csv")
 
 # Structural
