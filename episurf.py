@@ -1,119 +1,186 @@
-## EPISURF
-## GOAL: LABEL THE EPITOPE BASED ON ACCESSIBILITY ON THE PARENTAL PROTEIN
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+Created on XX XX XX 14:21:51 2022
+@autor: rocfarriolduran
 
-# IMPORTS
+Modified on Tue Feb 5 14:21:51 2024
+@autor: victormontal
+"""
+### EPITOPE Surface label
+## GOAL: Identify if (lineal) epitopes are buried or no
+
+# NOTES:
+# Conformational epitopes will not be evaluated since we have already filter-out
+# those residues that are NOT on the surface
+
+# We will cluster the residues based on surface-based neighbours
+
+
+
+# ---------------------------
+# Import libraries
+# ---------------------------
+import os
 import sys
-import csv
-import os.path
-from pathlib import Path
+from os.path import join, dirname, basename
+from shutil import copyfile
+import subprocess
 import pandas as pd
+import numpy as np
+import mdtraj as md
+import argparse
+import ipdb
 
-# HELP
-h = '''
-    To right usage of this script:
-        $ python3 episurf.py
-    The files in use have to be provided by stating "location/file_name.csv"
-    to the input questions that appear in the console.
-    <file_name> should be a .csv separated by ";"
-    You have to provide coma separated buried positions
-        For example: 0,16,32,64
-    The script returns a <file_name>_out.xlsx as output.
-    You need python 3 installed in your computer!!!
-    '''
+# ---------------------------
+# Parser Options
+# ---------------------------
+HELPTEXT = f"""
 
+episurf.py [dev version]
 
-# FILE CHECK
-def fileExist(file):
-    if file!="":
-        if Path(file).is_file():
-            return True
-        elif file=='-h':
-            print(h)
-        else:
-            print("\n>>>>>>> "+file + " File not exist or is not accessible\n")
-            return False
-    else:
-        return False
+Parse the output from epiptm.R
 
-num_args=len(sys.argv)
+Steps:
+- input the brewpitope project folder
+- load epitope table
+- compute SASA and filter residues > XX
+- iterate each residue and mark those with >80% accesible
+- generate outputs [.csv]
 
+Example:
+--------
+python3 episurf.pyy --path example/path/project/brewpitope
 
-if num_args>=2:
-    data_file = sys.argv[1]
-if num_args==3:
-    inputaccess = sys.argv[2]
-if num_args==4:
-    outpath = sys.argv[3]
-
-# VARIABLES
-data_file=""
-inputaccess=""
-access=""
-outpath=""
-
-# FILE NOT EXIST
-while not fileExist(data_file):
-    data_file = input(''' Provide location and name of the file dataset.
-        For example: brewpitopes/F_epiglycan/glycan_extracted.csv
-            (-h for help)
-        Here: ''')
-print("Input file:" + data_file)
-
-# FILE NOT EXIST
-while not os.path.exists(outpath):
-    outpath = input(''' Provide the desired output path.
-        For example: brewpitopes/G_episurf
-            (-h for help)
-        Here: ''')
-print("Input file:" + outpath)
-
-# OPEN READ FILE
-extension = os.path.splitext(data_file)[1]
-lenextension=len(extension)
-nameOutFile=outpath+"/access_extracted"+extension
-
-# GLYCAN INPUT
-while not fileExist(inputaccess):
-    inputaccess = input(''' Provide location and name of the file dataset.
-        For example: brewpitopes/G_episurft/buried_positions_list.csv
-            (-h for help)
-        Here: ''')
-print("Input file:" + inputaccess)
-
-## READ DATA
-data = pd.read_csv(data_file, sep = ",")
-#data
+Author:
+------
+Victor Montal
+victor.montal [at] protonmail [dot] com
 
 
-## READ MOLSOFT EXTRACTED RESULTS (single column file titled "buried" and containing buried positions separated by rows")
-access_df = pd.read_csv(inputaccess, sep = ",")
-#access_df
+"""
 
-## DF TO LIST
-access = access_df["buried"]
-#access
+USAGE = r"""
 
-## LOOP TO EXTRACT access
-z = []
-for index, row in data.iterrows():
-    for ac in access:
-        y = "Accessible"
-        if int(ac) >= row["Start"] and int(ac) <= row["Start"] + row["Length"] - 1:
-            y = "Buried"
-            z.append(y)
-            break
-    if y == "Accessible":
-        z.append(y)
-#print(z)
-#len(z)
+"""
 
-## APPEND GLYCOSILATION TO DF
-data['accessibility_icm'] = z
-#data
+def options_parser():
+    """
+    Command Line Options Parser:
+    initiate the option parser and return the parsed object
+    """
+    parser = argparse.ArgumentParser(description = HELPTEXT,usage = HELPTEXT)
 
-## EXPORT DATA
-data.to_csv(path_or_buf= nameOutFile,
-         index = False) #index_label = "Rank")
+    # help text
+    h_projectpath = 'Path to project folder'
 
-### FINAL PRINT
-print("Find your output file at: " + nameOutFile)
+    # Parser
+    parser.add_argument('--path',
+                        dest = 'ipath', action = 'store',
+                        help = h_projectpath, required = True)
+
+    args = parser.parse_args()
+    return args
+
+# ---------------------------
+# Extra functions
+# ---------------------------
+def run_cmd(cmd,err_msg):
+    """
+    execute the comand
+    """
+    print('#@# Command: ' + cmd+'\n')
+    retcode = subprocess.Popen(cmd,shell=True, executable='/bin/bash').wait()
+    if retcode != 0 :
+        print('ERROR: '+err_msg)
+        sys.exit(1)
+    print('\n')
+
+def overlap(set1, set2):
+    """
+    Compute the overlap of set1 within set2
+    """
+    inter = np.intersect1d(set1, set2)
+    overlap = inter.size / len(set1)
+    return overlap
+
+# ---------------------------
+# Main Code
+# ---------------------------
+def episurf(args):
+    # Defaults
+    ifile = join(args.ipath,"F_epiptm","ptm_extracted.csv")
+    if not os.path.exists(ifile):
+        print("File does not exist:", ifile)
+        print(f"Remember to run epiptm.R before running episurf.py (!!) ")
+        sys.exit(1)
+
+    inpdb = join(args.ipath,"G_episurf","episurf.pdb")
+    if not os.path.exists(inpdb):
+        print("File does not exist:", inpdb)
+        print(f"Remember that PDB output MUST be named episurf.pdb ")
+        print(f"  and placed at folder 'G_episurf/'" )
+        sys.exit(1)
+
+    print("> Load .csv (after PTM labeling)")
+    epi_df = pd.read_csv(ifile, sep=";")
+    oepi_df = epi_df.copy()
+    oepi_df["accessibility"] = "Buried"
+
+    # Define MaxASA
+    maxasa_dic = {
+                    "ALA" : 129,
+                    "ARG" : 274,
+                    "ASN" : 195,
+                    "ASP" : 193,
+                    "CYS" : 167,
+                    "GLU" : 223,
+                    "GLN" : 225,
+                    "GLY" : 104,
+                    "HIS" : 224,
+                    "ILE" : 197,
+                    "LEU" : 201,
+                    "LYS" : 236,
+                    "MET" : 224,
+                    "PHE" : 240,
+                    "PRO" : 159,
+                    "SER" : 155,
+                    "THR" : 172,
+                    "TRP" : 285,
+                    "TYR" : 263,
+                    "VAL" : 174
+    }
+
+    # Compute SASA
+    print("> Compute residue-level SASA (and filter residues)")
+    itraj = md.load(inpdb)
+    resid = [xx.resSeq for xx in itraj.topology.residues]
+    resname = [xx.name for xx in itraj.topology.residues]
+    resid_sasa = md.shrake_rupley(itraj, mode='residue').flatten()
+    resid_maxasa = [ maxasa_dic[xx] for xx in resname]
+    sasa_pct = (resid_sasa*100) / np.array(resid_maxasa)   # scale to Amst
+    pos_sasa = np.where(sasa_pct > 0.2)[0]
+    resid_sasa = [resid[xx] for xx in pos_sasa]
+
+    print("> Iterate over all epitope")
+    for idx,row in epi_df.iterrows():
+        cpos = row["Positions"]
+        cpos = [int(xx) for xx in cpos.split(",")]
+        coverlap = overlap(cpos,resid_sasa)
+
+        if coverlap > 0.8:
+            oepi_df.loc[idx,"accessibility"] = "Accessible"
+
+
+    print("> Dump results")
+    ocsv = join(args.ipath,"G_episurf","access_extracted.csv")
+    oepi_df.to_csv(ocsv, index=False)
+
+
+
+
+#  -Run Code -
+# ------------
+if __name__ == "__main__":
+    args = options_parser()
+    episurf(args)
