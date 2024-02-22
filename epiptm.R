@@ -26,7 +26,6 @@ argv <- parse_args(p)
 # --
 ## Define defaults 
 # --
-argv$path <- "/home/vmontalb/Desktop/todel/brewpitopes"
 iptm <- paste0(argv$path,"/F_epiptm/ptm_positions.csv")
 itopol <- paste0(argv$path,"/E_epitopology/topology_extracted.csv")
 ofile <- paste0(argv$path,"/F_epiptm/ptm_extracted.csv")
