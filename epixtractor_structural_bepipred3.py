@@ -6,7 +6,7 @@ Created on Tue Feb 5 14:21:51 2024
 """
 ### EPITOPE EXTRACTOR
 ## GOAL: Obtain conformational epitopes (3D groups of residues )
-## from Bepipred3.0
+## from bepipred33.0
 
 # We will cluster the residues based on surface-based neighbours
 
@@ -30,20 +30,20 @@ import ipdb
 # ---------------------------
 HELPTEXT = f"""
 
-epixtractor_structural_bepipred3.py [dev version]
+epixtractor_structural_bepipred33.py [dev version]
 
-Parse the output from (conformational) epitope prediction from Bepipred3.0
+Parse the output from (conformational) epitope prediction from bepipred33.0
 
 Steps:
 - input the brewpitope project folder
-- load pdb results from Bepipred3.0
+- load pdb results from bepipred33.0
 - generate binary/mask file (using fasta upper letters)
 - surface-based cluster based on surface neighbours
 - generate outputs [.ply surface, .pdb, .csv]
 
 Example:
 --------
-python3 epixtractor_structural_bepipred3.py --path example/path/project/brewpitope
+python3 epixtractor_structural_bepipred33.py --path example/path/project/brewpitope
 
 Author:
 ------
@@ -92,20 +92,20 @@ def run_cmd(cmd,err_msg):
 # ---------------------------
 # Main Code
 # ---------------------------
-def parse_discotope(args):
+def parse_bepipred3(args):
     # Defaults
-    ifile = join(args.ipath,"B_structural_predictions","bepitope_conf","brepitope_epitope_top_20pct_preds.fasta")
+    ifile = join(args.ipath,"B_structural_predictions","bepipred3_conf","bepipred3_conf_output.csv")
     if not os.path.exists(ifile):
         print("File does not exist:", ifile)
-        print(f"Remember that Bepipred output MUST be named brepitope_epitope_top_20pct_preds.fasta ")
-        print(f"  and placed at folder 'B_structural_predictions/bepitope_conf/'" )
+        print(f"Remember that bepipred3 output MUST be named bepipred3_conf_output.csv")
+        print(f"  and placed at folder 'B_structural_predictions/bepipred3_conf/'" )
         sys.exit(1)
 
-    inpdb = join(args.ipath,"B_structural_predictions","bepitope_conf","brepitope_renumpdb.pdb")
+    inpdb = join(args.ipath,"B_structural_predictions","bepipred3_conf","bepipred3_renumpdb.pdb")
     if not os.path.exists(inpdb):
         print("File does not exist:", inpdb)
-        print(f"Remember that Bepipred output MUST be named brepitope_renumpdb.pdb ")
-        print(f"  and placed at folder 'B_structural_predictions/bepitope_conf/'" )
+        print(f"Remember that protein PDB MUST be named bepipred3_renumpdb.pdb ")
+        print(f"  and placed at folder 'B_structural_predictions/bepipred3_conf/'" )
         sys.exit(1)
 
     cwd = os.getcwd()
@@ -116,38 +116,45 @@ def parse_discotope(args):
         print(f"     usually within brewpitopes repo.")
         sys.exit(1)
 
-    # Load fasta output from Bepipred3.0
-    print("> Loading fasta file of Bepipred3.0 results")
+    """
+    # Load fasta output from bepipred33.0
+    print("> Loading fasta file of bepipred3.0 results")
     with open(ifile, 'r') as f:
         for line in f:
             if line.startswith(">"):
                 continue
             else:
                 sequence = line.strip()
-
+    """
     print("> Compute features mask")
-    mask = np.zeros([len(sequence)])
-    for idx,cresidue in enumerate(sequence):
-        if cresidue.isupper():
-            mask[idx] = 1
-    omask = join(args.ipath, "B_structural_predictions","bepitope_conf", "features_aa_bepitope.txt")
+    epi_csv = pd.read_csv(ifile)
+    score = epi_csv["BepiPred-3.0 score"]
+    pos_thr = np.where(score >= 0.1512)[0]
+    mask = np.zeros([score.size])
+    mask[pos_thr] += 1
+    omask = join(args.ipath, "B_structural_predictions","bepipred3_conf", "features_aa_bepipred3.txt")
     np.savetxt(omask,mask,fmt='%.1f')
 
     print("> Generate groups using a surface-based approach")
-    oname = "bepitope3"
-    opath = join(args.ipath, "B_structural_predictions","bepitope_conf")
+    oname = "bepipred3"
+    opath = join(args.ipath, "B_structural_predictions","bepipred3_conf")
     cmd = ""
     cmd += "python prot_surface_cluster.py "
     cmd += f"--pdb {inpdb} --feature {omask} --outpath {opath} --outname {oname}"
     run_cmd(cmd,"Can not compute surface-based grouping of epitopes")
 
-
     print("> Dump results")
     cporigin = join(opath,f"groups.{oname}.csv")
     df_clen = pd.read_csv(cporigin)
-    df_clen['Tool'] = "Bepipred3.0_conf"
+    df_clen['Tool'] = "bepipred3.0_conf"
+    # Compute average score per group of epitope
+    for i,row in df_clen.iterrows():
+        cpos = row["Positions"]
+        cpos = [int(xx) -1 for xx in cpos.split(",")]   # 0 vs 1 encoded
+        cscore = np.average(score[cpos])
+        df_clen.loc[i,"Score"] = cscore
     df_clen.to_csv(cporigin, index=False)
-    cpdest = join(args.ipath, "C_epixtractor", "bepitope_conf_results_extracted.csv")
+    cpdest = join(args.ipath, "C_epixtractor", "bepipred3_conf_results_extracted.csv")
     copyfile(cporigin, cpdest)
 
 
@@ -157,4 +164,4 @@ def parse_discotope(args):
 # ------------
 if __name__ == "__main__":
     args = options_parser()
-    parse_discotope(args)
+    parse_bepipred3(args)

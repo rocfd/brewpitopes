@@ -69,7 +69,6 @@ cd brewpitopes
 python3 ../../../epixtractor_linear_bepipred3.py --path /pathto/project/brewpitope
 ```
 
-
 8. (Locally) Use the FASTA to predict linear epitopes using [ABCpred](https://webs.iiitd.edu.in/raghava/abcpred/ABC_submission.html) server.
 
       Predict using all the epitope windows (10,12,14,16,18,20), overlapping filter ON and the default threshold at 0.51.     
@@ -80,9 +79,9 @@ python3 ../../../epixtractor_linear_bepipred3.py --path /pathto/project/brewpito
 
 9. Extract epitopes from ABCpred results using epixtractor_linear_abcpred.R  
 
-````
+```
 Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_allmers A_linear_predictions/abcpred/abcpred_allmers.tsv
-````
+```
 
 10. (Locally atm). Install EpitopeVec from its repo (https://github.com/hzi-bifo/epitope-prediction)
 
@@ -95,21 +94,21 @@ Rscript ../../../epixtractor_linear_abcpred.R --outdir C_epixtractor --input_all
 
 12. (Locally atm) Extract epitopes from EpitopeVec results using epixtractor_linear_epitopevec.R
 
-````
+```
 Rscript ../../../epixtractor_linear_epitopevec.R --outdir C_epixtractor
 ```
 
-10. (Locally) Download the PDB file of the target protein at PDB DB.
+13. (Locally) Download the PDB file of the target protein at PDB DB.
        Save at ZZ_pdb/pdb  
 
-11. (Locally) Use [PDBrenum](http://dunbrack3.fccc.edu/PDBrenum/) server to renumerate the PDB residues according to its corresponding FASTA file in Uniprot.  
+14. (Locally) Use [PDBrenum](http://dunbrack3.fccc.edu/PDBrenum/) server to renumerate the PDB residues according to its corresponding FASTA file in Uniprot.  
       Download results as .pdb  (Selecting the .pdb options and deselect .mmCIF options)  
       Uncompress the .zip file donwloaded.      
       Uncompress the file your_pdb_id.pdb.gz    
       Save your_pdb_id.pdb at ZZ_pdb/pdbrenum   
       In the case you are using an Alphafold model, you will not need to renumber the pdb.
 
-12. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 3.0](https://services.healthtech.dtu.dk/services/DiscoTope-3.0/) server.
+15. (Locally) Use the renumbered PDB to predict structural epitopes using [Discotope 3.0](https://services.healthtech.dtu.dk/services/DiscoTope-3.0/) server.
 
       Select pertinent input PDB option (i.e AF or resolved).
       Select Higher Confidence option
@@ -119,114 +118,146 @@ Rscript ../../../epixtractor_linear_epitopevec.R --outdir C_epixtractor
                       B_structural_predictions/discotope/discotope_pred.pdb 
       If Discotope3.0 does not predict any epitope in your target sequence see Note1.     
 
-13. (Locally) Clusterize the residues predicted to be epitope, based on surface-based proximity
+16. (Locally) Extract the residues predicted by Discotope3.0, using a surface-based proximity approach
 ```
      It is important to have the script prot_surface_cluster.py on same folder
      as epixtractor_structural_discotope3.py
      You will need to have MSMS installed (see script instructions and Note XX)
      
-     python3 ../../../epixtract_structural.py
-python3 ../../../epixtractor_structural_discotope3.py --path /pathto/project/brewpitope
+     python3 ../../../epixtractor_structural_discotope3.py --path /pathto/project/brewpitope
+     
 ```
 
-13. Extract epitopes from Discotope results using epixtract_structural.py
+17. (Locally) Use the FASTA file to predict structural epitopes using [Bepipred 3.0](https://services.healthtech.dtu.dk/services/BepiPred-3.0/) 
+server and export results (as csv)zip file). Use default options (High-confidence, Thr: 0.152).
+
+      Save the file raw_output.csv  (within zip) at 
+      B_structural_predictions/bepipred3_conf/bepipred3_conf_output.csv
+      Copy the renumbered PDB at B_structural_predictions/bepipred3_conf/brepitope_renumpdb.pdb
+      If Bepipred3.0 does not predict any epitope in your target sequence see Note1. 
+
+18. (Locally) Extract the residues predicted by Bepipred3.0, using a surface-based proximity approach
 ```
-python3 ../../../epixtract_structural.py  
-```
-```
-Add path to discotope results: B_structural_predictions/discotope/discotope_results.csv
-Add path to output folder: C_epixtractor
+     It is important to have the script prot_surface_cluster.py on same folder
+     as epixtractor_structural_bepipred3.py
+     You will need to have MSMS installed (see script instructions and Note XX)
+     
+     python3 ../../../epixtractor_structural_bepipred3.py --path /pathto/project/brewpitope
 ```
 
-14. Merge the epitopes extracted from Bepipred, ABCpred and Discotope results using epimerger.R
+19. (Locally) Use the PDB at the [SEPPA3.0](https://services.healthtech.dtu.dk/services/BepiPred-3.0/) server
+    Select the parameters accordingly to your system.
+    
+    Download the output .pdb and copy the file to B_structural_predictions/seppa/seppa_predict.pdb
+    If Seppa3.0 does not predict any epitope in your target sequence see Note1.
+
+
+20. (Locally) Extract the residues predicted by Seppa3.0, using a surface-based proximity approach
+
+     It is important to have the script prot_surface_cluster.py on same folder
+     as epixtractor_structural_seppa3.py
+     You will need to have MSMS installed (see script instructions and Note XX)
+     
+      python3 ../../../epixtractor_structural_seppa3.py --path /pathto/project/brewpitope
+
+
+21. (Locally) Use the FASTA file at the [SeRenDIP](https://www.ibi.vu.nl/programs/serendipwww/) server
+    Select the RF model of "Epitopes".
+    
+     Download (copy-paste)  the output and copy the file to B_structural_predictions/serendipce/serendipce_predict.csv
+     Copy the renumbered PDB at B_structural_predictions/serendipce/serendipce_renumpdb.pdb
+     If SeRendip-CE does not predict any epitope in your target sequence see Note1.
+     
+22. (Locally) Extract the residues predicted by SeRenDIP-CE, using a surface-based proximity approach
+
+     It is important to have the script prot_surface_cluster.py on same folder
+     as epixtractor_structural_serendip.py
+     You will need to have MSMS installed (see script instructions and Note XX)
+     
+     python3 ../../../epixtractor_structural_serendipce.py --path /pathto/project/brewpitope
+
+
+23. Merge the epitopes extracted from different epitopes methods using epimerger.R
 ```
-Rscript ../../../epimerger.R --abcpred C_epixtractor/abcpred_results_extracted.csv --bepipred C_epixtractor/bepipred_results_extracted.csv --discotope C_epixtractor/discotope_results_extracted.csv --outdir D_epimerger
+Rscript ../../../epimerger.R --path /pathto/project/brewpitope
 ```
 
 Take steps 15, 16 and 17.1 if you want to predict protein topology using CCTOP. Otherwise, if the topology of your protein is already described and you want to add it manually go directly to step 17.2.
 
-15. (Locally) Predict the protein topology using [CCTOP](http://cctop.enzim.ttk.mta.hu/?_=/jobs/submit) server.  
+24. (Locally) Predict the protein topology using [CCTOP](http://cctop.enzim.ttk.mta.hu/?_=/jobs/submit) server.  
       Copy the .xml output from the main page into a text file (do not copy the downloadable file).    
       Save as E_topology/CCTOP/cctop.xml
 
-16. Extract the topological domains using xml_cctop_parser.R. (See Note 4)
+25. Extract the topological domains using xml_cctop_parser.R. (See Note 4)
 ```
-Rscript ../../../xml_cctop_parser.R --xml E_epitopology/CCTOP/cctop.xml --outdir E_epitopology/CCTOP
-```
-
-17. Label the epitopes based on their topology (intracellular, membrane or extracellular) using epitopology.R
-
-17.1 Using CCTOP predictions --> use epitopology_cctop.R
-```
-Rscript ../../../epitopology_cctop.R --input_CCTOP E_epitopology/CCTOP/cctop_domains.csv --input_epitopes D_epimerger/merged.csv --outdir E_epitopology
+Rscript ../../../xml_cctop_parser.R --path /pathto/project/brewpitope
 ```
 
-17.2 Manual topology annotation --> use epitopology_manual.R. Add manually the starting and ending positions of your extracellular domains at --start_pos and end_pos.
+26. Label the epitopes based on their topology (intracellular, membrane or extracellular) using epitopology.R
+
+26.1 Using CCTOP predictions --> use epitopology_cctop.R
+```
+Rscript ../../../epitopology_cctop.R --path /pathto/project/brewpitope
+```
+
+26.2 Manual topology annotation --> use epitopology_manual.R. Add manually the starting and ending positions of your extracellular domains at --start_pos and end_pos.
 ```
 Rscript ../../../epitopology_manual.R --start_pos 1,12,22 --end_pos 8,18,28 --input_epitopes D_epimerger/merged.csv --outdir E_epitopology
 ```
 
-18. (Locally) Predict the glycosylation profile of the protein using the FASTA file.  
+27. (Locally) Predict the Post-translational modifications profile of the protein using the FASTA file.  
+      
       N-GLYCOSYLATIONS at [NetNGlyc 1.0](https://services.healthtech.dtu.dk/service.php?NetNGlyc-1.0) server.       
       Copy manually into a text editor the output table headed: SeqName	Position	Potential	Jury_agreement	NGlyc_result      
       Do NOT include the header(error prone), only the data.            
-      SAVE AS TSV as F_epiglycan/netnglyc/nglyc_results.tsv       
+      SAVE AS CSV as F_epitpm/netnglyc/nglyc_predict.csv       
       (If you get an error, please see Note 5)      
 
       O-GLYCOSYLATIONS AT [NetOGlyc 4.0](https://services.healthtech.dtu.dk/service.php?NetOGlyc-4.0) server.     
       Copy manually into a text editor the rows of the output table headed: seqName  	source	feature	start 	end	score strand      frame       comment.          
       Do NOT include the header(error prone), only the data.               
-      SAVE AS TSV at F_epiglycan/netoglyc/oglyc_results.tsv       
+      SAVE AS CSV at F_epitpm/netoglyc/oglyc_predict.csv       
       (If you get an error, please see Note 5)
 
-19. Extract the glycosylated positions from both N-glyc and O-glyc outputs using epiglycan_extractor.R
+      C-mannosylation Glycosilation AT [NetCGlyc 1.0](https://services.healthtech.dtu.dk/services/NetCGlyc-1.0/) server.
+      Use the GFF output format. Copy the output table manually to a text editor
+      Copy manually into a text editor the rows of the output        
+      Do NOT include the header(i.e rows starting with #), only the data.               
+      Save file as F_epitpm/netcglyc/netcglyc_predict.csv       
+      (If you get an error, please see Note 5)
+      
+      Phosphorylation sites using [NetPhos 3.1](https://services.healthtech.dtu.dk/services/NetPhos-3.1/) server
+      Copy manually the output GFF table  into a text editor.
+      Skip header rows (i.e ALL starting with #)
+      Save file as: F_epitpm/netphos/phospho_predict.csv    
+      (If you get an error, please see Note 5)  
+      
+      
+28. Extract the PTM positions from N-glyc, O-glyc, C-glyc and Phospho outputs using epiptm_extractor.R
 ```
-Rscript ../../../epiglycan_extractor.R --oglyc F_epiglycan/netoglyc/oglyc_results.tsv --nglyc F_epiglycan/netnglyc/nglyc_results.tsv --outdir F_epiglycan
-```
-
-20. Use epiglycan.py to label the glycosylated epitopes.  
-```
-python3 ../../../epiglycan.py
-```
-```
-Add path to input epitopes: E_epitopology/topology_extracted.csv
-Add path to output folder: F_epiglycan
-Add path to extracted glycosylated positions: F_epiglycan/glycan_positions.csv  
-```
-
-21. (Locally) Use ICM_browser (MOLSOFT) to extract the RSA values for accessibility calculation.  
-      Download ICM_browser from [http://www.molsoft.com/icm_browser.html](http://www.molsoft.com/icm_browser.html)      
-      Move the PDB renumbered file of the corresponding protein (step 11) to a local folder.          
-      Open the PDB in Molsoft.      
-      Open compute_asa.icm using Vi:
-
-```
-vi ../../../compute_asa.icm
-%y+ # copy the entire script, paste into text editor and modify the output path (your/local/path/to/G_episurf/icm).
+Rscript ../../../epiptm_extractor.R --path /pathto/project/brewpitope
 ```
 
-Open the PDB in Molsoft.      
-Execute in the command line of the programme ICM Browser the copied code with your modified path.          
-Your results will be exported at G_episurf/icm/rsa.csv      
-
-22. Extract the buried positions using icm_extractor.R  
+29. Use epiptm.R to label the Post-translational modifications epitopes.  
 ```
-Rscript ../../../icm_extractor.R --icm G_episurf/icm/rsa.csv --outdir G_episurf
+Rscript ../../../epiptm.R --path /pathto/project/brewpitope
 ```
 
-21. Label the epitopes based on their buried positions using episurf.py
+30. Label the epitopes based on their buried positions using episurf.py
+
+      We will compute the SASA of each residue, and label the epitopes
+      based on theri >80% of residues accesibility
+      (If you get an error, please see Note 5)
+      
+      PDB file must be copied at "G_episurf/episurf.pdb"
+      
 ```
-python3 ../../../episurf.py
-```
-```
-Add path to input epitopes: F_epiglycan/glycan_extracted.csv
-Add path to output folder: G_episurf
-Add path to extracted buried positions: G_episurf/buried_positions_list.csv
+python ../../../episurf.py --path /pathto/project/brewpitope
 ```
 
-22. Select the epitopes that are extraviral, non-glycosilated, exposed and length >= 5 using epifilter.R  
+31. Select the epitopes that are extraviral, non-glycosilated, exposed and length >= 5 using epifilter.R  
 ```
-Rscript ../../../epifilter.R --data G_episurf/access_extracted.csv --outdir I_final_candidates
+Rscript ../../../epifilter.R --path /pathto/project/brewpitope
 ```
 
 23. Extract the epitope regions using epiregions.py

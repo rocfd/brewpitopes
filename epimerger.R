@@ -38,7 +38,7 @@ iepivec_lin <- paste0(argv$path,"/C_epixtractor/epitopevec_results_extracted.csv
 # Structural
 iseppa_conf <- paste0(argv$path,"/C_epixtractor/seppa_results_extracted.csv")
 idisco_conf <- paste0(argv$path,"/C_epixtractor/discotope_results_extracted.csv") 
-ibepi_conf <- paste0(argv$path,"/C_epixtractor/bepitope_conf_results_extracted.csv")
+ibepi_conf <- paste0(argv$path,"/C_epixtractor/bepipred3_conf_results_extracted.csv")
 iserendip_conf <- paste0(argv$path,"/C_epixtractor/serendipce_results_extracted.csv")
 
 # --

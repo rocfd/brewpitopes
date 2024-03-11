@@ -120,21 +120,22 @@ def parse_seppa(args):
     # Get residue binary value per atom
     with open(iseppa, 'r') as f:
         isepi = []
+        idx=0
+        atoms["EPITOPE"] = 0
         for line in f:
             line = line.strip()
             epitmp = line.split("\t")[1]  # get bin epitope or not
             if epitmp != "NonEpitope":
-                isepi.append(1)
-            else:
-                isepi.append(0)
+                atoms.loc[idx,"EPITOPE"] = 1
+            idx += 1
 
     print("> Compute features mask")
     resid = np.unique(all_resid)
     mask = np.zeros([resid[-1]])
     for cresidue in resid:
-        pos = np.where(all_resid == cresidue)[0]
-        value = isepi[pos[0]]
-        mask[cresidue-1] = value   #zero-coded
+        value = atoms.loc[atoms["residue_number"] == cresidue]["EPITOPE"].values
+        mask[cresidue-1] = value[0]   #zero-coded
+
 
     omask = join(args.ipath, "B_structural_predictions","seppa", "features_aa_seppa.txt")
     np.savetxt(omask,mask,fmt='%.1f')
@@ -151,6 +152,7 @@ def parse_seppa(args):
     print("> Dump results")
     cporigin = join(opath,f"groups.{oname}.csv")
     df_clen = pd.read_csv(cporigin)
+    df_clen['Score'] = 0.5
     df_clen['Tool'] = "Seppa3"
     df_clen.to_csv(cporigin, index=False)
     cpdest = join(args.ipath, "C_epixtractor", "seppa_results_extracted.csv")

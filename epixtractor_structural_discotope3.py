@@ -143,6 +143,13 @@ def parse_discotope(args):
     print("> Dump results")
     cporigin = join(opath,"groups.discotope3.csv")
     df_clen = pd.read_csv(cporigin)
+    # Compute average score per group of epitope
+    for i,row in df_clen.iterrows():
+        cpos = row["Positions"]
+        cpos = [int(xx) for xx in cpos.split(",")]   # 0 vs 1 encoded
+        residue_scores = [disco_df[disco_df["res_id"] == xx]["DiscoTope-3.0_score"].values for xx in cpos]
+        cscore = np.average(residue_scores)
+        df_clen.loc[i,"Score"] = cscore
     df_clen['Tool'] = "Discotope3"
     df_clen.to_csv(cporigin, index=False)
     cpdest = join(args.ipath, "C_epixtractor", "discotope_results_extracted.csv")
