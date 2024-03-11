@@ -1,58 +1,56 @@
 ## EPIFILTER
 
+# Created by: Roc Farriol
+#    XX XX 2022
+# 
+# Modified by: Victor Montal
+#    8 Feb 2024
+
+
 ## GOAL: IMPLEMENT THE FILTERS TO SELECT THE FINAL CANDIDATES
 # TOPOLOGY = EXTRACELLULAR
-# GLYCOSILATION = NON-GLYCOSILATED
+# PTM = NON-GLYCOSILATED and NON-PHOSPHO
 # ACCESSIBILITY = ACCESSIBLE
+# LENGTH >= 5
 
+# --
+## Libraries
+# --
+rm(list = ls())
 library(dplyr, quietly = T, warn.conflicts = F)
+library(tidyr, quietly = T, warn.conflicts = F)
 library(argparser, quietly = T, warn.conflicts = F)
 
-### SCRIPT ARGUMENTS
-# Create a parser
-p <- arg_parser("EPIFILTER")
-
-# Add command line arguments
-p <- add_argument(p, "--data", help= "Path to labeled epitope file output of episurf.py, by default 'access_extracted.csv' (.csv format)", type="character", default = "G_episurf/access_extracted.csv")
-p <- add_argument(p, "--unfiltered_df", help = "Sample name to label the unfiltered dataframe", type = "character", default = "brewpitopes_unfiltered_df")
-p <- add_argument(p, "--unfiltered_dir", help = "Path to save the unfiltered results", type = "character", default = "H_epifilter")
-p <- add_argument(p, "--sample_df", help = "Sample name to label the output dataframe", type = "character", default = "brewpitopes_results_df")
-p <- add_argument(p, "--sample_candidates", help = "Sample name to label the output list of candidates", type = "character", default = "brewpitopes_results_candidates")
-p <- add_argument(p, "--outdir", help = "Path to output the filtered result files", type = "character", default = "I_final_candidates")
-#p <- add_argument(p, "--save_rdata_dir", help = "Path to save rData image", type = "character", default = "I_final_candidates")
-
-# Parse the command line arguments
+# --
+## SCRIPT PARSER
+# --
+p <- arg_parser("EPITOPE FILTER")
+p <- add_argument(p, "--path", help= "Path to the brewpitope project", type="character")
 argv <- parse_args(p)
 
-## IMPORT DATA
-data <- read.csv(file = argv$data)
+# --
+## Define defaults 
+# --
+iextract <- paste0(argv$path,"/G_episurf/access_extracted.csv")
+ounfilt <- paste0(argv$path,"/H_epifilter/unfilter.csv")
+ofilt <- paste0(argv$path,"/H_epifilter/brewpitopes_results_df.csv")
 
-## SAVE AS UNFILTERED
-write.table(data, sep = ";", row.names = F, quote = F, file = paste0(argv$unfiltered_dir, "/", argv$unfiltered_df, ".csv", sep = ""))
+# --
+## Load data
+# --
+data <- read.csv(file=iextract)
+write.table(data, sep = ";", row.names=F, quote=F, file = ounfilt)
 
-## FILTER BY SPECIFIED CONDITIONS
-## TOPOLOGY
-data_top <- filter(data, grepl('Extracellular', Extracellular))
+# --
+## Apply filters
+# --
+data_filt <- subset(data, grepl('Extracellular', data$Extracellular) &
+                          PTM == "No-PTM" &
+                          accessibility == "Accessible" &
+                          Length > 5)
 
-## GLYCOSILATION
-data_glyc <- filter(data_top, Glycosilation == "Non-glycosilated")
-
-## ACCESSBILITY ICM
-data_acc <- filter(data_glyc, accessibility_icm == "Accessible")
-
-### FILTER BY LENGTH >= 5
-data_len <- filter(data_acc, Length >= 5)
-
-## FINAL CANDIDATES
-data_final <- data_len
-data_candidates <- data_len$Sequence
-
-## REMOVE COLUMNS NAMED RANK
-data_final <- select(data_final, -contains("Rank"))
-
-## EXPORT DATA
-write.table(data_final, sep = ";", row.names = F, quote = F, file = paste0(argv$outdir, "/", argv$sample_df, ".csv", sep = ""))
-write.table(data_candidates, sep = ";", row.names = F, quote = F, file = paste0(argv$outdir, "/", argv$sample_candidates, ".csv", sep = ""))
-
-## FINAL PRINT
-print(paste("Find your filtered candidates at: ", argv$outdir, sep = ""))
+# --
+## Dump results
+# --
+write.table(data_filt, sep=";", row.names=F, quote=F, file=ofilt)
+print(paste("Find your filtered candidates at: ", ofilt, sep = ""))
