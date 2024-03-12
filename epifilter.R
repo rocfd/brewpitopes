@@ -33,7 +33,7 @@ argv <- parse_args(p)
 # --
 iextract <- paste0(argv$path,"/G_episurf/access_extracted.csv")
 ounfilt <- paste0(argv$path,"/H_epifilter/unfilter.csv")
-ofilt <- paste0(argv$path,"/H_epifilter/brewpitopes_results_df.csv")
+ofilt <- paste0(argv$path,"/I_final_candidates/brewpitopes_results_df.csv")
 
 # --
 ## Load data
