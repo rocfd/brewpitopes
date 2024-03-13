@@ -20,6 +20,7 @@ import os
 import sys
 from os.path import join, dirname, basename
 import pandas as pd
+import numpy as np
 import argparse
 import ipdb
 
@@ -80,15 +81,16 @@ def options_parser():
 # ---------------------------
 def parse_bepipred(args):
     # Dfaults
-    ifile = join(args.ipath,"A_linear_predictions","bepipred","bepipred_linear_pred.fasta")
+    ifile = join(args.ipath,"A_linear_predictions","bepipred","bepipred3_lin_output.csv")
     if not os.path.exists(ifile):
         print("File does not exist:", ifile)
-        print(f"Remember that Bepitope3 linear output MUST be named bepipred_results.fasta ")
+        print(f"Remember that bepipred3 output MUST be named bepipred3_lin_output.csv")
         print(f"  and placed at folder 'A_linear_predictions/bepipred/'" )
         sys.exit(1)
 
     ofile = join(args.ipath, "C_epixtractor", "bepipred_results_extracted.csv")
 
+    """
     # Load fasta output from Bepipred3.0
     print("> Loading fasta file of Bepipred3.0 results")
     with open(ifile, 'r') as f:
@@ -97,6 +99,15 @@ def parse_bepipred(args):
                 continue
             else:
                 sequence = line.strip()
+    """
+    # Read input data
+    epi_csv = pd.read_csv(ifile)
+    size_df = epi_csv.shape[0]
+    print(size_df)
+    scores = epi_csv["BepiPred-3.0 linear epitope score"].values
+
+    # Define threshold
+    thr = 0.1512
 
     # Define output pandas dict
     odict = {}
@@ -114,18 +125,20 @@ def parse_bepipred(args):
     start = 0
     stop = 0
     idx1 = 0
-    while idx1 < len(sequence):
-        cstring = sequence[idx1]
+    while idx1 < size_df:
+        cscore = epi_csv.loc[idx1,"BepiPred-3.0 linear epitope score"]
         cepitope = []
-        if cstring.isupper():
-            cepitope = [cstring]
-            cepitopepos = [idx1]
+        cepitopepos = []
+
+        if cscore >= thr:
+            cepitope.append(epi_csv.loc[idx1,"Residue"])
+            cepitopepos.append(idx1)
             start = idx1
 
-            for idx2 in range(idx1+1,len(sequence)):
-                evalstring = sequence[idx2]
-                if evalstring.isupper():
-                    cepitope.append(evalstring)
+            for idx2 in range(idx1+1,size_df):
+                evalscore = epi_csv.loc[idx2,"BepiPred-3.0 linear epitope score"]
+                if evalscore >= thr:
+                    cepitope.append(epi_csv.loc[idx2,"Residue"])
                     cepitopepos.append(idx2)
                 else:
                     idx1 = idx2
@@ -139,11 +152,12 @@ def parse_bepipred(args):
                         odict["Start"].append(start)
                         odict["End"].append(stop)
                         odict["Positions"].append(",".join(posi_str))
-                        odict["Score"].append(1)
+                        odict["Score"].append(np.average(scores[cepitopepos]))
                         odict["Length"].append(len(cepitope))
                     break
         else:
             idx1 += 1
+
     # Df from dict
     outdf = pd.DataFrame(odict)
 
