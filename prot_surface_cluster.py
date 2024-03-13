@@ -264,8 +264,8 @@ def group_colors(vtx_group):
     ranks = np.round(np.linspace(0,255,kgroups)).astype(int)
 
     combinations = np.array(np.meshgrid(ranks, ranks, ranks)).T.reshape(-1, 3)
-    rgb_row = np.random.choice(len(combinations), size=kgroups, replace=False)
-    rgb_row = rgb_row + 1  # avoid (0,0,0) for non-groups
+    range_options = np.arange(1,len(combinations))
+    rgb_row = np.random.choice(range_options, size=kgroups, replace=False)
     rgb = np.ones([len(vtx_group),3]) * 128
     for idx,cgroup in enumerate(np.unique(vtx_group)[1:]):
         pos = np.where(vtx_group == cgroup)[0]
