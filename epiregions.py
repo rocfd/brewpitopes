@@ -71,41 +71,10 @@ def options_parser():
     return args
 
 # ---------------------------
-# Main Code
+# Aux func Code
 # ---------------------------
-def epiregions(args):
-    # Defaults
-    ifile = join(args.ipath,"I_final_candidates","brewpitopes_results_df.csv")
-    if not os.path.exists(ifile):
-        print("File does not exist:", ifile)
-        sys.exit(1)
-    # Load fasta file
-    ifasta = join(args.ipath,"Z_fasta","protein.fasta")
-    if not os.path.exists(ifasta):
-        print("File does not exist:", ifile)
-        sys.exit(1)
-    print("> Loading protein fasta file")
-    with open(ifasta, 'r') as f:
-        for line in f:
-            if line.startswith(">"):
-                continue
-            else:
-                sequence = line.strip()
-
-
-    opath = join(args.ipath,"K_epitope_regions")
-    ofile = join(opath, "epitope_regions_extracted.csv")
-
-    # Load dataframe
-    data = pd.read_csv(ifile, sep = ";")
-
-    #
-    # Identify overlapping epitopes
-    #
-
+def overlap_pos(tools, data, sequence):
     # Init dicts
-    tools = ["Bepipred3.0_lin", "EpitopeVec", "Seppa3","Discotope3",
-             "Bepipred3.0_conf","Serendip-CE"]
     epi_dict = {}
     keys = ["Sequence","Positions", "Length"]
     for ctool in tools:
@@ -121,6 +90,10 @@ def epiregions(args):
         cpositions = [int(xx) for xx in cpositions.split(",")]
         ctool = row["Tool"]
         cscore = float(row["Score"])
+
+        # ignore certain tools
+        if ctool not in tools:
+            continue
 
         # Search for overlap
         found_ov = False
@@ -156,11 +129,74 @@ def epiregions(args):
         epi_dict["Sequence"][idx] = cseq
         epi_dict["Positions"][idx] = tmppos
         epi_dict["Length"][idx] = len(cseq)
+    return epi_dict
 
-    # Dump results
+# ---------------------------
+# Main Code
+# ---------------------------
+def epiregions(args):
+    # Defaults
+    ifile = join(args.ipath,"I_final_candidates","brewpitopes_results_df.csv")
+    if not os.path.exists(ifile):
+        print("File does not exist:", ifile)
+        sys.exit(1)
+    # Load fasta file
+    ifasta = join(args.ipath,"Z_fasta","protein.fasta")
+    if not os.path.exists(ifasta):
+        print("File does not exist:", ifile)
+        sys.exit(1)
+    print("> Loading protein fasta file")
+    with open(ifasta, 'r') as f:
+        for line in f:
+            if line.startswith(">"):
+                continue
+            else:
+                sequence = line.strip()
+
+
+    opath = join(args.ipath,"K_epitope_regions")
+    ofileall = join(opath, "epitope_all_regions_extracted.csv")
+    ofilelineal = join(opath, "epitope_lineal_regions_extracted.csv")
+    ofileconf = join(opath, "epitope_conf_regions_extracted.csv")
+
+    # Load dataframe
+    data = pd.read_csv(ifile, sep = ";")
+
+    #
+    # Identify overlapping all epitopes
+    #
+    tools = ["Bepipred3.0_lin", "EpitopeVec", "Seppa3","Discotope3",
+             "Bepipred3.0_conf","Serendip-CE"]
+
+    epi_dict = overlap_pos(tools, data, sequence)
+
     epi_df = pd.DataFrame(epi_dict)
-    epi_df.to_csv(ofile,index=False)
-    print(f"Find your epitope regions at: {ofile}")
+    epi_df.to_csv(ofileall,index=False)
+    print(f" \n All epitope regions at: {ofileall} \n \n")
+
+    #
+    # Identify overlapping lineal epitopes
+    #
+    tools = ["Bepipred3.0_lin", "EpitopeVec"]
+    epi_dict = overlap_pos(tools, data, sequence)
+
+    epi_df = pd.DataFrame(epi_dict)
+    epi_df.to_csv(ofilelineal,index=False)
+    print(f"Lineal epitope regions at: {ofilelineal} \n \n")
+
+
+    #
+    # Identify overlapping conformational epitopes
+    #
+
+    # Init dicts
+    tools = ["Seppa3","Discotope3", "Bepipred3.0_conf","Serendip-CE"]
+
+    epi_dict = overlap_pos(tools, data, sequence)
+
+    epi_df = pd.DataFrame(epi_dict)
+    epi_df.to_csv(ofileconf,index=False)
+    print(f"Conformational epitope regions at: {ofileconf} \n \n")
 
 
 #  -Run Code -
