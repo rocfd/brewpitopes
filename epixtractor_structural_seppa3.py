@@ -154,6 +154,11 @@ def parse_seppa(args):
     df_clen = pd.read_csv(cporigin)
     df_clen['Score'] = 0.5
     df_clen['Tool'] = "Seppa3"
+    for i,row in df_clen.iterrows():
+        cpos = row["Positions"]
+        cpos = [int(xx) -1 for xx in cpos.split(",")]   # 0 vs 1 encoded
+        df_clen.loc[i,"Start"] = cpos[0]
+        df_clen.loc[i,"End"] = cpos[-1]
     df_clen.to_csv(cporigin, index=False)
     cpdest = join(args.ipath, "C_epixtractor", "seppa_results_extracted.csv")
     copyfile(cporigin, cpdest)

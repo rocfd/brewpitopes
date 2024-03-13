@@ -150,6 +150,8 @@ def parse_discotope(args):
         residue_scores = [disco_df[disco_df["res_id"] == xx]["DiscoTope-3.0_score"].values for xx in cpos]
         cscore = np.average(residue_scores)
         df_clen.loc[i,"Score"] = cscore
+        df_clen.loc[i,"Start"] = cpos[0]
+        df_clen.loc[i,"End"] = cpos[-1]
     df_clen['Tool'] = "Discotope3"
     df_clen.to_csv(cporigin, index=False)
     cpdest = join(args.ipath, "C_epixtractor", "discotope_results_extracted.csv")

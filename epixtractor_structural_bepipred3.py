@@ -146,13 +146,15 @@ def parse_bepipred3(args):
     print("> Dump results")
     cporigin = join(opath,f"groups.{oname}.csv")
     df_clen = pd.read_csv(cporigin)
-    df_clen['Tool'] = "bepipred3.0_conf"
+    df_clen['Tool'] = "Bepipred3.0_conf"
     # Compute average score per group of epitope
     for i,row in df_clen.iterrows():
         cpos = row["Positions"]
         cpos = [int(xx) -1 for xx in cpos.split(",")]   # 0 vs 1 encoded
         cscore = np.average(score[cpos])
         df_clen.loc[i,"Score"] = cscore
+        df_clen.loc[i,"Start"] = cpos[0] +1
+        df_clen.loc[i,"End"] = cpos[-1]
     df_clen.to_csv(cporigin, index=False)
     cpdest = join(args.ipath, "C_epixtractor", "bepipred3_conf_results_extracted.csv")
     copyfile(cporigin, cpdest)
