@@ -61,7 +61,8 @@ cd brewpitopes
 
 6. (Locally) Use the FASTA to predict linear epitopes using [Bepipred 3.0](https://services.healthtech.dtu.dk/services/BepiPred-3.0/) server and export results (as csv)zip file). Use default options (High-confidence, Thr: 0.152).  
 
-      Save the file Bcell_linepitope_top_20pct_preds.fasta (within zip) at A_linear_predictions/bepipred/bepipred_linear_pred.fasta 
+      Save the file raw_output.csv  (within zip) at 
+      A_linear_predictions/bepipred/bepipred3_lin_output.csv
       If Bepipred3.0 does not predict any epitope in your target sequence see Note1.      
 
 7. Extract epitopes from Bepipred results using epixtractor_linear_bepipred3.py. This will automatically save the results at C_epixtractor
@@ -260,18 +261,11 @@ python ../../../episurf.py --path /pathto/project/brewpitope
 Rscript ../../../epifilter.R --path /pathto/project/brewpitope
 ```
 
-23. Extract the epitope regions using epiregions.py
+32. Extract the epitope regions using epiregions.py. This will give set of overlaping epitopes
 ```
-python3 ../../../epiregions.py
+python3 ../../../epiregions.py --path /pathto/project/brewpitope
 ```
-```
-Add path to input epitope dataframe: I_final_candidates/brewpitopes_results_df.csv
-Add path to output folder: K_epitope_regions
-```
-24. Plot the yield results of the pipeline using yield_plot.R
-```
-Rscript ../../../yield_plot.R --data H_epifilter/brewpitopes_unfiltered_df.csv --merged D_epimerger/merged.csv --eregs K_epitope_regions/epitope_regions_extracted.csv --outdir J_plots
-```
+
 
 ## APPENDIX FOR VARIANTS (OF CONCERN)
 1. Generate a MUTANT FASTA using fasta_mutator.R  
